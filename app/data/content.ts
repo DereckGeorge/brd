@@ -123,6 +123,12 @@ export const resources: ContentItem[] = [
   ["inclusive-warning-systems", "Inclusive early warning systems", "Research report", "Disaster risk", "2025", "/preview/city.jpg"],
   ["livelihoods-learning-note", "Learning from climate-smart livelihoods", "Case study", "Climate resilience", "2026", "/preview/agriculture.jpg"],
   ["community-engagement-toolkit", "A toolkit for meaningful community engagement", "Guideline", "Community wellbeing", "2026", "/preview/workshop.jpg"],
+  ["community-risk-map", "Reading a community risk map", "Map", "Geospatial science", "2026", "/preview/agriculture.jpg"],
+  ["local-spatial-data", "Local spatial data for preparedness", "Geospatial resource", "Geospatial science", "2026", "/preview/city.jpg"],
+  ["preparedness-training-pack", "A learning pack for local preparedness", "Training material", "Disaster risk", "2026", "/preview/workshop.jpg"],
+  ["adaptation-learning-slides", "Climate adaptation: a learning presentation", "Presentation", "Climate resilience", "2026", "/preview/agriculture.jpg"],
+  ["participatory-planning-toolkit", "A participatory planning toolkit", "Toolkit", "Community wellbeing", "2026", "/preview/workshop.jpg"],
+  ["visual-resilience-learning", "Visual learning for resilience", "Video", "Climate resilience", "2026", "/preview/mangroves.jpg"],
 ].map(([slug, title, category, theme, year, image]) => ({
   slug, title, category, year, image, imageAlt: "Illustrative publication cover photograph", status: theme,
   summary: `A sample ${category.toLowerCase()} exploring ${theme.toLowerCase()} and practical ways to connect knowledge with action.`,

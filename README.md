@@ -15,7 +15,7 @@ Open http://localhost:3002. Verification: `npm test`, `npm run lint`, and `npm r
 
 - `app/data/content.ts` contains fictional projects, research, services, people, publications, and stories. Replace these records with approved BRD content later.
 - `public/preview/` contains illustrative stock photos. They do not depict BRD projects or staff. Original download URLs are recorded in `scripts/fetch-preview-assets.mjs`.
-- The BRD logo, contact details, and updated Tegeta address are retained as brand anchors. Other content is a proposal, not an institutional claim.
+- The BRD logo and contact details are retained as brand anchors. The physical address is BRD Tanzania, 2nd Floor, Capital Place, Ohio Street, P.O. Box 6548, Dar es Salaam, Tanzania. Shared contact details are configured in `app/data/site-config.ts`.
 - Archives include search and theme/status filters. People have team-group tabs. Global search covers all sample collections.
 - Individual publication pages offer downloadable plain-text previews, not official publications.
 - The enquiry form uses browser validation and a local preview receipt. It does not send, store, or transmit enquiries. No donation processing, analytics, or newsletter subscription is enabled.
@@ -29,4 +29,12 @@ Other photos are illustrative Unsplash stock, including a workshop by Christina 
 
 ## Page Structure
 
-Home, About, Research, Projects, Services, Our People, Knowledge Hub, News & Stories, Get Involved, Contact, Search, and Photography Credits. Each collection record has an individual static detail page, related content, and a breadcrumb back to its directory.
+The two-level header separates News & Stories, Contact Us, and Search from Home, Who We Are, What We Do, How We Work, Knowledge Hub, and Get Involved. Each primary section has dedicated overview and submenu pages. Existing project, research, service, and people URLs remain available.
+
+The Knowledge Hub includes seven dedicated resource categories: research/reports, policy/technical notes, guides/toolkits, case studies, maps/geospatial resources, training materials, and videos/educational resources.
+
+Institutional narratives, partner names, governance models, event dates, and career opportunities are illustrative. No event registrations or job applications are collected. The official Instagram URL was supplied by the user. X, YouTube, and LinkedIn URLs remain pending rather than linking to guessed profiles.
+
+`/videos` offers three local 12-second stock-photo storyboards with playback controls, English captions, and transcripts. They are not BRD footage and contain no audio. Source photos retain their existing credits. Regenerate them with `node scripts/build-preview-videos.mjs` using an installed FFmpeg build with libx264. Official BRD videos can replace the samples later.
+
+`app/data/institution.ts` contains the sample institutional pages. `app/data/site-config.ts` contains shared navigation, knowledge categories, contact information, and social URLs.

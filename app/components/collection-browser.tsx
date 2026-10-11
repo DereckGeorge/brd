@@ -6,7 +6,7 @@ import Link from "next/link";
 import ContentCard from "./content-card";
 import type { ContentItem } from "../data/content";
 
-export default function CollectionBrowser({ items, section }: { items: ContentItem[]; section: string }) {
+export default function CollectionBrowser({ items, section, showGroups = true }: { items: ContentItem[]; section: string; showGroups?: boolean }) {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("All");
   const [status, setStatus] = useState("All");
@@ -15,7 +15,7 @@ export default function CollectionBrowser({ items, section }: { items: ContentIt
   const filtered = useMemo(() => items.filter((item) => (category === "All" || item.category === category) && (status === "All" || item.status === status) && `${item.title} ${item.summary} ${item.location || ""} ${item.role || ""}`.toLowerCase().includes(query.toLowerCase().trim())), [items, query, category, status]);
   function reset() { setQuery(""); setCategory("All"); setStatus("All"); }
   return <section className="collection container">
-    {section === "people" && <div className="segment-tabs" aria-label="Team groups">{["All", ...categories].map((value) => <button key={value} aria-pressed={category === value} onClick={() => setCategory(value)}>{value === "All" ? "Everyone" : value}</button>)}</div>}
+    {section === "people" && showGroups && <div className="segment-tabs" aria-label="Team groups">{["All", ...categories].map((value) => <button key={value} aria-pressed={category === value} onClick={() => setCategory(value)}>{value === "All" ? "Everyone" : value}</button>)}</div>}
     <div className="collection-tools"><label className="search-field"><Search size={19} /><input type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder={`Search ${section === "knowledge-hub" ? "publications" : section}`} aria-label={`Search ${section}`} /></label>
       {section !== "people" && <label className="select-field"><span>{section === "knowledge-hub" ? "Publication type" : "Theme"}</span><select aria-label={section === "knowledge-hub" ? "Publication type" : "Theme"} value={category} onChange={(event) => setCategory(event.target.value)}><option value="All">All {section === "knowledge-hub" ? "types" : "themes"}</option>{categories.map((value) => <option key={value}>{value}</option>)}</select></label>}
       {statuses.length > 0 && <label className="select-field"><span>{section === "knowledge-hub" ? "Theme" : "Status"}</span><select aria-label={section === "knowledge-hub" ? "Theme" : "Status"} value={status} onChange={(event) => setStatus(event.target.value)}><option value="All">All {section === "knowledge-hub" ? "themes" : "statuses"}</option>{statuses.map((value) => <option key={value}>{value}</option>)}</select></label>}

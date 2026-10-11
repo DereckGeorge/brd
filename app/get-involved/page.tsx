@@ -2,8 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import PageIntro from "../components/page-intro";
+import SectionNavigation from "../components/section-navigation";
+import { navigation } from "../data/site-config";
+import { institutionPages } from "../data/institution";
 
-export const metadata = { title: "Get involved" };
+export const metadata = { title: "Get Involved" };
 export default function GetInvolved() {
-  return <><PageIntro title="Better, together." eyebrow="Get involved" description="There is more than one way to contribute to a resilient future. Find a starting point for your next conversation with BRD." /><div className="about-photo container"><Image src="/preview/workshop.jpg" alt="Illustrative collaborative workshop" fill sizes="90vw" preload /></div><section className="section-band container"><div className="gateway-list involvement-list">{[["01", "Partner with us", "Explore an illustrative partnership in research, program delivery, or community learning."], ["02", "Share your expertise", "Bring a technical perspective, research question, or practical skill to a shared challenge."], ["03", "Volunteer & learn", "Imagine opportunities to contribute to outreach, field learning, and community initiatives."], ["04", "Support resilience", "Discuss how future support could help advance locally led initiatives. No donations are collected in this preview."]].map(([number, title, summary]) => <Link href="/contact" key={number}><span className="gateway-number">{number}</span><h2>{title}</h2><p>{summary}</p><ArrowUpRight size={25} /></Link>)}</div></section></>;
+  const group = navigation.find((item) => item.href === "/get-involved")!;
+  return <><PageIntro title="Better, together." eyebrow="Get Involved" description="Join a conversation, share your expertise, or contribute to a shared purpose. Find your way to get involved." /><SectionNavigation section="get-involved" current="/get-involved" /><div className="about-photo container overview-photo"><Image src="/preview/workshop.jpg" alt="Illustrative collaborative workshop" fill sizes="90vw" preload /></div><section className="section-band container"><div className="gateway-list involvement-list">{group.links.map(([label, href], index) => <Link href={href} key={href}><span className="gateway-number">{String(index + 1).padStart(2, "0")}</span><h2>{label}</h2><p>{institutionPages["get-involved"][index].summary}</p><ArrowUpRight size={25} /></Link>)}</div></section></>;
 }

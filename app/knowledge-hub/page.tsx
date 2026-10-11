@@ -1,8 +1,11 @@
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import PageIntro from "../components/page-intro";
 import CollectionBrowser from "../components/collection-browser";
-import { collections, collectionLabels } from "../data/content";
+import { resources } from "../data/content";
+import { knowledgeCategories } from "../data/site-config";
 
-export const metadata = { title: collectionLabels["knowledge-hub"] };
-export default function Page() {
-  return <><PageIntro title="Knowledge Hub." eyebrow={collectionLabels["knowledge-hub"]} description="Ideas worth sharing. Explore sample research reports, practical guides, policy briefs, and learning from the field." /><CollectionBrowser items={collections["knowledge-hub"]} section="knowledge-hub" /></>;
+export const metadata = { title: "Knowledge Hub" };
+export default function KnowledgeHub() {
+  return <><PageIntro title="Knowledge Hub." eyebrow="Knowledge Hub" description="Evidence, practical resources, and shared learning. Discover knowledge that connects research with informed local action." /><section className="container knowledge-directory" aria-label="Knowledge categories">{knowledgeCategories.map((category, index) => <Link key={category.slug} href={`/knowledge-hub/categories/${category.slug}`}><span className="gateway-number">{String(index + 1).padStart(2, "0")}</span><div><h2>{category.title}</h2><p>{category.description}</p></div><ArrowUpRight size={20} /></Link>)}</section><div className="container directory-heading"><h2>Browse all resources.</h2><p>Illustrative publications and learning resources.</p></div><CollectionBrowser items={resources} section="knowledge-hub" /></>;
 }

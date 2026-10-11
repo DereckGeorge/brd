@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { contact } from "../data/site-config";
+import SocialLinks from "./social-links";
 
 export default function SiteFooter() {
   return <footer className="site-footer"><div className="container">
     <div className="footer-top"><div><Link href="/" className="footer-name">BRD Tanzania.</Link><p>Building Resilience to Disasters.</p></div><Link href="/contact" className="text-link">Start a conversation<ArrowUpRight size={20} /></Link></div>
-    <div className="footer-grid"><div><h2>Explore</h2><Link href="/about">About us</Link><Link href="/people">Our people</Link><Link href="/projects">Projects</Link><Link href="/research">Research</Link></div><div><h2>Connect</h2><Link href="/services">Services</Link><Link href="/knowledge-hub">Knowledge Hub</Link><Link href="/news">News & stories</Link><Link href="/get-involved">Get involved</Link></div><div><h2>Find us</h2><address>BRD Tanzania, P.O. Box 6548<br />Kibo Complex, Tegeta<br />1st Floor, Office No. 06, Bagamoyo Road<br />Dar es Salaam, Tanzania</address></div><div><h2>Say hello</h2><a href="mailto:info@brd.or.tz">info@brd.or.tz</a><a href="tel:+255768021824">+255 768 021 824</a><a href="tel:+255789932878">+255 789 932 878</a></div></div>
-    <div className="footer-bottom"><span>BRD Tanzania · Design prototype</span><span>Sample projects and profiles are fictional.</span><Link href="/credits">Photography credits</Link></div>
+    <div className="footer-grid"><div><h2>Discover BRD</h2><Link href="/who-we-are">Who We Are</Link><Link href="/what-we-do">What We Do</Link><Link href="/how-we-work">How We Work</Link><Link href="/projects">Our Projects</Link><Link href="/people">Our People</Link></div><div><h2>Knowledge & Community</h2><Link href="/knowledge-hub">Knowledge Hub</Link><Link href="/videos">Videos & Learning</Link><Link href="/news">News & Stories</Link><Link href="/get-involved">Get Involved</Link><Link href="/get-involved/events">Events</Link></div><div><h2>Visit us</h2><address>{contact.name}<br />{contact.address.map((line) => <span key={line}>{line}<br /></span>)}</address><Link href="/contact">Contact Us<ArrowUpRight size={13} /></Link></div><div><h2>Say hello</h2><a href={`mailto:${contact.email}`}>{contact.email}</a>{contact.phones.map((phone) => <a key={phone} href={`tel:${phone.replaceAll(" ", "")}`}>{phone}</a>)}<h2 className="social-heading">Follow BRD</h2><SocialLinks /></div></div>
+    <div className="footer-bottom"><span>BRD Tanzania | Design prototype</span><span>Sample projects, profiles & videos are illustrative.</span><Link href="/credits">Photography credits</Link></div>
   </div></footer>;
 }

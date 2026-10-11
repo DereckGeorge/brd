@@ -2,6 +2,9 @@ import assert from "node:assert/strict";
 import { existsSync } from "node:fs";
 import { test } from "node:test";
 import { collections, searchItems } from "../app/data/content.ts";
+import { navigation, knowledgeCategories, contact, socialProfiles } from "../app/data/site-config.ts";
+import { institutionPages } from "../app/data/institution.ts";
+import { videos } from "../app/data/videos.ts";
 
 test("every preview record has a unique safe route and a local image", () => {
   for (const [section, items] of Object.entries(collections)) {
@@ -14,6 +17,46 @@ test("every preview record has a unique safe route and a local image", () => {
       assert.ok(existsSync(`app/${section}/[slug]/page.tsx`));
       assert.ok(existsSync(`app/${section}/page.tsx`));
     }
+  }
+});
+
+test("all requested main menus and submenu destinations have a page", () => {
+  assert.deepEqual(navigation.map((group) => group.title), ["Who We Are", "What We Do", "How We Work", "Knowledge Hub", "Get Involved"]);
+  const dynamicRoutes = new Set([
+    ...Object.entries(collections).flatMap(([section, items]) => items.map((item) => `/${section}/${item.slug}`)),
+    ...Object.entries(institutionPages).flatMap(([section, pages]) => pages.map((page) => `/${section}/${page.slug}`)),
+    ...knowledgeCategories.map((category) => `/knowledge-hub/categories/${category.slug}`),
+  ]);
+  for (const group of navigation) {
+    assert.ok(existsSync(`app${group.href}/page.tsx`), `Missing overview: ${group.href}`);
+    for (const [label, href] of group.links) assert.ok(existsSync(`app${href}/page.tsx`) || dynamicRoutes.has(href), `Missing submenu page: ${label}`);
+  }
+  for (const [section, pages] of Object.entries(institutionPages)) {
+    assert.ok(existsSync(`app/${section}/[slug]/page.tsx`));
+    assert.equal(new Set(pages.map((page) => page.slug)).size, pages.length);
+    for (const page of pages) if (page.image) assert.ok(existsSync(`public${page.image}`));
+  }
+});
+
+test("all seven Knowledge Hub categories contain matching resources", () => {
+  assert.equal(knowledgeCategories.length, 7);
+  for (const category of knowledgeCategories) assert.ok(collections["knowledge-hub"].some((resource) => category.types.includes(resource.category)), category.title);
+  for (const resource of collections["knowledge-hub"]) assert.equal(knowledgeCategories.filter((category) => category.types.includes(resource.category)).length, 1);
+});
+
+test("contact address and confirmed social profile match the latest feedback", () => {
+  assert.deepEqual(contact.address, ["2nd Floor, Capital Place, Ohio Street", "P.O. Box 6548", "Dar es Salaam, Tanzania"]);
+  assert.equal(socialProfiles.find((profile) => profile.name === "Instagram").url, "https://www.instagram.com/brd_tanzania/");
+  for (const profile of socialProfiles) if (profile.name !== "Instagram") assert.equal(profile.url, null);
+});
+
+test("sample videos have local clips, captions, posters, and transcripts", () => {
+  assert.equal(videos.length, 3);
+  for (const video of videos) {
+    assert.ok(existsSync(`public/preview/videos/${video.slug}.mp4`));
+    assert.ok(existsSync(`public/preview/videos/${video.slug}.vtt`));
+    assert.ok(existsSync(`public${video.poster}`));
+    assert.ok(video.transcript.includes("stock") || video.transcript.includes("Stock"));
   }
 });
 
