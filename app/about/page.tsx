@@ -1,9 +1,2 @@
-import Image from "next/image";
-import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
-import PageIntro from "../components/page-intro";
-
-export const metadata = { title: "About us" };
-export default function About() {
-  return <><PageIntro title="A shared purpose." eyebrow="About BRD" description="Building resilience means connecting people, knowledge, and practical action. This is where our story begins." /><div className="about-photo container"><Image src="/tanzania-landscape.jpg" alt="Usambara Mountains in Tanzania" fill sizes="90vw" preload /></div><section className="section-band container editorial-grid"><span className="eyebrow">Who we are</span><div><h2>Rooted in Tanzania.<br />Looking forward, together.</h2><p>BRD Tanzania brings a community-centered perspective to resilience. Our work connects research, technical expertise, and practical learning to help communities understand risk and prepare for change.</p><p>We believe that resilience grows through shared understanding. By listening, learning, and working together, institutions and communities can shape responses grounded in their own priorities.</p><Link href="/people" className="text-link">Meet our people<ArrowUpRight size={20} /></Link></div></section><section id="approach" className="section-band soft"><div className="container"><div className="section-heading"><span className="eyebrow">Our approach</span><h2>Listen. Learn. Act.</h2></div><div className="principles-grid">{[["01", "Start with people", "Local experience and community priorities help shape the questions we ask and the work we do."], ["02", "Follow the evidence", "Research and geospatial insights help make complex risks clearer and decisions more informed."], ["03", "Build together", "Practical learning and collaboration turn shared understanding into meaningful local action."]].map(([number, title, body]) => <div key={number}><span className="gateway-number">{number}</span><h3>{title}</h3><p>{body}</p></div>)}</div></div></section></>;
-}
+import { redirect } from "next/navigation";
+export default function About() { redirect("/who-we-are/about"); }

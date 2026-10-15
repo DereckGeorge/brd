@@ -38,3 +38,15 @@ Institutional narratives, partner names, governance models, event dates, and car
 `/videos` offers three local 12-second stock-photo storyboards with playback controls, English captions, and transcripts. They are not BRD footage and contain no audio. Source photos retain their existing credits. Regenerate them with `node scripts/build-preview-videos.mjs` using an installed FFmpeg build with libx264. Official BRD videos can replace the samples later.
 
 `app/data/institution.ts` contains the sample institutional pages. `app/data/site-config.ts` contains shared navigation, knowledge categories, contact information, and social URLs.
+
+## Focused Homepage and Donation Updates
+
+The homepage now has three content sections: a flood-response hero, four unnumbered areas of work, and a short feature linking to projects and the Knowledge Hub. Decorative numbering and approach circles are removed. Dates, publication years, durations, search counts, and contact numbers remain where they convey useful information.
+
+Who We Are uses a shared nested layout with persistent section navigation and no Overview item. About BRD is at `/who-we-are/about`; `/about` redirects there. Section links preserve the shared layout while changing the active content.
+
+The header Donate button opens `/donate`, which contains instructions and BRD contact links only. It does not accept payments, collect pledges, or publish invented bank/mobile-money details.
+
+The red footer band displays WHO, Red Cross, and UNICEF as explicitly illustrative partner examples, not confirmed BRD affiliations. They are text placeholders, not official partner logos.
+
+Flood photograph: Petty Officer 3rd Class Brandon Giles / U.S. Coast Guard District 8, public domain, via Wikimedia Commons. The photograph shows rescue operations in Baton Rouge, Louisiana, not a BRD operation. The source is linked on `/credits` and recorded in the asset script.

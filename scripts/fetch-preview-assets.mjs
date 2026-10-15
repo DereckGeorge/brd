@@ -1,6 +1,7 @@
 import { mkdir, writeFile } from "node:fs/promises";
 
 const assets = [
+  ["flood-response", "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/20/Coast_Guard_rescue_boat_in_2016_Baton_Rouge_Louisiana_flood.jpg/1280px-Coast_Guard_rescue_boat_in_2016_Baton_Rouge_Louisiana_flood.jpg"],
   ["agriculture", "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=85"],
   ["forest", "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1600&q=85"],
   ["coast", "https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1600&q=85"],

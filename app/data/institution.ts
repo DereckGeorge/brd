@@ -11,6 +11,10 @@ export type InstitutionPage = {
 // These narratives, opportunities, and institutional structures are design samples.
 export const institutionPages: Record<string, InstitutionPage[]> = {
   "who-we-are": [
+    { slug: "about", title: "About BRD.", summary: "Rooted in Tanzania. Connecting knowledge, practical expertise, and community-led action.", image: "/preview/workshop.jpg", sections: [
+      { heading: "A shared purpose", body: "BRD Tanzania brings a community-centered perspective to resilience. Our work connects research, technical expertise, and practical learning to help communities understand risk and prepare for change." },
+      { heading: "Stronger through collaboration", body: "We believe that resilience grows through shared understanding. By listening, learning, and working together, institutions and communities can shape responses grounded in their own priorities." },
+    ] },
     { slug: "mission-vision-values", title: "Mission, vision & values.", summary: "A common purpose. Clear principles. A commitment to people and a more resilient future.", mode: "mission", sections: [
       { heading: "Our mission", body: "Connect knowledge, practical expertise, and community-led action to strengthen resilience to disasters and a changing climate." },
       { heading: "Our vision", body: "Communities and institutions equipped to anticipate risk, adapt to change, and shape safer, more inclusive futures." },

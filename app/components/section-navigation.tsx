@@ -1,8 +1,13 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { navigation } from "../data/site-config";
 
 export default function SectionNavigation({ section, current }: { section: string; current?: string }) {
+  const pathname = usePathname();
   const group = navigation.find((item) => item.href === `/${section}`);
   if (!group) return null;
-  return <nav className="section-navigation container" aria-label={`${group.title} section`}><Link href={group.href} aria-current={current === group.href ? "page" : undefined}>Overview</Link>{group.links.map(([label, href]) => <Link key={href} href={href} aria-current={current === href ? "page" : undefined}>{label}</Link>)}</nav>;
+  const active = section === "who-we-are" && pathname === "/who-we-are" ? "/who-we-are/about" : current || pathname;
+  return <nav className={`section-navigation container ${section === "who-we-are" ? "who-navigation" : ""}`} aria-label={`${group.title} section`}>{group.links.map(([label, href]) => <Link key={href} href={href} scroll={section === "who-we-are" ? false : undefined} aria-current={active === href ? "page" : undefined}>{label}</Link>)}</nav>;
 }

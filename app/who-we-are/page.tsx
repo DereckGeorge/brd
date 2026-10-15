@@ -1,3 +1,5 @@
-import SectionOverview from "../components/section-overview";
+import InstitutionPage from "../components/institution-page";
+import { institutionPages } from "../data/institution";
+
 export const metadata = { title: "Who We Are" };
-export default function Page() { return <SectionOverview section="who-we-are" description="Our purpose, our people, and the relationships behind a shared commitment to resilience." image="/preview/workshop.jpg" />; }
+export default function WhoWeAre() { return <InstitutionPage page={institutionPages["who-we-are"].find((page) => page.slug === "about")!} section="who-we-are" />; }

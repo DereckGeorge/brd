@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowUpRight, ChevronDown, Menu, Search, X } from "lucide-react";
+import { ArrowUpRight, ChevronDown, Menu, Search, X, Heart } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { navigation } from "../data/site-config";
 import SocialLinks from "./social-links";
@@ -34,6 +34,7 @@ export default function SiteHeader() {
             {group === index && <div id={`nav-group-${index}`} className="nav-dropdown"><div className="container dropdown-inner"><div><span className="eyebrow">{item.title}</span><p>{item.description}</p><Link className="text-link" href={item.href} onClick={close}>Explore {item.title.toLowerCase()}<ArrowUpRight size={18} /></Link></div><div className="dropdown-links">{item.links.map(([label, href]) => <Link key={href} href={href} onClick={close}>{label}<ArrowUpRight size={18} /></Link>)}</div></div></div>}
           </div>)}
         </nav>
+        <Link className="header-donate donate-button" href="/donate" onClick={close}><Heart size={17} />Donate</Link>
         <button className="menu-toggle icon-button" aria-expanded={mobile} aria-controls="main-navigation" title={mobile ? "Close navigation" : "Open navigation"} aria-label={mobile ? "Close navigation" : "Open navigation"} onClick={() => { setMobile(!mobile); setGroup(null); }}>{mobile ? <X size={24} /> : <Menu size={24} />}</button>
       </div>
     </header>

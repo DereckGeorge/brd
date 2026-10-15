@@ -24,7 +24,7 @@ export const knowledgeCategories = [
 
 export const navigation = [
   { title: "Who We Are", href: "/who-we-are", description: "Our purpose, the people behind it, and the partnerships that make it possible.", links: [
-    ["About BRD", "/about"], ["Our Mission, Vision, Goal and Core Values", "/who-we-are/mission-vision-values"], ["Our Governance", "/who-we-are/governance"], ["Our Management Team", "/who-we-are/management"], ["Board Members", "/who-we-are/board"], ["Our Partners", "/who-we-are/partners"],
+    ["About BRD", "/who-we-are/about"], ["Our Mission, Vision, Goal and Core Values", "/who-we-are/mission-vision-values"], ["Our Governance", "/who-we-are/governance"], ["Our Management Team", "/who-we-are/management"], ["Board Members", "/who-we-are/board"], ["Our Partners", "/who-we-are/partners"],
   ] },
   { title: "What We Do", href: "/what-we-do", description: "Evidence, expertise, practical learning, and humanitarian support.", links: [["Research", "/research"], ["Consultancy", "/what-we-do/consultancy"], ["Training", "/what-we-do/training"], ["Humanitarian Support", "/what-we-do/humanitarian-support"]] },
   { title: "How We Work", href: "/how-we-work", description: "Locally grounded. Evidence informed. Built through collaboration.", links: [["Our Approach", "/how-we-work/approach"], ["Our Strategy", "/how-we-work/strategy"]] },
