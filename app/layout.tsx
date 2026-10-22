@@ -4,7 +4,7 @@ import SiteHeader from "./components/site-header";
 import SiteFooter from "./components/site-footer";
 
 export const metadata: Metadata = {
-  title: { default: "BRD Tanzania | Design Preview", template: "%s | BRD Tanzania" },
+  title: { default: "BRD Tanzania | Building Resilience to Disasters", template: "%s | BRD Tanzania" },
   robots: { index: false, follow: false },
   description:
     "BRD Tanzania is a non-governmental organization advancing disaster risk reduction, climate resilience, research, training, and humanitarian action.",

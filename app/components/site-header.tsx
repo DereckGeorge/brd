@@ -22,7 +22,7 @@ export default function SiteHeader() {
   }, []);
   return <>
     <a href="#main-content" className="skip-link">Skip to content</a>
-    <div className="preview-notice"><span>Design preview</span><span>Illustrative content & photography</span></div>
+    <div className="preview-notice"><span>Website preview</span><span>Some resources and imagery are illustrative</span></div>
     <header ref={root} className="site-header" onKeyDown={(event) => { if (event.key === "Escape") { if (mobile) root.current?.querySelector<HTMLButtonElement>(".menu-toggle")?.focus(); else if (group !== null) triggers.current[group]?.focus(); close(); } }}>
       <div className="utility-bar"><div className="container utility-inner"><span className="utility-tagline">Building Resilience to Disasters</span><nav aria-label="Utility navigation"><Link href="/news" onClick={close}>News & Stories</Link><Link href="/contact" onClick={close}>Contact Us</Link><Link href="/search" onClick={close} title="Search the website" className="utility-search"><Search size={16} /><span>Search</span></Link></nav><SocialLinks /></div></div>
       <div className="header-inner container">

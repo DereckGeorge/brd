@@ -3,7 +3,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { test } from "node:test";
 import { collections, searchItems } from "../app/data/content.ts";
 import { navigation, knowledgeCategories, contact, socialProfiles } from "../app/data/site-config.ts";
-import { institutionPages } from "../app/data/institution.ts";
+import { institutionPages, values, partners, boardMembers, sampleEvents, sampleRoles } from "../app/data/institution.ts";
 import { videos } from "../app/data/videos.ts";
 
 test("every preview record has a unique safe route and a local image", () => {
@@ -63,14 +63,16 @@ test("decorative numbering and approach circles are absent", () => {
 test("the concise homepage and contact-only donation page are present", () => {
   const home = readFileSync("app/page.tsx", "utf8");
   assert.equal((home.match(/<section\b/g) || []).length, 3);
-  assert.match(home, /\/preview\/flood-response\.jpg/);
-  assert.ok(existsSync("public/preview/flood-response.jpg"));
+  assert.match(home, /\/preview\/flood-resilience\.png/);
+  assert.ok(existsSync("public/preview/flood-resilience.png"));
+  assert.match(home, /AI-generated illustration/);
+  assert.doesNotMatch(home, /flood-response\.jpg|Coast Guard/);
   assert.match(readFileSync("app/components/site-header.tsx", "utf8"), /href="\/donate"/);
   const donate = readFileSync("app/donate/page.tsx", "utf8");
   assert.match(donate, /mailto:/);
   assert.match(donate, /tel:/);
   assert.doesNotMatch(donate, /<form|<input/);
-  assert.match(readFileSync("app/components/site-footer.tsx", "utf8"), /affiliations are not confirmed/);
+  assert.doesNotMatch(readFileSync("app/components/site-footer.tsx", "utf8"), /WHO|UNICEF|href="\/people"/);
 });
 
 test("contact address and confirmed social profile match the latest feedback", () => {
@@ -98,8 +100,40 @@ test("global search includes every collection record exactly once", () => {
   }
 });
 
-test("sample directories cover research status, team groups, and publication types", () => {
-  assert.deepEqual(new Set(collections.research.map((item) => item.status)), new Set(["Ongoing", "Completed"]));
-  assert.deepEqual(new Set(collections.people.map((item) => item.category)), new Set(["Board of Directors", "Management", "Technical experts"]));
+test("unapproved research, people, opportunities and events are not presented as records", () => {
+  assert.equal(collections.research.length, 0);
+  assert.equal(collections.people.length, 0);
+  assert.equal(sampleEvents.length, 0);
+  assert.equal(sampleRoles.length, 0);
   for (const type of ["Research report", "Policy brief", "Technical document", "Case study", "Guideline"]) assert.ok(collections["knowledge-hub"].some((item) => item.category === type));
+});
+
+test("What We Do keeps all six services in shared navigation, including Research", () => {
+  const group = navigation.find((item) => item.href === "/what-we-do");
+  assert.equal(group.links.length, 6);
+  for (const [, href] of group.links) {
+    assert.ok(href.startsWith("/what-we-do/"));
+    assert.ok(institutionPages["what-we-do"].some((page) => href === `/what-we-do/${page.slug}`));
+  }
+  assert.match(readFileSync("app/what-we-do/layout.tsx", "utf8"), /<SectionNavigation section="what-we-do"/);
+  assert.match(readFileSync("app/research/page.tsx", "utf8"), /redirect\("\/what-we-do\/research"\)/);
+  assert.match(readFileSync("app/people/page.tsx", "utf8"), /redirect\("\/who-we-are\/management"\)/);
+});
+
+test("supplied projects, values and partners replace fictional data without fabricated facts", () => {
+  assert.equal(collections.projects.length, 4);
+  assert.equal(values.length, 7);
+  assert.equal(boardMembers.length, 5);
+  assert.deepEqual(boardMembers.map((member) => member.name), ["Dr. Ruger Kahwa", "Dr. Joseph S. Mayunga", "Ms. Vivaoliva U. Shoo", "Dr. Guido A. Uhinga", "Mr. Charles Msangi"]);
+  assert.deepEqual(partners.map(([name]) => name), ["Red Cross Tanzania", "RAPID Tanzania", "Government of Tanzania - DMD-PMO"]);
+  for (const item of collections.projects) {
+    assert.equal(item.isIllustrative, false);
+    assert.ok(item.sections[0].body.length > 200);
+    assert.equal(item.status, undefined);
+    assert.equal(item.year, undefined);
+    assert.doesNotMatch(JSON.stringify(item), /fictional|Sample partner|Coastal Futures|Urban Resilience Collective/i);
+  }
+  const consultancy = institutionPages["what-we-do"].find((page) => page.slug === "consultancy");
+  assert.equal(consultancy.list.items.length, 9);
+  for (const pages of Object.values(institutionPages)) for (const page of pages) for (const section of page.sections) assert.ok(section.heading && section.body);
 });

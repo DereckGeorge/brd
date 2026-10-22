@@ -4,5 +4,5 @@ import { collections, collectionLabels } from "../data/content";
 
 export const metadata = { title: collectionLabels["projects"] };
 export default function Page() {
-  return <><PageIntro title="Projects." eyebrow={collectionLabels["projects"]} description="Turning shared ambition into local action. Explore an illustrative portfolio of community-led resilience programs." /><CollectionBrowser items={collections["projects"]} section="projects" /></>;
+  return <><PageIntro title="Projects." eyebrow={collectionLabels["projects"]} description="BRD Tanzania's work in flood resilience, disaster risk management, policy evaluation and risk-informed development." /><CollectionBrowser items={collections["projects"]} section="projects" /></>;
 }

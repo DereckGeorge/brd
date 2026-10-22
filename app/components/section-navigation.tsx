@@ -9,5 +9,6 @@ export default function SectionNavigation({ section, current }: { section: strin
   const group = navigation.find((item) => item.href === `/${section}`);
   if (!group) return null;
   const active = section === "who-we-are" && pathname === "/who-we-are" ? "/who-we-are/about" : current || pathname;
-  return <nav className={`section-navigation container ${section === "who-we-are" ? "who-navigation" : ""}`} aria-label={`${group.title} section`}>{group.links.map(([label, href]) => <Link key={href} href={href} scroll={section === "who-we-are" ? false : undefined} aria-current={active === href ? "page" : undefined}>{label}</Link>)}</nav>;
+  const shared = section === "who-we-are" || section === "what-we-do";
+  return <nav className={`section-navigation container ${shared ? "who-navigation" : ""}`} aria-label={`${group.title} section`}>{group.links.map(([label, href]) => <Link key={href} href={href} scroll={shared ? false : undefined} aria-current={active === href ? "page" : undefined}>{label}</Link>)}</nav>;
 }

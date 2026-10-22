@@ -1,4 +1,4 @@
-// Illustrative content for the design preview; these are not BRD records.
+// Projects and services use supplied BRD copy. Remaining resource and news samples are illustrative.
 export type ContentItem = {
   slug: string;
   title: string;
@@ -10,111 +10,230 @@ export type ContentItem = {
   location?: string;
   year?: string;
   role?: string;
+  isIllustrative?: boolean;
   facts: [string, string][];
   sections: { heading: string; body: string }[];
 };
 
 export const projects: ContentItem[] = [
   {
-    slug: "coastal-communities", title: "Resilient coasts, thriving communities", category: "Climate resilience", status: "Ongoing", location: "Tanga & Pwani", year: "2025 - 2027",
-    image: "/preview/mangroves.jpg", imageAlt: "Illustrative aerial photograph of coastal mangrove forest",
-    summary: "Exploring how nature-based solutions and local knowledge can strengthen coastal livelihoods.",
-    facts: [["Location", "Tanga & Pwani"], ["Duration", "2025 - 2027"], ["Status", "Ongoing"], ["Sample partner", "Coastal Futures Network"]],
-    sections: [
-      { heading: "The challenge", body: "In this illustrative project, changing coastal conditions place pressure on ecosystems and livelihoods. The program explores how communities can understand those risks and shape practical responses together." },
-      { heading: "Our approach", body: "A proposed combination of participatory mapping, mangrove restoration planning, and community learning connects environmental evidence with local priorities. Coastal leaders and researchers develop a shared plan for adaptation." },
-      { heading: "Activities & intended outcomes", body: "Sample activities include community risk assessments, shoreline mapping, restoration workshops, and local preparedness plans. Intended outcomes are healthier ecosystems, stronger local capacity, and more informed decisions." },
+    "slug": "flood-resilience-tanzania",
+    "title": "Enhancing Flood Resilience in Tanzania",
+    "category": "Flood resilience",
+    "image": "/preview/flood-resilience.png",
+    "imageAlt": "Original AI-generated flood-response illustration; not a photograph of this project",
+    "summary": "This project aimed to strengthen flood resilience in Tanzania by improving basin-level flood forecasting, flood hazard assessment and early warning systems to support timely decision-making and early action.",
+    "facts": [
+      [
+        "Focus",
+        "Flood resilience"
+      ]
     ],
+    "sections": [
+      {
+        "heading": "Project summary",
+        "body": "This project aimed to strengthen flood resilience in Tanzania by improving basin-level flood forecasting, flood hazard assessment and early warning systems to support timely decision-making and early action. Key activities included developing flood hazard and risk maps, preparing flood inundation maps for different return periods, identifying critical infrastructure exposed to flooding, and enhancing early warning dissemination protocols."
+      }
+    ],
+    "isIllustrative": false
   },
   {
-    slug: "community-early-warning", title: "Early warning, local action", category: "Disaster risk", status: "Ongoing", location: "Dar es Salaam", year: "2026 - 2027",
-    image: "/preview/city.jpg", imageAlt: "Illustrative photograph of an urban landscape",
-    summary: "Connecting flood risk information with the people and neighborhoods that need it most.",
-    facts: [["Location", "Dar es Salaam"], ["Duration", "2026 - 2027"], ["Status", "Ongoing"], ["Sample partner", "Urban Resilience Collective"]],
-    sections: [{ heading: "The challenge", body: "This sample program considers the gap between risk information and local action. It asks how flood alerts can reach different groups in useful, accessible ways." }, { heading: "Our approach", body: "Local mapping exercises, alert pathway reviews, and emergency simulations bring community members and technical teams together. Residents help shape messages that can support practical decisions." }, { heading: "Activities & intended outcomes", body: "Illustrative activities include neighborhood mapping, preparedness workshops, and community-led simulation exercises. A proposed outcome is a clearer connection between warnings and response." }],
+    "slug": "media-disaster-risk-management",
+    "title": "Building the Capacity of Media Practitioners in Disaster Risk Management",
+    "category": "Training",
+    "image": "/preview/workshop.jpg",
+    "imageAlt": "Licensed stock photograph used illustratively, not project documentation",
+    "summary": "This assignment aimed to strengthen media practitioners' knowledge and practical capacity in disaster risk management (DRM).",
+    "facts": [
+      [
+        "Focus",
+        "Training"
+      ]
+    ],
+    "sections": [
+      {
+        "heading": "Project summary",
+        "body": "This assignment aimed to strengthen media practitioners' knowledge and practical capacity in disaster risk management (DRM). Training covered the concepts and principles of DRM and the role of media in disaster preparedness, response, recovery and risk reduction. It also focused on strengthening participants' skills in gathering, verifying, interpreting and communicating disaster-related information."
+      }
+    ],
+    "isIllustrative": false
   },
   {
-    slug: "climate-smart-livelihoods", title: "Growing climate-smart livelihoods", category: "Climate resilience", status: "Completed", location: "Morogoro", year: "2024 - 2025",
-    image: "/preview/agriculture.jpg", imageAlt: "Illustrative photograph of agricultural fields at sunset",
-    summary: "A community-led approach to adaptation, agricultural learning, and sustainable livelihoods.",
-    facts: [["Location", "Morogoro"], ["Duration", "2024 - 2025"], ["Status", "Completed"], ["Sample partner", "Rural Learning Alliance"]],
-    sections: [{ heading: "The challenge", body: "This fictional case study considers how farming communities could respond to less predictable seasonal conditions. It places local experience at the heart of adaptation planning." }, { heading: "Our approach", body: "Demonstration plots, peer learning sessions, and seasonal planning workshops form the illustrative program. Practical tools help translate climate information into decisions about land and livelihoods." }, { heading: "Learning from the program", body: "The proposed case study would bring together participant reflections, field observations, and recommendations for future learning. The proposed learning would support more informed seasonal planning and future adaptation." }],
+    "slug": "national-disaster-management-policy",
+    "title": "Comprehensive Review and Implementation Evaluation of the National Disaster Management Policy (2004)",
+    "category": "Policy & governance",
+    "image": "/preview/agriculture.jpg",
+    "imageAlt": "Licensed stock photograph used illustratively, not project documentation",
+    "summary": "This assignment involved reviewing Tanzania's National Disaster Management Policy (2004) and evaluating its implementation, effectiveness and relevance in addressing evolving disaster risks.",
+    "facts": [
+      [
+        "Focus",
+        "Policy & governance"
+      ]
+    ],
+    "sections": [
+      {
+        "heading": "Project summary",
+        "body": "This assignment involved reviewing Tanzania's National Disaster Management Policy (2004) and evaluating its implementation, effectiveness and relevance in addressing evolving disaster risks. The assessment examined achievements, policy gaps and implementation challenges, considered alignment with current national priorities and international frameworks, and developed evidence-based recommendations to strengthen disaster risk reduction, preparedness, response, recovery and institutional coordination."
+      }
+    ],
+    "isIllustrative": false
   },
   {
-    slug: "mapping-for-resilience", title: "Mapping a more resilient future", category: "Geospatial science", status: "Ongoing", location: "Dodoma", year: "2026 - 2028",
-    image: "/preview/agriculture.jpg", imageAlt: "Illustrative landscape photograph for geospatial research",
-    summary: "Using Earth observation and participatory mapping to make risk visible and actionable.",
-    facts: [["Location", "Dodoma"], ["Duration", "2026 - 2028"], ["Status", "Ongoing"], ["Sample partner", "Spatial Futures Lab"]],
-    sections: [{ heading: "The challenge", body: "This sample initiative explores the value of accessible spatial information in local planning. It considers how technical maps and community knowledge can be brought together." }, { heading: "Our approach", body: "The example combines land-cover analysis, participatory mapping, and skills development for local planning teams. Research products would be translated into accessible decision-making tools." }, { heading: "Planned outputs", body: "Illustrative outputs include risk maps, a shared spatial database, practical training materials, and a guide to using geospatial evidence in local planning." }],
-  },
-  {
-    slug: "preparedness-academy", title: "Preparedness starts with people", category: "Training", status: "Completed", location: "Arusha", year: "2025 - 2026",
-    image: "/preview/workshop.jpg", imageAlt: "Illustrative photograph of a collaborative professional workshop",
-    summary: "Practical learning for local institutions, responders, and community leaders.",
-    facts: [["Location", "Arusha"], ["Duration", "2025 - 2026"], ["Status", "Completed"], ["Sample partner", "Community Learning Forum"]],
-    sections: [{ heading: "The challenge", body: "This fictional training initiative focuses on the skills and relationships that support preparedness. It considers the different needs of local leaders, responders, and institutions." }, { heading: "Our approach", body: "A sample learning pathway includes risk assessment, response planning, inclusive communication, and simulation exercises. Participants work through local scenarios together." }, { heading: "Learning & reflection", body: "Example outputs include preparedness plans, learning journals, and an evaluation of practical exercises. Real training results can be added to this structure later." }],
-  },
-  {
-    slug: "restoring-catchments", title: "Healthy catchments, safer communities", category: "Disaster risk", status: "Ongoing", location: "Usambara", year: "2026 - 2028",
-    image: "/preview/forest.jpg", imageAlt: "Illustrative photograph of a forest ecosystem",
-    summary: "Bringing ecosystem stewardship and disaster risk reduction into the same conversation.",
-    facts: [["Location", "Usambara"], ["Duration", "2026 - 2028"], ["Status", "Ongoing"], ["Sample partner", "Catchment Stewardship Network"]],
-    sections: [{ heading: "The challenge", body: "This illustrative project looks at the links between catchment health, water, and community risk. It explores how land stewardship can contribute to resilience." }, { heading: "Our approach", body: "Field observations, participatory planning, and ecosystem learning sessions form the proposed approach. Communities and technical teams identify shared priorities for catchment protection." }, { heading: "Planned outputs", body: "Sample outputs include catchment assessments, stewardship plans, and practical community learning resources. These examples will be replaced with approved project information." }],
-  },
+    "slug": "sadc-gender-risk-informed-development",
+    "title": "Mainstreaming Gender and Risk-Informed Development into the SADC Disaster Risk Coordination Mechanism",
+    "category": "Gender & risk-informed development",
+    "image": "/preview/forest.jpg",
+    "imageAlt": "Licensed stock photograph used illustratively, not project documentation",
+    "summary": "This project assessed the integration of gender equality and risk-informed development (RID) within the Southern African Development Community (SADC) Disaster Risk Coordination Mechanism (DRCM).",
+    "facts": [
+      [
+        "Focus",
+        "Gender & risk-informed development"
+      ]
+    ],
+    "sections": [
+      {
+        "heading": "Project summary",
+        "body": "This project assessed the integration of gender equality and risk-informed development (RID) within the Southern African Development Community (SADC) Disaster Risk Coordination Mechanism (DRCM). Activities included reviewing the SADC Secretariat's disaster risk management coordination mechanisms and decision-making processes, conducting interviews with key experts, identifying opportunities for mainstreaming gender and RID principles, and developing a visual representation of the mechanism with recommendations for strengthening their integration into regional instruments and decision-making."
+      }
+    ],
+    "isIllustrative": false
+  }
 ];
 
-export const research: ContentItem[] = [
-  {
-    slug: "coastal-risk-pathways", title: "Understanding coastal risk pathways", category: "Climate resilience", status: "Ongoing", year: "2026", image: "/preview/coast.jpg", imageAlt: "Illustrative photograph of ocean water and coastline",
-    summary: "An example study connecting changing coastal conditions, ecosystems, and household livelihoods.",
-    facts: [["Research theme", "Climate resilience"], ["Status", "Ongoing"], ["Year", "2026"], ["Sample team", "Coastal Systems Research Group"]],
-    sections: [{ heading: "Research question", body: "How could communities combine ecosystem knowledge and scientific observations to make coastal adaptation decisions? The study explores relationships between local priorities, environmental change, and adaptation choices." }, { heading: "Methods", body: "The proposed methods combine household interviews, participatory mapping, and a review of environmental observations. Community priorities shape the scope and interpretation of the research." }, { heading: "Expected contribution", body: "Sample outputs include a research report, an accessible policy brief, and community learning materials. No findings are presented as actual BRD research." }],
-  },
-  {
-    slug: "urban-flood-preparedness", title: "What makes an early warning useful?", category: "Disaster risk", status: "Completed", year: "2025", image: "/preview/city.jpg", imageAlt: "Illustrative city photograph",
-    summary: "A sample investigation into how local knowledge and accessible communication support flood preparedness.",
-    facts: [["Research theme", "Disaster risk"], ["Status", "Completed"], ["Year", "2025"], ["Sample team", "Urban Risk Research Group"]],
-    sections: [{ heading: "Research question", body: "What helps different groups understand and act on a warning? This sample study considers the practical and social dimensions of preparedness." }, { heading: "Methods", body: "Illustrative methods include interviews, message testing, and facilitated reflection sessions. These methods explore the role of timing, accessibility, and trust in preparedness." }, { heading: "Learning & publications", body: "Example learning focuses on accessibility, timing, trust, and local response pathways. This is a fictional research summary prepared for design review." }],
-  },
-  {
-    slug: "earth-observation-for-planning", title: "Earth observation for local planning", category: "Geospatial science", status: "Ongoing", year: "2026", image: "/preview/agriculture.jpg", imageAlt: "Illustrative photograph of agricultural land",
-    summary: "Exploring how spatial evidence can support practical, locally informed decisions.",
-    facts: [["Research theme", "Geospatial science"], ["Status", "Ongoing"], ["Year", "2026"], ["Sample team", "Spatial Research Group"]],
-    sections: [{ heading: "Research question", body: "How can spatial products become more useful to local planning teams? This illustrative theme connects technical analysis with decision-making needs." }, { heading: "Methods", body: "The sample approach combines land-cover interpretation, participatory validation, and stakeholder workshops. It considers how evidence is communicated as well as how it is produced." }, { heading: "Expected contribution", body: "Proposed outputs include map products, practical guidelines, and a review of learning needs. The intended focus is information that local institutions can put to practical use." }],
-  },
-  {
-    slug: "inclusive-community-resilience", title: "Whose resilience are we building?", category: "Community wellbeing", status: "Completed", year: "2025", image: "/preview/workshop.jpg", imageAlt: "Illustrative collaborative discussion",
-    summary: "A sample research theme examining inclusion, participation, and community-led preparedness.",
-    facts: [["Research theme", "Community wellbeing"], ["Status", "Completed"], ["Year", "2025"], ["Sample team", "Inclusive Resilience Research Group"]],
-    sections: [{ heading: "Research question", body: "How can preparedness planning reflect the needs and experience of different community groups? This example explores inclusion as a foundation of resilience." }, { heading: "Methods", body: "Illustrative methods include community conversations, stakeholder mapping, and a review of participation pathways. Participants contribute their experience of information access and local decision-making." }, { heading: "Learning & publications", body: "The sample summary highlights participation, accessible information, and shared accountability. It is not a record of completed BRD research." }],
-  },
-];
+export const research: ContentItem[] = [];
 
 export const services: ContentItem[] = [
-  ["research-and-assessment", "Research & assessment", "Research", "Evidence that supports better decisions.", "/preview/agriculture.jpg", "Study design;Risk and vulnerability assessment;Data collection and analysis;Research mentorship"],
-  ["consultancy-and-advocacy", "Consultancy & advocacy", "Advisory", "Practical advice for institutions, policies, and programs.", "/preview/workshop.jpg", "Institutional reviews;Policy and strategy development;Program evaluation;Stakeholder engagement"],
-  ["gis-and-earth-observation", "GIS & Earth observation", "Geospatial science", "Making complex information visible and useful.", "/preview/agriculture.jpg", "Spatial analysis;Remote sensing;Participatory mapping;Geospatial skills development"],
-  ["disaster-risk-management", "Disaster risk management", "Disaster risk", "Turning risk knowledge into preparedness and action.", "/preview/city.jpg", "Risk assessments;Preparedness and response planning;Early warning systems;Simulation exercises"],
-  ["climate-resilience", "Climate resilience", "Climate resilience", "Locally grounded pathways to adaptation.", "/preview/mangroves.jpg", "Adaptation planning;Climate vulnerability assessment;Nature-based solutions;Resilient livelihoods"],
-  ["training-and-capacity", "Training & capacity development", "Training", "Learning that becomes practical capability.", "/preview/workshop.jpg", "Professional short courses;Community learning;Customized institutional programs;Coaching and mentorship"],
-].map(([slug, title, category, summary, image, offerings]) => ({
-  slug, title, category, summary, image, imageAlt: `Illustrative photograph for ${title.toLowerCase()}`,
-  facts: [["Service area", category], ["Audience", "Institutions, partners & communities"], ["Format", "Adapted to your needs"]],
-  sections: [{ heading: "How we can help", body: `${summary} Our approach connects technical analysis with the priorities of institutions, development partners, and communities. Clear questions, collaborative planning, and practical outputs guide the work.` }, { heading: "Areas of support", body: offerings.split(";").join(". ") + "." }, { heading: "Working together", body: "An initial conversation helps establish the context, priorities, and intended outcomes. The proposed process moves from scoping and collaborative planning to delivery, reflection, and follow-up." }],
-}));
+  {
+    "slug": "research-and-assessment",
+    "title": "Research, Evidence and Learning",
+    "category": "Research",
+    "summary": "BRD Research Center undertakes and supports research on disaster risk management, disaster risk reduction, climate change and community resilience. Our research interests include hazard prevention and mitigation, preparedness, response and recovery, disaster risk assessment, physical and social vulnerability, disaster governance, gender and disaster risk reduction, early warning systems, and climate change adaptation and mitigation.  We aim to generate evidence that can inform policy, planning, practice and future research.",
+    "image": "/preview/agriculture.jpg",
+    "imageAlt": "Licensed landscape photograph used illustratively",
+    "facts": [
+      [
+        "Service area",
+        "Research"
+      ]
+    ],
+    "sections": [
+      {
+        "heading": "Research, Evidence and Learning",
+        "body": "BRD Research Center undertakes and supports research on disaster risk management, disaster risk reduction, climate change and community resilience. Our research interests include hazard prevention and mitigation, preparedness, response and recovery, disaster risk assessment, physical and social vulnerability, disaster governance, gender and disaster risk reduction, early warning systems, and climate change adaptation and mitigation.  We aim to generate evidence that can inform policy, planning, practice and future research."
+      }
+    ],
+    "isIllustrative": false
+  },
+  {
+    "slug": "consultancy-and-advocacy",
+    "title": "Consultancy & advocacy",
+    "category": "Advisory",
+    "summary": "Through the BRD Consultancy and Advocacy Center, BRD provides technical and advisory services to government institutions, development partners, NGOs, private-sector organisations and other stakeholders. Our services support risk-informed planning, institutional capacity, climate resilience and evidence-based decision-making.",
+    "image": "/preview/agriculture.jpg",
+    "imageAlt": "Licensed landscape photograph used illustratively",
+    "facts": [
+      [
+        "Service area",
+        "Advisory"
+      ]
+    ],
+    "sections": [
+      {
+        "heading": "Consultancy & advocacy",
+        "body": "Through the BRD Consultancy and Advocacy Center, BRD provides technical and advisory services to government institutions, development partners, NGOs, private-sector organisations and other stakeholders. Our services support risk-informed planning, institutional capacity, climate resilience and evidence-based decision-making."
+      }
+    ],
+    "isIllustrative": false
+  },
+  {
+    "slug": "gis-and-earth-observation",
+    "title": "Geospatial & Earth Observation Services",
+    "category": "Geospatial science",
+    "summary": "BRD applies Geographic Information Systems (GIS), remote sensing, Earth observation and geospatial analysis to support disaster risk assessment, vulnerability analysis, climate resilience, environmental management and evidence-based planning. Depending on assignment requirements, outputs may include spatial databases, maps, analytical reports, risk information products and decision-support tools.",
+    "image": "/preview/agriculture.jpg",
+    "imageAlt": "Licensed landscape photograph used illustratively",
+    "facts": [
+      [
+        "Service area",
+        "Geospatial science"
+      ]
+    ],
+    "sections": [
+      {
+        "heading": "Geospatial & Earth Observation Services",
+        "body": "BRD applies Geographic Information Systems (GIS), remote sensing, Earth observation and geospatial analysis to support disaster risk assessment, vulnerability analysis, climate resilience, environmental management and evidence-based planning. Depending on assignment requirements, outputs may include spatial databases, maps, analytical reports, risk information products and decision-support tools."
+      }
+    ],
+    "isIllustrative": false
+  },
+  {
+    "slug": "humanitarian-support",
+    "title": "Humanitarian support",
+    "category": "Humanitarian support",
+    "summary": "BRD Tanzania contributes to humanitarian preparedness and supports disaster-affected communities during response, relief, and recovery through collaboration with relevant stakeholders, community engagement, and volunteer mobilisation. Its efforts aim to promote timely, coordinated, and people-centred assistance, while encouraging volunteerism and local participation in meeting urgent needs, restoring livelihoods, and strengthening community resilience.",
+    "image": "/preview/agriculture.jpg",
+    "imageAlt": "Licensed landscape photograph used illustratively",
+    "facts": [
+      [
+        "Service area",
+        "Humanitarian support"
+      ]
+    ],
+    "sections": [
+      {
+        "heading": "Humanitarian support",
+        "body": "BRD Tanzania contributes to humanitarian preparedness and supports disaster-affected communities during response, relief, and recovery through collaboration with relevant stakeholders, community engagement, and volunteer mobilisation. Its efforts aim to promote timely, coordinated, and people-centred assistance, while encouraging volunteerism and local participation in meeting urgent needs, restoring livelihoods, and strengthening community resilience."
+      }
+    ],
+    "isIllustrative": false
+  },
+  {
+    "slug": "outreach-community-engagement",
+    "title": "Outreach & Community Engagement",
+    "category": "Outreach",
+    "summary": "BRD supports public awareness, workshops, seminars, community engagement, training activities and knowledge-sharing events on disaster risk management, disaster risk reduction, climate change and resilience. These activities aim to improve risk awareness, encourage preparedness and make scientific and geospatial information more accessible to practitioners, communities and decision-makers.",
+    "image": "/preview/agriculture.jpg",
+    "imageAlt": "Licensed landscape photograph used illustratively",
+    "facts": [
+      [
+        "Service area",
+        "Outreach"
+      ]
+    ],
+    "sections": [
+      {
+        "heading": "Outreach & Community Engagement",
+        "body": "BRD supports public awareness, workshops, seminars, community engagement, training activities and knowledge-sharing events on disaster risk management, disaster risk reduction, climate change and resilience. These activities aim to improve risk awareness, encourage preparedness and make scientific and geospatial information more accessible to practitioners, communities and decision-makers."
+      }
+    ],
+    "isIllustrative": false
+  },
+  {
+    "slug": "training-and-capacity",
+    "title": "Training & capacity development",
+    "category": "Training",
+    "summary": "BRD Training Center designs and delivers learning opportunities to strengthen the knowledge, skills and practical capacities of professionals, institutions and communities in disaster risk management, disaster risk reduction, climate resilience and geospatial technologies. Training can be adapted to participants' needs and may combine technical instruction, case studies, practical exercises, simulations and peer learning.",
+    "image": "/preview/agriculture.jpg",
+    "imageAlt": "Licensed landscape photograph used illustratively",
+    "facts": [
+      [
+        "Service area",
+        "Training"
+      ]
+    ],
+    "sections": [
+      {
+        "heading": "Training & capacity development",
+        "body": "BRD Training Center designs and delivers learning opportunities to strengthen the knowledge, skills and practical capacities of professionals, institutions and communities in disaster risk management, disaster risk reduction, climate resilience and geospatial technologies. Training can be adapted to participants' needs and may combine technical instruction, case studies, practical exercises, simulations and peer learning."
+      }
+    ],
+    "isIllustrative": false
+  }
+];
 
-export const people: ContentItem[] = [
-  ["amina-mwanga", "Dr. Amina Mwanga", "Board of Directors", "Board Chair", "Climate policy & governance", "/preview/person-2.jpg"],
-  ["daniel-mrema", "Daniel Mrema", "Board of Directors", "Board Member", "Institutional finance & accountability", "/preview/person-1.jpg"],
-  ["neema-kileo", "Dr. Neema Kileo", "Management", "Executive Director", "Disaster risk & community resilience", "/preview/person-4.jpg"],
-  ["michael-ndao", "Michael Ndao", "Management", "Director of Operations", "Program delivery & partnerships", "/preview/person-5.jpg"],
-  ["sarah-mushi", "Dr. Sarah Mushi", "Technical experts", "Climate Research Lead", "Adaptation & resilient livelihoods", "/preview/person-6.jpg"],
-  ["james-kweka", "James Kweka", "Technical experts", "Geospatial Specialist", "GIS & Earth observation", "/preview/person-3.jpg"],
-].map(([slug, title, category, role, expertise, image]) => ({
-  slug, title, category, role, image, imageAlt: "Stock portrait used for a fictional sample profile", summary: expertise,
-  facts: [["Role", role], ["Team", category], ["Expertise", expertise], ["Profile", "Fictional design sample"]],
-  sections: [{ heading: "Profile", body: `${title} brings a focus on ${expertise.toLowerCase()} to this fictional team. A collaborative perspective connects technical knowledge with community priorities and long-term institutional learning.` }, { heading: "Professional experience", body: `In this fictional biography, experience in ${expertise.toLowerCase()} is complemented by interdisciplinary collaboration, practical learning, and program planning. The emphasis is on making evidence accessible and useful.` }, { heading: "Areas of focus", body: "Areas of focus include inclusive decision-making, shared learning, and partnerships that connect institutions with communities. The work brings an evidence-informed perspective to local resilience challenges." }],
-}));
+export const people: ContentItem[] = [];
 
 export const resources: ContentItem[] = [
   ["community-preparedness-guide", "A practical guide to community preparedness", "Guideline", "Disaster risk", "2026", "/preview/workshop.jpg"],

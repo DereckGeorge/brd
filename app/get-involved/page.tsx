@@ -5,9 +5,10 @@ import PageIntro from "../components/page-intro";
 import SectionNavigation from "../components/section-navigation";
 import { navigation } from "../data/site-config";
 import { institutionPages } from "../data/institution";
+import copy from "../data/approved-copy.json";
 
 export const metadata = { title: "Get Involved" };
 export default function GetInvolved() {
   const group = navigation.find((item) => item.href === "/get-involved")!;
-  return <><PageIntro title="Better, together." eyebrow="Get Involved" description="Join a conversation, share your expertise, or contribute to a shared purpose. Find your way to get involved." /><SectionNavigation section="get-involved" current="/get-involved" /><div className="about-photo container overview-photo"><Image src="/preview/workshop.jpg" alt="Illustrative collaborative workshop" fill sizes="90vw" preload /></div><section className="section-band container"><div className="gateway-list involvement-list">{group.links.map(([label, href], index) => <Link href={href} key={href}><h2>{label}</h2><p>{institutionPages["get-involved"][index].summary}</p><ArrowUpRight size={25} /></Link>)}</div></section></>;
+  return <><PageIntro title="Get involved." eyebrow="Get Involved" description={copy.getInvolved} /><SectionNavigation section="get-involved" current="/get-involved" /><div className="about-photo container overview-photo"><Image src="/preview/workshop.jpg" alt="Licensed stock photograph of a collaborative workshop" fill sizes="90vw" preload /></div><section className="section-band container"><div className="gateway-list involvement-list">{group.links.map(([label, href], index) => <Link href={href} key={href}><h2>{label}</h2><p>{institutionPages["get-involved"][index].summary}</p><ArrowUpRight size={25} /></Link>)}</div></section></>;
 }
