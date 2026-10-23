@@ -1,0 +1,172 @@
+{
+  "provenance": "Supplied by the user for the BRD website on 2026-10-23. No identities or project associations inferred from photographs. Logos preserved as supplied; RAPID source is already cropped on its right edge.",
+  "photos": [
+    {
+      "id": "brd-workshop",
+      "src": "/brd/photos/brd-workshop.webp",
+      "alt": "A facilitator presenting to participants seated around a workshop table",
+      "name": "A facilitator presenting to participants seated around a workshop table",
+      "width": 512,
+      "height": 384,
+      "sourceFile": "BRD photo.jpg",
+      "sourceArchive": "BRD_PHOTOS.zip",
+      "sourceSha256": "239b43a16b4c098ab0b9d827377ba30c6106e7e25e4017ca3baaf7b908cd145b"
+    },
+    {
+      "id": "training-discussion",
+      "src": "/brd/photos/training-discussion.webp",
+      "alt": "Participants taking part in a group training discussion",
+      "name": "Participants taking part in a group training discussion",
+      "width": 2000,
+      "height": 1333,
+      "sourceFile": "IMAG0449.jpg",
+      "sourceArchive": "BRD_PHOTOS.zip",
+      "sourceSha256": "7165a7084988f6944be8c0ff2ade5a72952c00956e467102cfa9917af1c26190"
+    },
+    {
+      "id": "dar-es-salaam",
+      "src": "/brd/photos/dar-es-salaam.webp",
+      "alt": "An aerial view of Dar es Salaam and its waterfront",
+      "name": "An aerial view of Dar es Salaam and its waterfront",
+      "width": 2000,
+      "height": 1124,
+      "sourceFile": "photo Dar.jpeg",
+      "sourceArchive": "BRD_PHOTOS.zip",
+      "sourceSha256": "54a6cb8bc9767961c0b284fede324bc4f95b0f378f2a199c555fb6324b0f27d3"
+    },
+    {
+      "id": "workshop-presentation",
+      "src": "/brd/photos/workshop-presentation.webp",
+      "alt": "A presenter speaking beside BRD workshop banners",
+      "name": "A presenter speaking beside BRD workshop banners",
+      "width": 293,
+      "height": 193,
+      "sourceFile": "Picture2.jpg",
+      "sourceArchive": "BRD_PHOTOS.zip",
+      "sourceSha256": "2b41f4749b3cb6bd1ecf83cdf7314379d72802e3053f42d15990b9793ad83cbe"
+    },
+    {
+      "id": "workshop-session",
+      "src": "/brd/photos/workshop-session.webp",
+      "alt": "Workshop participants listening to a facilitator",
+      "name": "Workshop participants listening to a facilitator",
+      "width": 303,
+      "height": 189,
+      "sourceFile": "Picture3.jpg",
+      "sourceArchive": "BRD_PHOTOS.zip",
+      "sourceSha256": "52a4127ab04f98f119e7a42bc9487faf16ca79155ed0a9f293461e637ed67519"
+    },
+    {
+      "id": "workshop-participants",
+      "src": "/brd/photos/workshop-participants.webp",
+      "alt": "Participants taking notes during a workshop",
+      "name": "Participants taking notes during a workshop",
+      "width": 298,
+      "height": 215,
+      "sourceFile": "Picture4.jpg",
+      "sourceArchive": "BRD_PHOTOS.zip",
+      "sourceSha256": "7652e6b5a3a45a09a20bd3ee1e51305727fab4ad2a3dc7d33a120ecbc5f39f97"
+    },
+    {
+      "id": "technical-presentation",
+      "src": "/brd/photos/technical-presentation.webp",
+      "alt": "A facilitator delivering a technical presentation",
+      "name": "A facilitator delivering a technical presentation",
+      "width": 272,
+      "height": 219,
+      "sourceFile": "Picture5.jpg",
+      "sourceArchive": "BRD_PHOTOS.zip",
+      "sourceSha256": "76b0a66dc7cc3ddc196e998955bcaf7a0fe8df4322d1ac755ce1b624a974c79d"
+    },
+    {
+      "id": "group-learning",
+      "src": "/brd/photos/group-learning.webp",
+      "alt": "Participants seated together during a learning session",
+      "name": "Participants seated together during a learning session",
+      "width": 299,
+      "height": 212,
+      "sourceFile": "Picture6.jpg",
+      "sourceArchive": "BRD_PHOTOS.zip",
+      "sourceSha256": "d5bff4ce61f23d6821f6770832ec99b5f1cf4ea3d9665c86d84e5d10c890eeba"
+    },
+    {
+      "id": "facilitated-discussion",
+      "src": "/brd/photos/facilitated-discussion.webp",
+      "alt": "A facilitator leading a group discussion",
+      "name": "A facilitator leading a group discussion",
+      "width": 273,
+      "height": 205,
+      "sourceFile": "Picture7.jpg",
+      "sourceArchive": "BRD_PHOTOS.zip",
+      "sourceSha256": "d497799b91946e84c44fcbadf468568fa5dbd2bebf757dc87eb6b2ba38151492"
+    },
+    {
+      "id": "workshop-panel",
+      "src": "/brd/photos/workshop-panel.webp",
+      "alt": "Participants seated at a workshop table",
+      "name": "Participants seated at a workshop table",
+      "width": 602,
+      "height": 242,
+      "sourceFile": "Picture8.jpg",
+      "sourceArchive": "BRD_PHOTOS.zip",
+      "sourceSha256": "357f05748c4c16293d44c183c9662af642d67352ea6fcf2a700afdeab0b7cdd5"
+    },
+    {
+      "id": "community-meeting",
+      "src": "/brd/photos/community-meeting.webp",
+      "alt": "Participants gathered around a table for a meeting",
+      "name": "Participants gathered around a table for a meeting",
+      "width": 2000,
+      "height": 1500,
+      "sourceFile": "SAM_1045.JPG",
+      "sourceArchive": "BRD_PHOTOS.zip",
+      "sourceSha256": "f787aaa81098ec557e608cbe5b85115a2c018be5b2190f997319018c30172cd6"
+    }
+  ],
+  "partners": [
+    {
+      "id": "red-cross",
+      "src": "/brd/partners/red-cross.webp",
+      "alt": "Red Cross Tanzania logo",
+      "name": "Red Cross Tanzania",
+      "width": 511,
+      "height": 409,
+      "sourceFile": "Redcross.png",
+      "sourceArchive": "BRD_Partners.zip",
+      "sourceSha256": "1f82b2111ef4694adc27ea4e07cf9e0801ddc01d75c138f50faf98ddb04c47bd"
+    },
+    {
+      "id": "rapid",
+      "src": "/brd/partners/rapid.webp",
+      "alt": "RAPID Tanzania logo",
+      "name": "RAPID Tanzania",
+      "width": 360,
+      "height": 286,
+      "sourceFile": "RAPID.jpeg",
+      "sourceArchive": "BRD_Partners.zip",
+      "sourceSha256": "3460fecb709a533dbd0a7720702ae6dc15b34664ab0482445714e9f490cf7e14"
+    },
+    {
+      "id": "dmd-pmo",
+      "src": "/brd/partners/dmd-pmo.webp",
+      "alt": "Government of Tanzania - DMD-PMO logo",
+      "name": "Government of Tanzania - DMD-PMO",
+      "width": 207,
+      "height": 166,
+      "sourceFile": "DMD_PMO.jpeg",
+      "sourceArchive": "BRD_Partners.zip",
+      "sourceSha256": "64d5ea905c14aea8516a1ebb83881a2360c5d543ce55c43cd6c1dd181c3f8919"
+    },
+    {
+      "id": "psssf",
+      "src": "/brd/partners/psssf.webp",
+      "alt": "Public Service Social Security Fund (PSSSF) logo",
+      "name": "Public Service Social Security Fund (PSSSF)",
+      "width": 849,
+      "height": 333,
+      "sourceFile": "PSSSF.jpg",
+      "sourceArchive": "BRD_Partners.zip",
+      "sourceSha256": "613a26b690a8adeb75378bf1a750341642565d8ba83d1a584e94e0c4cd8e744f"
+    }
+  ]
+}

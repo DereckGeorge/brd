@@ -1,5 +1,17 @@
 # Change Log
 
+## 2026-10-23
+
+- Applied the five items in `BRD Website Review.docx`.
+- Combined the governance and board submenu pages under Organisational Structure, with an accessible two-level organogram based on supplied governance responsibilities. The five confirmed board names remain listed there. Old governance and board links redirect to the new page.
+- Renamed Our Management Team to Our Team. No wider team names or photo identities were supplied; no profiles were invented. Old management and people links redirect to Our Team.
+- Kept What We Do as one top-level header link, removed its dropdown and repeated service navigation strip, and retained the six service pages through content links and an All our work return link.
+- Removed the four-step From evidence to resilience block from How We Work and Our Approach.
+- Consolidated Knowledge Hub into Publications & Reports, Tools & Geospatial Resources, and Training & Learning. All seven previous category URLs redirect to the appropriate new group.
+- Imported all 11 supplied photographs and four partner logos, including PSSSF. The Dar es Salaam image replaces the generated homepage hero. Workshop and meeting photographs replace relevant stock imagery and appear in contextual galleries.
+- Added a media provenance manifest with original filenames and checksums. Images are resized down only, EXIF is removed, logos are not recoloured or further cropped, and the already-cropped RAPID source is disclosed.
+- During verification, npm reported critical advisories affecting the existing Next.js 16.4.0 dependency. Updated Next.js and its matching ESLint configuration to 16.4.3; the subsequent install audit reported zero vulnerabilities.
+
 ## 2026-10-22
 
 - Imported BRD's supplied `Website _conntents_edited.docx` into a traceable copy file using `scripts/import-approved-content.py`.

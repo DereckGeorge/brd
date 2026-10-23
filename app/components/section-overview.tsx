@@ -5,7 +5,6 @@ import { navigation } from "../data/site-config";
 import { institutionPages } from "../data/institution";
 import PageIntro from "./page-intro";
 import SectionNavigation from "./section-navigation";
-import ResiliencePathway from "./resilience-pathway";
 
 const descriptions: Record<string, string[]> = {
   "who-we-are": ["Our story and shared purpose.", "The principles behind our commitment to resilience.", "Thoughtful oversight and clear responsibilities.", "The people connecting priorities with delivery.", "Different perspectives and a long-term outlook.", "Relationships that make shared learning possible."],
@@ -16,5 +15,6 @@ const descriptions: Record<string, string[]> = {
 export default function SectionOverview({ section, description, image }: { section: string; description: string; image: string }) {
   const group = navigation.find((item) => item.href === `/${section}`)!;
   const shared = section === "what-we-do";
-  return <>{!shared && <><PageIntro title={`${group.title}.`} eyebrow={group.title} description={description} /><SectionNavigation section={section} current={group.href} /><div className="about-photo container overview-photo"><Image src={image} alt="Licensed stock photograph used illustratively" fill sizes="90vw" preload /></div></>}{shared && <div className="container who-content-heading"><p>{description}</p></div>}<section className="section-band container"><div className="gateway-list">{group.links.map(([label, href], index) => <Link href={href} key={href}><h2>{label}</h2><p>{descriptions[section]?.[index] || institutionPages[section]?.[index]?.summary}</p><ArrowUpRight size={25} /></Link>)}</div></section>{section === "how-we-work" && <ResiliencePathway />}</>;
+  const links = shared ? institutionPages[section].map((page) => [page.title, `/${section}/${page.slug}`]) : group.links;
+  return <>{!shared && <><PageIntro title={`${group.title}.`} eyebrow={group.title} description={description} /><SectionNavigation section={section} current={group.href} /><div className="about-photo container overview-photo supplied-photo"><Image src={image} alt="Meeting photograph supplied by BRD Tanzania" fill sizes="90vw" preload /></div></>}{shared && <div className="container who-content-heading"><p>{description}</p></div>}<section className="section-band container"><div className="gateway-list">{links.map(([label, href], index) => <Link href={href} key={href}><h2>{label}</h2><p>{descriptions[section]?.[index] || institutionPages[section]?.[index]?.summary}</p><ArrowUpRight size={25} /></Link>)}</div></section></>;
 }

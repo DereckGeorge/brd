@@ -13,20 +13,22 @@ export const socialProfiles = [
 ] as const;
 
 export const knowledgeCategories = [
-  { slug: "research-reports", title: "Research Publications and Reports", description: "Studies, evidence, and research findings for informed decisions.", types: ["Research report", "Research publication"] },
-  { slug: "policy-technical", title: "Policy Briefs and Technical Notes", description: "Concise insights connecting evidence with policy and practice.", types: ["Policy brief", "Technical note", "Technical document"] },
-  { slug: "guides-toolkits", title: "Guidelines, Toolkits and Manuals", description: "Practical resources for preparedness, planning, and participation.", types: ["Guideline", "Toolkit", "Manual"] },
-  { slug: "case-studies", title: "Case Studies and Lessons Learned", description: "Learning from local action and collaborative approaches.", types: ["Case study", "Lessons learned"] },
-  { slug: "maps-geospatial", title: "Maps and Geospatial Resources", description: "Spatial evidence that makes risk visible and actionable.", types: ["Map", "Geospatial resource"] },
-  { slug: "training-materials", title: "Training Materials and Presentations", description: "Learning resources for institutions, practitioners, and communities.", types: ["Training material", "Presentation"] },
-  { slug: "videos-education", title: "Videos and Other Educational Resources", description: "Visual learning about resilience, preparedness, and community action.", types: ["Video", "Educational resource"] },
+  { slug: "publications-reports", title: "Publications & Reports", description: "Research, policy briefs, technical notes and lessons from practice.", types: ["Research report", "Research publication", "Policy brief", "Technical note", "Technical document", "Case study", "Lessons learned"] },
+  { slug: "tools-geospatial", title: "Tools & Geospatial Resources", description: "Guidelines, practical toolkits, maps and spatial information.", types: ["Guideline", "Toolkit", "Manual", "Map", "Geospatial resource"] },
+  { slug: "learning-resources", title: "Training & Learning", description: "Training materials, presentations, videos and educational resources.", types: ["Training material", "Presentation", "Video", "Educational resource"] },
 ];
+
+export const knowledgeCategoryRedirects: Record<string, string> = {
+  "research-reports": "publications-reports", "policy-technical": "publications-reports", "case-studies": "publications-reports",
+  "guides-toolkits": "tools-geospatial", "maps-geospatial": "tools-geospatial",
+  "training-materials": "learning-resources", "videos-education": "learning-resources",
+};
 
 export const navigation = [
   { title: "Who We Are", href: "/who-we-are", description: "Our purpose, the people behind it, and the partnerships that make it possible.", links: [
-    ["About BRD", "/who-we-are/about"], ["Our Mission, Vision, Goal and Core Values", "/who-we-are/mission-vision-values"], ["Our Governance", "/who-we-are/governance"], ["Our Management Team", "/who-we-are/management"], ["Board Members", "/who-we-are/board"], ["Our Partners", "/who-we-are/partners"],
+    ["About BRD", "/who-we-are/about"], ["Our Mission, Vision, Goal and Core Values", "/who-we-are/mission-vision-values"], ["Organisational Structure", "/who-we-are/organisational-structure"], ["Our Team", "/who-we-are/team"], ["Our Partners", "/who-we-are/partners"],
   ] },
-  { title: "What We Do", href: "/what-we-do", description: "Research, technical consultancy, training, humanitarian support, outreach and geospatial science.", links: [["Research", "/what-we-do/research"], ["Consultancy", "/what-we-do/consultancy"], ["Training", "/what-we-do/training"], ["Humanitarian Support", "/what-we-do/humanitarian-support"], ["Geospatial & Earth Observation", "/what-we-do/geospatial-earth-observation"], ["Outreach & Community Engagement", "/what-we-do/outreach-community-engagement"]] },
+  { title: "What We Do", href: "/what-we-do", description: "Research, technical consultancy, training, humanitarian support, outreach and geospatial science.", links: [] },
   { title: "How We Work", href: "/how-we-work", description: "Locally grounded. Evidence informed. Built through collaboration.", links: [["Our Approach", "/how-we-work/approach"], ["Our Strategy", "/how-we-work/strategy"]] },
   { title: "Knowledge Hub", href: "/knowledge-hub", description: "Knowledge to understand risk, support action, and share learning.", links: knowledgeCategories.map((category) => [category.title, `/knowledge-hub/categories/${category.slug}`]) },
   { title: "Get Involved", href: "/get-involved", description: "Bring your curiosity, your expertise, or your commitment to a shared future.", links: [["Attend an Event", "/get-involved/events"], ["Join Our Team", "/get-involved/team"], ["Join Our Volunteer Network", "/get-involved/volunteers"], ["Support Us", "/get-involved/support"], ["Partner with Us", "/get-involved/partners"]] },

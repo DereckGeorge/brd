@@ -20,8 +20,8 @@ export const projects: ContentItem[] = [
     "slug": "flood-resilience-tanzania",
     "title": "Enhancing Flood Resilience in Tanzania",
     "category": "Flood resilience",
-    "image": "/preview/flood-resilience.png",
-    "imageAlt": "Original AI-generated flood-response illustration; not a photograph of this project",
+    "image": "/brd/photos/dar-es-salaam.webp",
+    "imageAlt": "Photograph supplied by BRD Tanzania, used for context rather than documentation of this specific project",
     "summary": "This project aimed to strengthen flood resilience in Tanzania by improving basin-level flood forecasting, flood hazard assessment and early warning systems to support timely decision-making and early action.",
     "facts": [
       [
@@ -41,8 +41,8 @@ export const projects: ContentItem[] = [
     "slug": "media-disaster-risk-management",
     "title": "Building the Capacity of Media Practitioners in Disaster Risk Management",
     "category": "Training",
-    "image": "/preview/workshop.jpg",
-    "imageAlt": "Licensed stock photograph used illustratively, not project documentation",
+    "image": "/brd/photos/training-discussion.webp",
+    "imageAlt": "Photograph supplied by BRD Tanzania, used for context rather than documentation of this specific project",
     "summary": "This assignment aimed to strengthen media practitioners' knowledge and practical capacity in disaster risk management (DRM).",
     "facts": [
       [
@@ -62,8 +62,8 @@ export const projects: ContentItem[] = [
     "slug": "national-disaster-management-policy",
     "title": "Comprehensive Review and Implementation Evaluation of the National Disaster Management Policy (2004)",
     "category": "Policy & governance",
-    "image": "/preview/agriculture.jpg",
-    "imageAlt": "Licensed stock photograph used illustratively, not project documentation",
+    "image": "/brd/photos/community-meeting.webp",
+    "imageAlt": "Photograph supplied by BRD Tanzania, used for context rather than documentation of this specific project",
     "summary": "This assignment involved reviewing Tanzania's National Disaster Management Policy (2004) and evaluating its implementation, effectiveness and relevance in addressing evolving disaster risks.",
     "facts": [
       [
@@ -83,8 +83,8 @@ export const projects: ContentItem[] = [
     "slug": "sadc-gender-risk-informed-development",
     "title": "Mainstreaming Gender and Risk-Informed Development into the SADC Disaster Risk Coordination Mechanism",
     "category": "Gender & risk-informed development",
-    "image": "/preview/forest.jpg",
-    "imageAlt": "Licensed stock photograph used illustratively, not project documentation",
+    "image": "/brd/photos/brd-workshop.webp",
+    "imageAlt": "Photograph supplied by BRD Tanzania, used for context rather than documentation of this specific project",
     "summary": "This project assessed the integration of gender equality and risk-informed development (RID) within the Southern African Development Community (SADC) Disaster Risk Coordination Mechanism (DRCM).",
     "facts": [
       [
@@ -110,8 +110,8 @@ export const services: ContentItem[] = [
     "title": "Research, Evidence and Learning",
     "category": "Research",
     "summary": "BRD Research Center undertakes and supports research on disaster risk management, disaster risk reduction, climate change and community resilience. Our research interests include hazard prevention and mitigation, preparedness, response and recovery, disaster risk assessment, physical and social vulnerability, disaster governance, gender and disaster risk reduction, early warning systems, and climate change adaptation and mitigation.  We aim to generate evidence that can inform policy, planning, practice and future research.",
-    "image": "/preview/agriculture.jpg",
-    "imageAlt": "Licensed landscape photograph used illustratively",
+    "image": "/brd/photos/brd-workshop.webp",
+    "imageAlt": "Contextual photograph supplied by BRD Tanzania",
     "facts": [
       [
         "Service area",
@@ -131,8 +131,8 @@ export const services: ContentItem[] = [
     "title": "Consultancy & advocacy",
     "category": "Advisory",
     "summary": "Through the BRD Consultancy and Advocacy Center, BRD provides technical and advisory services to government institutions, development partners, NGOs, private-sector organisations and other stakeholders. Our services support risk-informed planning, institutional capacity, climate resilience and evidence-based decision-making.",
-    "image": "/preview/agriculture.jpg",
-    "imageAlt": "Licensed landscape photograph used illustratively",
+    "image": "/brd/photos/brd-workshop.webp",
+    "imageAlt": "Contextual photograph supplied by BRD Tanzania",
     "facts": [
       [
         "Service area",
@@ -152,8 +152,8 @@ export const services: ContentItem[] = [
     "title": "Geospatial & Earth Observation Services",
     "category": "Geospatial science",
     "summary": "BRD applies Geographic Information Systems (GIS), remote sensing, Earth observation and geospatial analysis to support disaster risk assessment, vulnerability analysis, climate resilience, environmental management and evidence-based planning. Depending on assignment requirements, outputs may include spatial databases, maps, analytical reports, risk information products and decision-support tools.",
-    "image": "/preview/agriculture.jpg",
-    "imageAlt": "Licensed landscape photograph used illustratively",
+    "image": "/brd/photos/dar-es-salaam.webp",
+    "imageAlt": "Contextual photograph supplied by BRD Tanzania",
     "facts": [
       [
         "Service area",
@@ -173,8 +173,8 @@ export const services: ContentItem[] = [
     "title": "Humanitarian support",
     "category": "Humanitarian support",
     "summary": "BRD Tanzania contributes to humanitarian preparedness and supports disaster-affected communities during response, relief, and recovery through collaboration with relevant stakeholders, community engagement, and volunteer mobilisation. Its efforts aim to promote timely, coordinated, and people-centred assistance, while encouraging volunteerism and local participation in meeting urgent needs, restoring livelihoods, and strengthening community resilience.",
-    "image": "/preview/agriculture.jpg",
-    "imageAlt": "Licensed landscape photograph used illustratively",
+    "image": "/brd/photos/brd-workshop.webp",
+    "imageAlt": "Contextual photograph supplied by BRD Tanzania",
     "facts": [
       [
         "Service area",
@@ -194,8 +194,8 @@ export const services: ContentItem[] = [
     "title": "Outreach & Community Engagement",
     "category": "Outreach",
     "summary": "BRD supports public awareness, workshops, seminars, community engagement, training activities and knowledge-sharing events on disaster risk management, disaster risk reduction, climate change and resilience. These activities aim to improve risk awareness, encourage preparedness and make scientific and geospatial information more accessible to practitioners, communities and decision-makers.",
-    "image": "/preview/agriculture.jpg",
-    "imageAlt": "Licensed landscape photograph used illustratively",
+    "image": "/brd/photos/brd-workshop.webp",
+    "imageAlt": "Contextual photograph supplied by BRD Tanzania",
     "facts": [
       [
         "Service area",
@@ -215,8 +215,8 @@ export const services: ContentItem[] = [
     "title": "Training & capacity development",
     "category": "Training",
     "summary": "BRD Training Center designs and delivers learning opportunities to strengthen the knowledge, skills and practical capacities of professionals, institutions and communities in disaster risk management, disaster risk reduction, climate resilience and geospatial technologies. Training can be adapted to participants' needs and may combine technical instruction, case studies, practical exercises, simulations and peer learning.",
-    "image": "/preview/agriculture.jpg",
-    "imageAlt": "Licensed landscape photograph used illustratively",
+    "image": "/brd/photos/brd-workshop.webp",
+    "imageAlt": "Contextual photograph supplied by BRD Tanzania",
     "facts": [
       [
         "Service area",

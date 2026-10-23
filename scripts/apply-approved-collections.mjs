@@ -5,15 +5,15 @@ const copy = JSON.parse(readFileSync("app/data/approved-copy.json", "utf8"));
 const source = readFileSync("app/data/content.ts", "utf8");
 const ast = ts.createSourceFile("content.ts", source, ts.ScriptTarget.Latest, true);
 const projectInfo = [
-  ["flood-resilience-tanzania", "Enhancing Flood Resilience in Tanzania", "Flood resilience", "/preview/flood-resilience.png"],
-  ["media-disaster-risk-management", "Building the Capacity of Media Practitioners in Disaster Risk Management", "Training", "/preview/workshop.jpg"],
-  ["national-disaster-management-policy", "Comprehensive Review and Implementation Evaluation of the National Disaster Management Policy (2004)", "Policy & governance", "/preview/agriculture.jpg"],
-  ["sadc-gender-risk-informed-development", "Mainstreaming Gender and Risk-Informed Development into the SADC Disaster Risk Coordination Mechanism", "Gender & risk-informed development", "/preview/forest.jpg"],
+  ["flood-resilience-tanzania", "Enhancing Flood Resilience in Tanzania", "Flood resilience", "/brd/photos/dar-es-salaam.webp"],
+  ["media-disaster-risk-management", "Building the Capacity of Media Practitioners in Disaster Risk Management", "Training", "/brd/photos/training-discussion.webp"],
+  ["national-disaster-management-policy", "Comprehensive Review and Implementation Evaluation of the National Disaster Management Policy (2004)", "Policy & governance", "/brd/photos/community-meeting.webp"],
+  ["sadc-gender-risk-informed-development", "Mainstreaming Gender and Risk-Informed Development into the SADC Disaster Risk Coordination Mechanism", "Gender & risk-informed development", "/brd/photos/brd-workshop.webp"],
 ];
 const summaries = copy.projects.split(/\n(?=\d\. )/).map((part) => part.split("Project summary\n")[1]?.trim());
 if (summaries.length !== 4 || summaries.some((part) => !part)) throw new Error("Expected four supplied project summaries");
 const projects = projectInfo.map(([slug, title, category, image], index) => ({
-  slug, title, category, image, imageAlt: index === 0 ? "Original AI-generated flood-response illustration; not a photograph of this project" : "Licensed stock photograph used illustratively, not project documentation",
+  slug, title, category, image, imageAlt: "Photograph supplied by BRD Tanzania, used for context rather than documentation of this specific project",
   summary: summaries[index].split(/(?<=\.)\s/)[0],
   facts: [["Focus", category]], sections: [{ heading: "Project summary", body: summaries[index] }], isIllustrative: false,
 }));
@@ -25,7 +25,7 @@ const serviceInfo = [
   ["outreach-community-engagement", "Outreach & Community Engagement", "Outreach", copy.outreach],
   ["training-and-capacity", "Training & capacity development", "Training", copy.training],
 ];
-const services = serviceInfo.map(([slug, title, category, summary]) => ({slug, title, category, summary, image: "/preview/agriculture.jpg", imageAlt: "Licensed landscape photograph used illustratively", facts: [["Service area", category]], sections: [{heading: title, body: summary}], isIllustrative: false}));
+const services = serviceInfo.map(([slug, title, category, summary]) => ({slug, title, category, summary, image: category === "Geospatial science" ? "/brd/photos/dar-es-salaam.webp" : "/brd/photos/brd-workshop.webp", imageAlt: "Contextual photograph supplied by BRD Tanzania", facts: [["Service area", category]], sections: [{heading: title, body: summary}], isIllustrative: false}));
 const replacements = { projects, research: [], people: [], services };
 const edits = [];
 function visit(node) {

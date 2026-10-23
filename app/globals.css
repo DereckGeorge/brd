@@ -844,3 +844,54 @@ body { font-size: 19px; }
   .home-work-grid { grid-template-columns: 1fr; }
   .home-work-grid h3 { min-height: 0; }
 }
+
+/* Supplied photography, logos, and the simplified October review structure. */
+.approved-hero .hero-shade { opacity: .48; }
+.supplied-photo { height: auto; aspect-ratio: 16 / 9; max-width: 1000px; }
+.supplied-photo img { object-fit: contain; }
+.home-feature-image { height: auto; aspect-ratio: 4 / 3; }
+.home-feature-image img { object-fit: contain; }
+.service-return { padding-top: 28px; }
+.service-return .text-link { font-size: 16px; }
+.organogram { padding-block: 24px 55px; }
+.organogram > h2 { font-size: 32px; margin-bottom: 35px; }
+.organogram-levels, .organogram-levels ol { list-style: none; padding: 0; margin: 0; }
+.organogram-levels { max-width: 660px; margin-inline: auto; }
+.organogram-node { text-align: center; padding: 28px; background: var(--blue); color: #fff; }
+.organogram-node h3 { color: #fff; font-size: 25px; margin-bottom: 10px; }
+.organogram-node p { color: #fff; font-size: 18px; line-height: 1.6; }
+.organogram-levels ol { padding-top: 45px; position: relative; }
+.organogram-levels ol::before { content: ""; position: absolute; top: 0; left: 50%; width: 2px; height: 45px; background: var(--green); }
+.organogram-levels ol .organogram-node { background: var(--green); }
+.photo-gallery { padding-block: 30px 65px; }
+.photo-gallery > h2 { font-size: 32px; }
+.photo-gallery > p { font-size: 18px; margin-top: 15px; color: var(--muted); }
+.photo-gallery-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 35px; margin-top: 32px; }
+.photo-gallery figure { margin: 0; min-width: 0; }
+.photo-gallery img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: contain; background: #f4f6f5; display: block; }
+.photo-gallery figcaption { font-size: 15px; line-height: 1.6; color: var(--muted); margin-top: 15px; }
+.supplied-partner-logos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; align-items: start; }
+.supplied-partner-logos .partner-name-item { width: auto; min-width: 0; }
+.supplied-partner-logos .partner-example-circle { width: 112px; height: 112px; padding: 16px; }
+.supplied-partner-logos img { width: 100%; height: 100%; object-fit: contain; }
+.supplied-partners { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 30px; }
+.supplied-partners figure { margin: 0; padding: 0; min-width: 0; }
+.partner-logo-frame { height: 160px; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--line); margin-bottom: 24px; padding-bottom: 20px; }
+.partner-logo-frame img { max-width: 100%; width: auto; max-height: 140px; height: auto; object-fit: contain; }
+.supplied-partners h2 { font-size: 23px; line-height: 1.4; }
+@media (max-width: 1000px) {
+  .photo-gallery-grid, .supplied-partners { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .partner-footer-inner { grid-template-columns: 1fr; }
+  .supplied-partner-logos { max-width: 620px; }
+}
+@media (max-width: 600px) {
+  .organogram-node { padding: 22px 18px; }
+  .organogram-node h3 { font-size: 23px; }
+  .photo-gallery-grid { grid-template-columns: 1fr; }
+  .supplied-partner-logos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 18px; width: 100%; }
+  .supplied-partner-logos .partner-example-circle { width: 112px; height: 112px; }
+  .supplied-partner-logos figcaption { font-size: 14px; }
+  .supplied-partners h2 { font-size: 19px; }
+  .partner-logo-frame { height: 125px; }
+  .partner-logo-frame img { max-height: 105px; }
+}

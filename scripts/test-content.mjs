@@ -2,8 +2,9 @@ import assert from "node:assert/strict";
 import { existsSync, readFileSync } from "node:fs";
 import { test } from "node:test";
 import { collections, searchItems } from "../app/data/content.ts";
-import { navigation, knowledgeCategories, contact, socialProfiles } from "../app/data/site-config.ts";
-import { institutionPages, values, partners, boardMembers, sampleEvents, sampleRoles } from "../app/data/institution.ts";
+import { navigation, knowledgeCategories, knowledgeCategoryRedirects, contact, socialProfiles } from "../app/data/site-config.ts";
+import { institutionPages, whoPageRedirects, values, partners, boardMembers, sampleEvents, sampleRoles } from "../app/data/institution.ts";
+import media from "../app/data/brd-media.json" with { type: "json" };
 import { videos } from "../app/data/videos.ts";
 
 test("every preview record has a unique safe route and a local image", () => {
@@ -38,15 +39,21 @@ test("all requested main menus and submenu destinations have a page", () => {
   }
 });
 
-test("all seven Knowledge Hub categories contain matching resources", () => {
-  assert.equal(knowledgeCategories.length, 7);
+test("three Knowledge Hub groups cover every resource and preserve old category links", () => {
+  assert.equal(knowledgeCategories.length, 3);
   for (const category of knowledgeCategories) assert.ok(collections["knowledge-hub"].some((resource) => category.types.includes(resource.category)), category.title);
   for (const resource of collections["knowledge-hub"]) assert.equal(knowledgeCategories.filter((category) => category.types.includes(resource.category)).length, 1);
+  assert.equal(Object.keys(knowledgeCategoryRedirects).length, 7);
+  for (const target of Object.values(knowledgeCategoryRedirects)) assert.ok(knowledgeCategories.some((category) => category.slug === target));
 });
 
 test("Who We Are keeps shared navigation and every item stays in its route group", () => {
   const who = navigation.find((group) => group.href === "/who-we-are");
-  assert.equal(who.links.length, 6);
+  assert.equal(who.links.length, 5);
+  assert.ok(who.links.some(([label]) => label === "Organisational Structure"));
+  assert.ok(who.links.some(([label]) => label === "Our Team"));
+  assert.ok(!who.links.some(([label]) => /Board Members|Management|Governance/.test(label)));
+  assert.deepEqual(whoPageRedirects, { governance: "organisational-structure", board: "organisational-structure", management: "team" });
   for (const [, href] of who.links) assert.ok(href.startsWith("/who-we-are/"));
   assert.ok(institutionPages["who-we-are"].some((page) => page.slug === "about"));
   assert.match(readFileSync("app/who-we-are/layout.tsx", "utf8"), /<SectionNavigation section="who-we-are"/);
@@ -55,18 +62,20 @@ test("Who We Are keeps shared navigation and every item stays in its route group
 });
 
 test("decorative numbering and approach circles are absent", () => {
-  for (const path of ["app/page.tsx", "app/knowledge-hub/page.tsx", "app/get-involved/page.tsx", "app/components/institution-page.tsx", "app/components/section-overview.tsx", "app/components/resilience-pathway.tsx"]) {
+  for (const path of ["app/page.tsx", "app/knowledge-hub/page.tsx", "app/get-involved/page.tsx", "app/components/institution-page.tsx", "app/components/section-overview.tsx"]) {
     assert.doesNotMatch(readFileSync(path, "utf8"), /gateway-number|padStart|pathway-symbol|partner-monogram/);
+    assert.doesNotMatch(readFileSync(path, "utf8"), /ResiliencePathway|From evidence to resilience|Understand risk/);
   }
+  assert.equal(existsSync("app/components/resilience-pathway.tsx"), false);
 });
 
 test("the concise homepage and contact-only donation page are present", () => {
   const home = readFileSync("app/page.tsx", "utf8");
   assert.equal((home.match(/<section\b/g) || []).length, 3);
-  assert.match(home, /\/preview\/flood-resilience\.png/);
-  assert.ok(existsSync("public/preview/flood-resilience.png"));
-  assert.match(home, /AI-generated illustration/);
-  assert.doesNotMatch(home, /flood-response\.jpg|Coast Guard/);
+  assert.match(home, /\/brd\/photos\/dar-es-salaam\.webp/);
+  assert.ok(existsSync("public/brd/photos/dar-es-salaam.webp"));
+  assert.match(home, /Photograph supplied by BRD Tanzania/);
+  assert.doesNotMatch(home, /flood-response\.jpg|Coast Guard|AI-generated illustration/);
   assert.match(readFileSync("app/components/site-header.tsx", "utf8"), /href="\/donate"/);
   const donate = readFileSync("app/donate/page.tsx", "utf8");
   assert.match(donate, /mailto:/);
@@ -108,16 +117,16 @@ test("unapproved research, people, opportunities and events are not presented as
   for (const type of ["Research report", "Policy brief", "Technical document", "Case study", "Guideline"]) assert.ok(collections["knowledge-hub"].some((item) => item.category === type));
 });
 
-test("What We Do keeps all six services in shared navigation, including Research", () => {
+test("What We Do is a single header link without a repeated service submenu", () => {
   const group = navigation.find((item) => item.href === "/what-we-do");
-  assert.equal(group.links.length, 6);
-  for (const [, href] of group.links) {
-    assert.ok(href.startsWith("/what-we-do/"));
-    assert.ok(institutionPages["what-we-do"].some((page) => href === `/what-we-do/${page.slug}`));
-  }
-  assert.match(readFileSync("app/what-we-do/layout.tsx", "utf8"), /<SectionNavigation section="what-we-do"/);
+  assert.equal(group.links.length, 0);
+  assert.equal(institutionPages["what-we-do"].length, 6);
+  assert.doesNotMatch(readFileSync("app/what-we-do/layout.tsx", "utf8"), /SectionNavigation/);
+  assert.match(readFileSync("app/components/site-header.tsx", "utf8"), /item.links.length > 0 && <button/);
+  assert.match(readFileSync("app/components/section-overview.tsx", "utf8"), /shared \? institutionPages\[section\].map/);
+  assert.match(readFileSync("app/components/institution-page.tsx", "utf8"), /href="\/what-we-do"/);
   assert.match(readFileSync("app/research/page.tsx", "utf8"), /redirect\("\/what-we-do\/research"\)/);
-  assert.match(readFileSync("app/people/page.tsx", "utf8"), /redirect\("\/who-we-are\/management"\)/);
+  assert.match(readFileSync("app/people/page.tsx", "utf8"), /redirect\("\/who-we-are\/team"\)/);
 });
 
 test("supplied projects, values and partners replace fictional data without fabricated facts", () => {
@@ -125,7 +134,7 @@ test("supplied projects, values and partners replace fictional data without fabr
   assert.equal(values.length, 7);
   assert.equal(boardMembers.length, 5);
   assert.deepEqual(boardMembers.map((member) => member.name), ["Dr. Ruger Kahwa", "Dr. Joseph S. Mayunga", "Ms. Vivaoliva U. Shoo", "Dr. Guido A. Uhinga", "Mr. Charles Msangi"]);
-  assert.deepEqual(partners.map(([name]) => name), ["Red Cross Tanzania", "RAPID Tanzania", "Government of Tanzania - DMD-PMO"]);
+  assert.deepEqual(partners.map((partner) => partner.name), ["Red Cross Tanzania", "RAPID Tanzania", "Government of Tanzania - DMD-PMO", "Public Service Social Security Fund (PSSSF)"]);
   for (const item of collections.projects) {
     assert.equal(item.isIllustrative, false);
     assert.ok(item.sections[0].body.length > 200);
@@ -136,4 +145,19 @@ test("supplied projects, values and partners replace fictional data without fabr
   const consultancy = institutionPages["what-we-do"].find((page) => page.slug === "consultancy");
   assert.equal(consultancy.list.items.length, 9);
   for (const pages of Object.values(institutionPages)) for (const page of pages) for (const section of page.sections) assert.ok(section.heading && section.body);
+});
+
+test("all supplied photographs and logos are imported with provenance and without invented identities", () => {
+  assert.equal(media.photos.length, 11);
+  assert.equal(media.partners.length, 4);
+  for (const asset of [...media.photos, ...media.partners]) {
+    assert.ok(existsSync(`public${asset.src}`));
+    assert.ok(asset.width > 0 && asset.height > 0);
+    assert.match(asset.sourceSha256, /^[a-f0-9]{64}$/);
+    assert.ok(asset.sourceArchive && asset.sourceFile && asset.alt);
+  }
+  for (const page of institutionPages["who-we-are"]) if (page.gallery) for (const id of page.gallery) assert.ok(media.photos.some((photo) => photo.id === id));
+  assert.equal(institutionPages["who-we-are"].find((page) => page.slug === "team").title, "Our Team");
+  assert.match(readFileSync("app/components/organogram.tsx", "utf8"), /Board of Directors/);
+  assert.match(readFileSync("app/components/organogram.tsx", "utf8"), /Executive Management Team/);
 });

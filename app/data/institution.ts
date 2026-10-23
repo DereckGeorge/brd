@@ -1,11 +1,14 @@
 import copy from "./approved-copy.json" with { type: "json" };
+import media from "./brd-media.json" with { type: "json" };
 
 export type InstitutionPage = {
   slug: string;
   title: string;
   summary: string;
   image?: string;
-  mode?: "mission" | "governance" | "management" | "board" | "partners" | "approach" | "events" | "careers";
+  imageAlt?: string;
+  gallery?: string[];
+  mode?: "mission" | "structure" | "team" | "partners" | "approach" | "events" | "careers";
   sections: { heading: string; body: string }[];
   list?: { heading: string; items: string[] };
   action?: string;
@@ -29,29 +32,25 @@ export const valuesIntro = valueLines.slice(2, 4);
 export const valuesConclusion = valueLines.slice(-2);
 export const values: [string, string][] = valueLines.flatMap((line, index) => /^\d+\. /.test(line) ? [[line.replace(/^\d+\. /, ""), valueLines[index + 1]] as [string, string]] : []);
 
-export const partners: [string, string][] = [
-  ["Red Cross Tanzania", ""],
-  ["RAPID Tanzania", ""],
-  ["Government of Tanzania - DMD-PMO", ""],
-];
+export const partners = media.partners;
 export const boardMembers = copy.boardMembers;
+export const whoPageRedirects: Record<string, string> = { governance: "organisational-structure", board: "organisational-structure", management: "team" };
 
 export const institutionPages: Record<string, InstitutionPage[]> = {
   "who-we-are": [
-    { slug: "about", title: about[0], summary: about[1], sections: about.slice(2).map((body, index) => ({ heading: ["About the organisation", "Research, technology and practical action", "Knowledge and tools", "Working together", "Our belief", "Our commitment"][index], body })) },
+    { slug: "about", title: about[0], summary: about[1], image: "/brd/photos/brd-workshop.webp", imageAlt: "Workshop photograph supplied by BRD Tanzania", sections: about.slice(2).map((body, index) => ({ heading: ["About the organisation", "Research, technology and practical action", "Knowledge and tools", "Working together", "Our belief", "Our commitment"][index], body })) },
     { slug: "mission-vision-values", title: "Mission, vision, goal & core values.", summary: "The principles that guide our work.", mode: "mission", sections: [{ heading: "Our mission", body: copy.mission }, { heading: "Our vision", body: copy.vision }, { heading: "Our goal", body: copy.goal }] },
-    { slug: "governance", title: "Our governance.", summary: copy.governance, mode: "governance", sections: [] },
-    { slug: "management", title: "Our management team.", summary: copy.management, mode: "management", sections: [] },
-    { slug: "board", title: board[0], summary: board[1], mode: "board", sections: board.slice(2, -1).map((body, index) => ({heading: index === 0 ? "Strategic leadership" : "Oversight and accountability", body})) },
+    { slug: "organisational-structure", title: "Organisational Structure", summary: copy.governance, mode: "structure", sections: board.slice(2, -1).map((body, index) => ({heading: index === 0 ? "Strategic leadership" : "Oversight and accountability", body})) },
+    { slug: "team", title: "Our Team", summary: copy.management.replace("multidisciplinary management team", "multidisciplinary team"), mode: "team", gallery: ["group-learning", "workshop-panel"], sections: [] },
     { slug: "partners", title: "Our partners.", summary: "Working together to strengthen disaster resilience.", mode: "partners", sections: [], action: "Explore a partnership" },
   ],
   "what-we-do": [
     { slug: "research", title: research[0], summary: research[1], sections: [{heading: "Research purpose", body: research[2]}], action: "Discuss research collaboration" },
     { slug: "consultancy", title: "Consultancy Services", summary: copy.consultancy, sections: [{heading: consultancy[1], body: consultancy[2]}, {heading: "Our approach", body: consultancy[13]}, {heading: "Our goal", body: consultancy[14]}], list: {heading: "Areas of consultancy", items: consultancy.slice(3, 12)}, action: "Discuss a consultancy" },
-    { slug: "training", title: training[0], summary: copy.training, sections: [{heading: "Professional learning", body: training[1]}, ...training.slice(2, 7).map(titled), {heading: "Tailored to your needs", body: training.slice(7).join(" ")}], action: "Explore training options" },
+    { slug: "training", title: training[0], summary: copy.training, gallery: ["brd-workshop", "workshop-presentation", "workshop-session", "workshop-participants", "technical-presentation", "facilitated-discussion"], sections: [{heading: "Professional learning", body: training[1]}, ...training.slice(2, 7).map(titled), {heading: "Tailored to your needs", body: training.slice(7).join(" ")}], action: "Explore training options" },
     { slug: "humanitarian-support", title: "Humanitarian Support", summary: copy.humanitarian, sections: [], action: "Discuss humanitarian collaboration" },
     { slug: "geospatial-earth-observation", title: "Geospatial & Earth Observation Services", summary: copy.geospatial, sections: [], action: "Discuss geospatial services" },
-    { slug: "outreach-community-engagement", title: "Outreach & Community Engagement", summary: copy.outreach, sections: [], action: "Discuss community engagement" },
+    { slug: "outreach-community-engagement", title: "Outreach & Community Engagement", summary: copy.outreach, image: "/brd/photos/community-meeting.webp", imageAlt: "Meeting photograph supplied by BRD Tanzania", gallery: ["training-discussion"], sections: [], action: "Discuss community engagement" },
   ],
   "how-we-work": [
     { slug: "approach", title: "Our approach.", summary: approach[0], mode: "approach", sections: [{heading: "Understanding risk and strengthening capacity", body: approach[1]}, ...approach.slice(3).map(titled)] },
