@@ -1,5 +1,6 @@
 import copy from "./approved-copy.json" with { type: "json" };
 import media from "./brd-media.json" with { type: "json" };
+import directors from "./board.json" with { type: "json" };
 
 export type InstitutionPage = {
   slug: string;
@@ -34,7 +35,7 @@ export const valuesConclusion = valueLines.slice(-2);
 export const values: [string, string][] = valueLines.flatMap((line, index) => /^\d+\. /.test(line) ? [[line.replace(/^\d+\. /, ""), valueLines[index + 1]] as [string, string]] : []);
 
 export const partners = media.partners;
-export const boardMembers = copy.boardMembers;
+export const boardMembers = directors;
 export const whoPageRedirects: Record<string, string> = { board: "governance", management: "team" };
 
 export const institutionPages: Record<string, InstitutionPage[]> = {
@@ -43,7 +44,7 @@ export const institutionPages: Record<string, InstitutionPage[]> = {
     { slug: "mission-vision-values", title: "Mission, vision, goal & core values", summary: "The principles that guide our work.", mode: "mission", sections: [{ heading: "Our mission", body: copy.mission }, { heading: "Our vision", body: copy.vision }, { heading: "Our goal", body: copy.goal }] },
     { slug: "governance", title: "Governance", summary: board[1], mode: "governance", sections: board.slice(2, -1).map((body, index) => ({heading: index === 0 ? "Strategic leadership" : "Oversight and accountability", body})) },
     { slug: "organisational-structure", title: "Organisational Structure", summary: "", mode: "structure", sections: [] },
-    { slug: "team", title: "Our Team", summary: copy.management.replace("multidisciplinary management team", "multidisciplinary team"), mode: "team", sections: [] },
+    { slug: "team", title: "Our Team", summary: "Meet the five people guiding BRD Tanzania, with experience in disaster risk management, climate resilience, humanitarian programming, geospatial science and digital transformation.", mode: "team", sections: [] },
     { slug: "partners", title: "Our partners", summary: "Working together to strengthen disaster resilience.", mode: "partners", sections: [], action: "Explore a partnership" },
   ],
   "what-we-do": [

@@ -6,7 +6,7 @@ import { navigation, knowledgeCategories, knowledgeCategoryRedirects, contact, s
 import { institutionPages, whoPageRedirects, values, partners, boardMembers, sampleEvents, sampleRoles } from "../app/data/institution.ts";
 import media from "../app/data/brd-media.json" with { type: "json" };
 import { videos } from "../app/data/videos.ts";
-import team from "../app/data/team.json" with { type: "json" };
+import team from "../app/data/board.json" with { type: "json" };
 
 test("every published record has a unique safe route and a local image", () => {
   for (const [section, items] of Object.entries(collections)) {
@@ -96,18 +96,22 @@ test("unapproved sample videos are not published", () => {
   assert.equal(videos.length, 0);
 });
 
-test("global search includes every collection record exactly once", () => {
-  const total = Object.values(collections).reduce((sum, items) => sum + items.length, 0);
+test("global search includes every collection record without duplicate people", () => {
+  const sharedPeople = collections.people.filter((person) => collections.board.some((director) => director.slug === person.slug));
+  const total = Object.values(collections).reduce((sum, items) => sum + items.length, 0) - sharedPeople.length;
   assert.equal(searchItems.length, total);
   assert.equal(new Set(searchItems.map((item) => item.href)).size, total);
   for (const [section, items] of Object.entries(collections)) {
-    for (const item of items) assert.ok(searchItems.some((result) => result.href === `/${section}/${item.slug}`));
+    for (const item of items) {
+      const route = section === "people" && sharedPeople.some((person) => person.slug === item.slug) ? "board" : section;
+      assert.ok(searchItems.some((result) => result.href === `/${route}/${item.slug}`));
+    }
   }
 });
 
 test("only supplied team profiles are published and unapproved resources stay empty", () => {
   assert.equal(collections.research.length, 0);
-  assert.equal(collections.people.length, 7);
+  assert.equal(collections.people.length, 5);
   assert.equal(sampleEvents.length, 0);
   assert.equal(sampleRoles.length, 0);
   assert.equal(collections["knowledge-hub"].length, 0);
@@ -141,7 +145,7 @@ test("supplied projects, values and partners replace fictional data without fabr
   assert.equal(collections.projects.length, 4);
   assert.equal(values.length, 7);
   assert.equal(boardMembers.length, 5);
-  assert.deepEqual(boardMembers.map((member) => member.name), ["Dr. Ruger Kahwa", "Dr. Joseph S. Mayunga", "Ms. Vivaoliva U. Shoo", "Dr. Guido A. Uhinga", "Mr. Charles Msangi"]);
+  assert.deepEqual(boardMembers.map((member) => member.name), ["Ms Nyambiri Kimacha", "Mr Charles Msangi", "Mr Rockefeller Madamba", "Ms Vivaoliva U. Shoo", "Dr Joseph S. Mayunga"]);
   assert.deepEqual(partners.map((partner) => partner.name), ["Red Cross Tanzania", "RAPID Tanzania", "Government of Tanzania - DMD-PMO", "Public Service Social Security Fund (PSSSF)"]);
   for (const item of collections.projects) {
     assert.equal(item.isIllustrative, false);
@@ -167,7 +171,7 @@ test("all supplied photographs and logos are imported with provenance and withou
   for (const page of institutionPages["who-we-are"]) if (page.gallery) for (const id of page.gallery) assert.ok(media.photos.some((photo) => photo.id === id));
   assert.equal(institutionPages["who-we-are"].find((page) => page.slug === "team").title, "Our Team");
   const organogram = readFileSync("app/components/organogram.tsx", "utf8");
-  assert.match(organogram, /team\.json/);
+  assert.match(organogram, /teamMembers as team/);
   assert.doesNotMatch(organogram, /Executive Management Team|Board of Directors/);
   assert.equal(institutionPages["who-we-are"].find((page) => page.slug === "governance").mode, "governance");
   assert.equal(institutionPages["who-we-are"].find((page) => page.slug === "organisational-structure").mode, "structure");
@@ -191,4 +195,28 @@ test("institutional titles and section headings have no trailing full stops", ()
     for (const section of page.sections) assert.doesNotMatch(section.heading, /\.$/);
   }
   for (const item of Object.values(collections).flat()) assert.doesNotMatch(item.title, /\.$/);
+});
+
+test("team and board use only the five replacement profiles and their exact roles", () => {
+  const names = ["Ms Nyambiri Kimacha", "Mr Charles Msangi", "Mr Rockefeller Madamba", "Ms Vivaoliva U. Shoo", "Dr Joseph S. Mayunga"];
+  const roles = ["Chairperson of the Board", "Vice Chairperson of the Board", "Director", "Director", "Director"];
+  assert.deepEqual(collections.people.map((member) => member.title), names);
+  assert.deepEqual(collections.board.map((member) => member.title), names);
+  assert.deepEqual(collections.people.map((member) => member.role), roles);
+  assert.deepEqual(collections.board.map((member) => member.role), roles);
+  for (const member of team) {
+    const person = collections.people.find((record) => record.slug === member.slug);
+    const director = collections.board.find((record) => record.slug === member.slug);
+    assert.deepEqual(person.sections.map((section) => section.body), member.biography);
+    assert.deepEqual(director.sections.map((section) => section.body), member.biography);
+    assert.equal(person.image, member.image);
+    assert.equal(director.image, member.image);
+    assert.match(member.sourceDocumentSha256, /^[a-f0-9]{64}$/);
+    assert.ok(member.width > 0 && member.height > 0);
+    assert.match(member.image, new RegExp(`${member.sourceSha256.slice(0, 10)}\\.webp$`));
+  }
+  for (const slug of ["guido-a-uhinga", "hamza-a-farahan", "johnston-weston", "daudi-fufuji", "simon-m-machera"]) {
+    assert.ok(!searchItems.some((entry) => entry.href === `/people/${slug}`));
+  }
+  assert.match(readFileSync("app/components/detail-page.tsx", "utf8"), /section === "board" \? "\/who-we-are\/governance"/);
 });

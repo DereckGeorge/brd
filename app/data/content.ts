@@ -1,4 +1,4 @@
-import team from "./team.json" with { type: "json" };
+import boardMembers from "./board.json" with { type: "json" };
 // Institutional records use supplied BRD copy; insight articles are general editorial content.
 export type ContentItem = {
   slug: string;
@@ -234,7 +234,14 @@ export const services: ContentItem[] = [
   }
 ];
 
-export const people: ContentItem[] = team.map((member) => ({slug: member.slug, title: member.name, category: "Our Team", role: member.role, summary: member.role, image: member.image, imageAlt: member.name, isIllustrative: false, facts: [["Role", member.role], ["Organisation", "BRD Tanzania"]] as [string, string][], sections: member.biography.map((body, index) => ({heading: ["Biography", "Areas of expertise", "Professional experience", "Further experience"][index] || "Experience", body}))}));
+export const teamMembers = boardMembers;
+
+function profileRecord(member: { slug: string; name: string; role: string; image: string; biography: string[] }, category: string): ContentItem {
+  return { slug: member.slug, title: member.name, category, role: member.role, summary: member.role, image: member.image, imageAlt: member.name, isIllustrative: false, facts: [["Role", member.role], ["Organisation", "BRD Tanzania"]], sections: member.biography.map((body, index) => ({heading: ["Biography", "Professional experience", "Expertise and contributions", "Further experience"][index] || "Experience", body})) };
+}
+
+export const people: ContentItem[] = teamMembers.map((member) => profileRecord(member, "Our Team"));
+export const directors: ContentItem[] = boardMembers.map((member) => profileRecord(member, "Board of Directors"));
 
 export const resources: ContentItem[] = [];
 
@@ -325,8 +332,10 @@ export const stories: ContentItem[] = [
   }
 ];
 
-export const collections = { projects, research, services, people, "knowledge-hub": resources, news: stories };
+export const collections = { projects, research, services, people, board: directors, "knowledge-hub": resources, news: stories };
 export type CollectionKey = keyof typeof collections;
-export const collectionLabels: Record<CollectionKey, string> = { projects: "Projects", research: "Research", services: "Services", people: "Our people", "knowledge-hub": "Knowledge Hub", news: "News & stories" };
+export const collectionLabels: Record<CollectionKey, string> = { projects: "Projects", research: "Research", services: "Services", people: "Our people", board: "Board of Directors", "knowledge-hub": "Knowledge Hub", news: "News & stories" };
 
-export const searchItems = Object.entries(collections).flatMap(([section, items]) => items.map(item => ({ ...item, href: `/${section}/${item.slug}`, section: collectionLabels[section as CollectionKey] })));
+export const searchItems = Object.entries(collections).flatMap(([section, items]) => items
+  .filter((item) => section !== "people" || !directors.some((director) => director.slug === item.slug))
+  .map(item => ({ ...item, href: `/${section}/${item.slug}`, section: collectionLabels[section as CollectionKey] })));

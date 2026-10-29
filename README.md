@@ -19,14 +19,14 @@ Local URL: http://localhost:3002
 - `app/data/approved-copy.json`: imported institutional copy and board roster
 - `app/data/institution.ts`: institutional page definitions
 - `app/data/content.ts`: projects, services, team profiles and general editorial insights
-- `app/data/team.json`: seven team profiles and matching portraits from `OUR TEAM 3.docx`, with source image checksums
+- `app/data/board.json`: the five current team and board profiles from `BOARD OF DIRECTORS.zip`, with matching portraits and source checksums; this supersedes the earlier seven-person team roster
 - `app/data/brd-media.json`: provenance for 11 BRD photographs and four partner logos
 - `app/data/site-config.ts`: navigation, contact details and confirmed social profiles
 - `public/brd/news/provenance.json`: generated editorial artwork provenance
 
 The address follows the latest supplied website copy: 2nd Floor, Capital Place, Ohio Street, P.O. Box 6548, Dar es Salaam, Tanzania. Instagram is the only confirmed social URL. No guessed links are published.
 
-Our Team uses circular portraits with biography links available on hover, keyboard focus and touch. The organisational chart groups supplied leadership and specialist roles; the document does not supply formal reporting lines. Governance separately lists the five board members and their responsibilities.
+Our Team and Governance show the same five current people, as confirmed by BRD, with the roles and biographies from the new archive. Both use circular portraits and biography links available on hover, keyboard focus and touch. The organisational chart groups the chairperson, vice chairperson and three directors; the document does not supply detailed reporting lines. Team and board profile pages retain separate return links to their respective sections.
 
 ## Navigation and Publication
 
@@ -43,7 +43,7 @@ Use a Python environment with Pillow:
 ```sh
 python3 scripts/import-approved-content.py /absolute/path/to/content.docx
 node scripts/apply-approved-collections.mjs
-python3 scripts/import-team.py /absolute/path/to/OUR_TEAM_3.docx
+python3 scripts/import-board.py /absolute/path/to/BOARD_OF_DIRECTORS.zip
 node scripts/prepare-production-content.mjs
 node scripts/normalize-titles.mjs
 ```
