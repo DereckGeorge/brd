@@ -1,6 +1,7 @@
 """Prepare user-supplied website media without cropping, recolouring or upscaling."""
 import hashlib
 import json
+import shutil
 from io import BytesIO
 from pathlib import Path
 from zipfile import ZipFile
@@ -43,11 +44,21 @@ def prepare(archive_path, entries, folder):
             results.append({"id": slug, "src": f"/brd/{folder}/{slug}.webp", "alt": description if folder == "photos" else f"{description} logo", "name": description, "width": im.width, "height": im.height, "sourceFile": filename, "sourceArchive": Path(archive_path).name, "sourceSha256": hashlib.sha256(raw).hexdigest()})
     return results
 
+def prepare_gndr():
+    source = Path("/Users/dereck/Downloads/GNDR.png")
+    raw = source.read_bytes()
+    image = Image.open(BytesIO(raw))
+    target = ROOT / "public/brd/partners/gndr.png"
+    target.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(source, target)
+    name = "Global Network of Civil Society Organisations for Disaster Reduction (GNDR)"
+    return {"id": "gndr", "src": "/brd/partners/gndr.png", "alt": f"{name} logo", "name": name, "width": image.width, "height": image.height, "sourceFile": source.name, "sourceArchive": None, "sourceSha256": hashlib.sha256(raw).hexdigest()}
+
 def main():
     result = {
-        "provenance": "Supplied by the user for the BRD website on 2026-10-23. No identities or project associations inferred from photographs. Logos preserved as supplied; RAPID source is already cropped on its right edge.",
+        "provenance": "Original archives supplied by the user on 2026-10-23; GNDR logo added on 2026-10-29. No identities or project associations inferred from photographs. Logos preserved as supplied; RAPID source is already cropped on its right edge.",
         "photos": prepare("/Users/dereck/Downloads/BRD_PHOTOS.zip", PHOTOS, "photos"),
-        "partners": prepare("/Users/dereck/Downloads/BRD_Partners.zip", PARTNERS, "partners"),
+        "partners": prepare("/Users/dereck/Downloads/BRD_Partners.zip", PARTNERS, "partners") + [prepare_gndr()],
     }
     (ROOT / "app/data/brd-media.json").write_text(json.dumps(result, ensure_ascii=True, indent=2) + "\n")
     print(f"Prepared {len(result['photos'])} photographs and {len(result['partners'])} partner logos")

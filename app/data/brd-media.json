@@ -1,5 +1,5 @@
 {
-  "provenance": "Supplied by the user for the BRD website on 2026-10-23. No identities or project associations inferred from photographs. Logos preserved as supplied; RAPID source is already cropped on its right edge.",
+  "provenance": "Original archives supplied by the user on 2026-10-23; GNDR logo added on 2026-10-29. No identities or project associations inferred from photographs. Logos preserved as supplied; RAPID source is already cropped on its right edge.",
   "photos": [
     {
       "id": "brd-workshop",
@@ -167,6 +167,17 @@
       "sourceFile": "PSSSF.jpg",
       "sourceArchive": "BRD_Partners.zip",
       "sourceSha256": "613a26b690a8adeb75378bf1a750341642565d8ba83d1a584e94e0c4cd8e744f"
+    },
+    {
+      "id": "gndr",
+      "src": "/brd/partners/gndr.png",
+      "alt": "Global Network of Civil Society Organisations for Disaster Reduction (GNDR) logo",
+      "name": "Global Network of Civil Society Organisations for Disaster Reduction (GNDR)",
+      "width": 299,
+      "height": 111,
+      "sourceFile": "GNDR.png",
+      "sourceArchive": null,
+      "sourceSha256": "cef9dd7738514e42af685403902fb1030f5b35b8b8df7be258948f22812caed4"
     }
   ]
 }

@@ -20,7 +20,7 @@ Local URL: http://localhost:3002
 - `app/data/institution.ts`: institutional page definitions
 - `app/data/content.ts`: projects, services, team profiles and general editorial insights
 - `app/data/board.json`: the five current team and board profiles from `BOARD OF DIRECTORS.zip`, with matching portraits and source checksums; this supersedes the earlier seven-person team roster
-- `app/data/brd-media.json`: provenance for 11 BRD photographs and four partner logos
+- `app/data/brd-media.json`: provenance for 11 BRD photographs and five partner logos, including the separately provided GNDR PNG
 - `app/data/site-config.ts`: navigation, contact details and confirmed social profiles
 - `public/brd/news/provenance.json`: generated editorial artwork provenance
 

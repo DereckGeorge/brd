@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { existsSync, readFileSync } from "node:fs";
 import { test } from "node:test";
 import { collections, searchItems } from "../app/data/content.ts";
@@ -146,7 +147,7 @@ test("supplied projects, values and partners replace fictional data without fabr
   assert.equal(values.length, 7);
   assert.equal(boardMembers.length, 5);
   assert.deepEqual(boardMembers.map((member) => member.name), ["Ms Nyambiri Kimacha", "Mr Charles Msangi", "Mr Rockefeller Madamba", "Ms Vivaoliva U. Shoo", "Dr Joseph S. Mayunga"]);
-  assert.deepEqual(partners.map((partner) => partner.name), ["Red Cross Tanzania", "RAPID Tanzania", "Government of Tanzania - DMD-PMO", "Public Service Social Security Fund (PSSSF)"]);
+  assert.deepEqual(partners.map((partner) => partner.name), ["Red Cross Tanzania", "RAPID Tanzania", "Government of Tanzania - DMD-PMO", "Public Service Social Security Fund (PSSSF)", "Global Network of Civil Society Organisations for Disaster Reduction (GNDR)"]);
   for (const item of collections.projects) {
     assert.equal(item.isIllustrative, false);
     assert.ok(item.sections[0].body.length > 200);
@@ -161,12 +162,13 @@ test("supplied projects, values and partners replace fictional data without fabr
 
 test("all supplied photographs and logos are imported with provenance and without invented identities", () => {
   assert.equal(media.photos.length, 11);
-  assert.equal(media.partners.length, 4);
+  assert.equal(media.partners.length, 5);
   for (const asset of [...media.photos, ...media.partners]) {
     assert.ok(existsSync(`public${asset.src}`));
     assert.ok(asset.width > 0 && asset.height > 0);
     assert.match(asset.sourceSha256, /^[a-f0-9]{64}$/);
-    assert.ok(asset.sourceArchive && asset.sourceFile && asset.alt);
+    assert.ok(asset.sourceFile && asset.alt);
+    assert.ok(asset.sourceArchive || asset.sourceFile === "GNDR.png");
   }
   for (const page of institutionPages["who-we-are"]) if (page.gallery) for (const id of page.gallery) assert.ok(media.photos.some((photo) => photo.id === id));
   assert.equal(institutionPages["who-we-are"].find((page) => page.slug === "team").title, "Our Team");
@@ -219,4 +221,14 @@ test("team and board use only the five replacement profiles and their exact role
     assert.ok(!searchItems.some((entry) => entry.href === `/people/${slug}`));
   }
   assert.match(readFileSync("app/components/detail-page.tsx", "utf8"), /section === "board" \? "\/who-we-are\/governance"/);
+});
+
+test("GNDR is listed once with its complete name and unchanged supplied PNG", () => {
+  const matches = partners.filter((partner) => partner.id === "gndr");
+  assert.equal(matches.length, 1);
+  const [gndr] = matches;
+  assert.equal(gndr.name, "Global Network of Civil Society Organisations for Disaster Reduction (GNDR)");
+  assert.equal(gndr.width, 299);
+  assert.equal(gndr.height, 111);
+  assert.equal(createHash("sha256").update(readFileSync(`public${gndr.src}`)).digest("hex"), gndr.sourceSha256);
 });

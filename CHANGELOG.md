@@ -2,6 +2,8 @@
 
 ## 2026-10-29
 
+- Added Global Network of Civil Society Organisations for Disaster Reduction (GNDR) to the partners page and footer, retaining the supplied logo unchanged and recording its source checksum. Adjusted responsive partner layouts for five logos.
+
 - Replaced the earlier team and board rosters with the five profiles in `BOARD OF DIRECTORS.zip`, following confirmation that there are now only five people. Imported the new roles, complete biographies and filename-matched portraits, and updated the organisational chart and search. Both sections offer circular portraits and biography links with section-specific return navigation.
 
 - Removed remaining photograph-supplier wording from image alternative text and import scripts, in addition to the removed visible caption.
