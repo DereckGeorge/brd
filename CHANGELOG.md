@@ -1,5 +1,18 @@
 # Change Log
 
+## 2026-10-29
+
+- Removed remaining photograph-supplier wording from image alternative text and import scripts, in addition to the removed visible caption.
+
+- Imported seven team members, matching portraits and biographies from `OUR TEAM 3.docx`; added circular portraits and accessible View bio links.
+- Restored persistent What We Do navigation and removed duplicated body menus. How We Work, Knowledge Hub and Get Involved descriptions now sit below their headings.
+- Split Governance and Organisational Structure into child tabs: the board narrative and blue board box are separate from the green-headed team organogram.
+- Kept the mission submenu label on one line and added red, blue and green active navigation accents.
+- Removed heading-ending full stops, supplier badges, preview labels and preview noindex metadata. Honorifics and initials remain intact.
+- Removed dummy knowledge resources, downloads, videos and search suggestions. Knowledge categories are intentionally inactive.
+- Replaced the middle news image with generated editorial artwork depicting Black adults learning with BRD branding. Insights have no invented activity dates or authors.
+- Replaced the mock enquiry receipt with direct contact links. Backend work remains deferred.
+
 ## 2026-10-23
 
 - Applied the five items in `BRD Website Review.docx`.

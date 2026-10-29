@@ -1,4 +1,4 @@
 import PageIntro from "../components/page-intro";
 import SiteSearch from "../components/site-search";
 export const metadata = { title: "Search" };
-export default function Search() { return <><PageIntro title="Find your next idea." eyebrow="Search" description="Explore research, projects, services, people, publications, and stories across the design preview." /><SiteSearch /></>; }
+export default function Search() { return <><PageIntro title="Search" eyebrow="Search" description="Find BRD projects, services, team members and information" stacked /><SiteSearch /></>; }

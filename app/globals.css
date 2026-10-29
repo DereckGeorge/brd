@@ -895,3 +895,75 @@ body { font-size: 19px; }
   .partner-logo-frame { height: 125px; }
   .partner-logo-frame img { max-height: 105px; }
 }
+
+/* Production navigation, supplied team portraits, and role-based organogram. */
+:root { --preview-height: 0px; }
+.page-intro-stacked .intro-grid { display: block; }
+.page-intro-stacked .intro-grid p { max-width: 970px; margin-top: 24px; }
+.section-shell > .page-intro { padding-block: 32px 38px; }
+.who-navigation-band .section-navigation { display: flex; flex-wrap: nowrap; overflow-x: auto; gap: 28px; align-items: center; scrollbar-width: thin; }
+.who-navigation-band .who-navigation > a, .who-navigation-band .who-navigation > button { white-space: nowrap; max-width: none; flex-shrink: 0; display: block; padding: 13px 0; font-size: 15px; }
+.who-navigation > button { background: transparent; border: 0; color: var(--muted); opacity: 1; cursor: default; }
+[data-section="who-we-are"], [data-section="knowledge-hub"] { --section-accent: var(--red); }
+[data-section="what-we-do"], [data-section="get-involved"] { --section-accent: var(--green); }
+[data-section="how-we-work"] { --section-accent: var(--blue); }
+.nav-group .nav-label.nav-active > a, .nav-group .nav-label.nav-active > button { color: var(--section-accent); text-decoration-color: var(--section-accent); }
+.who-navigation > a[aria-current="page"] { color: var(--section-accent, var(--blue)); border-bottom-color: var(--section-accent, var(--blue)); }
+.dropdown-link-group > a { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 16px 0; border-bottom: 1px solid var(--line); font-size: 18px; }
+.dropdown-governance-links { display: flex; flex-wrap: wrap; gap: 15px 24px; padding-block: 15px; }
+.dropdown-governance-links a { font-size: 15px; color: var(--blue); }
+.dropdown-links > button { background: transparent; border: 0; border-bottom: 1px solid var(--line); padding: 16px 0; text-align: left; color: var(--muted); font-size: 18px; opacity: 1; cursor: default; }
+.governance-subnavigation { display: flex; gap: 30px; padding-block: 22px 0; overflow-x: auto; }
+.governance-subnavigation a { padding-bottom: 12px; white-space: nowrap; border-bottom: 2px solid transparent; font-size: 17px; }
+.governance-subnavigation a[aria-current="page"] { border-bottom-color: var(--blue); color: var(--blue); font-weight: 600; }
+.governance-board { padding-block: 10px 30px; }
+.board-blue-box { max-width: 660px; background: var(--blue); padding: 30px; color: #fff; margin-inline: auto; text-align: center; }
+.board-blue-box h3 { color: #fff; font-size: 26px; margin-bottom: 12px; }
+.board-blue-box p { color: #fff; font-size: 18px; }
+.section-overview-photo { padding-block: 38px 65px; }
+.section-overview-photo img { display: block; width: 100%; max-width: 800px; height: auto; margin-inline: auto; }
+.knowledge-empty { padding-block: 45px 80px; font-size: 19px; color: var(--muted); }
+.team-directory { padding-block: 10px 75px; }
+.team-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 48px 35px; }
+.team-person { text-align: center; min-width: 0; }
+.team-portrait { width: 200px; max-width: 100%; aspect-ratio: 1; border-radius: 50%; position: relative; overflow: hidden; margin-inline: auto; background: #f3f5f5; }
+.team-portrait img { object-fit: cover; object-position: center 28%; }
+.team-portrait-hamza-a-farahan img { object-position: center 42%; }
+.team-portrait-johnston-weston img { object-position: center 35%; }
+.team-bio-link { position: absolute; inset: 0; display: flex; gap: 9px; justify-content: center; align-items: center; background: #082952c9; color: #fff; font-size: 17px; opacity: 0; transition: opacity .18s ease; }
+.team-person:hover .team-bio-link, .team-person:focus-within .team-bio-link { opacity: 1; }
+.team-person h3 { color: var(--blue); font-size: 21px; line-height: 1.4; margin-block: 22px 10px; }
+.team-person > p { color: var(--muted); font-size: 17px; line-height: 1.6; }
+.profile-photo { height: auto; aspect-ratio: 1; border-radius: 50%; overflow: hidden; }
+.profile-photo img { object-position: center 28%; }
+.team-organogram { padding-bottom: 75px; }
+.org-banner { background: var(--green); color: #fff; padding: 24px; text-align: center; margin-bottom: 35px; }
+.org-banner h2 { color: #fff; font-size: 30px; }
+.org-leadership { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px; max-width: 800px; margin: 0 auto 45px; }
+.org-role { border: 1px solid var(--line); border-top: 3px solid var(--blue); padding: 22px 18px; text-align: center; min-width: 0; }
+.org-role h3 { color: var(--blue); font-size: 18px; line-height: 1.5; }
+.org-role p { font-size: 17px; line-height: 1.6; margin-top: 14px; }
+.org-team-branches { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 18px; border-top: 2px solid var(--green); padding-top: 35px; }
+.org-team-branches .org-role { position: relative; }
+.org-team-branches .org-role::before { content: ""; position: absolute; width: 2px; height: 35px; background: var(--green); top: -38px; left: 50%; }
+.contact-layout a { display: flex; align-items: center; gap: 12px; }
+.search-page { min-height: 240px; }
+@media (max-width: 1000px) {
+  .team-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .org-team-branches { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .org-team-branches .org-role::before { display: none; }
+}
+@media (max-width: 600px) {
+  .page-intro-stacked .intro-grid p { margin-top: 20px; font-size: 18px; }
+  .who-navigation-band .section-navigation { padding-block: 5px; gap: 24px; }
+  .team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 35px 20px; }
+  .team-portrait { width: 160px; }
+  .team-person h3 { font-size: 18px; }
+  .team-person > p { font-size: 15px; }
+  .team-bio-link { inset: auto 0 0; height: 42px; opacity: 1; background: #082952e8; font-size: 14px; }
+  .org-leadership, .org-team-branches { grid-template-columns: 1fr; }
+  .governance-subnavigation { gap: 22px; }
+  .governance-subnavigation a { font-size: 15px; }
+}
+@media (hover: none) { .team-bio-link { opacity: 1; inset: auto 0 0; height: 44px; background: #082952e8; } }
+@media (prefers-reduced-motion: reduce) { .team-bio-link { transition: none; } }

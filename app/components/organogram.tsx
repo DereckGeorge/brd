@@ -1,3 +1,5 @@
+import team from "../data/team.json";
+
 export default function Organogram() {
-  return <section className="organogram container" aria-labelledby="organogram-title"><h2 id="organogram-title">Organisational structure</h2><ol className="organogram-levels" aria-label="Governance hierarchy"><li><div className="organogram-node"><h3>Board of Directors</h3><p>Strategic oversight and guidance</p></div><ol><li><div className="organogram-node"><h3>Executive Management Team</h3><p>Day-to-day management and programme implementation</p></div></li></ol></li></ol></section>;
+  return <section className="team-organogram container" aria-label="BRD team organisational structure"><div className="org-banner"><h2>BRD Tanzania</h2></div><div className="org-leadership">{team.slice(0, 2).map((member) => <div className="org-role org-leader" key={member.slug}><h3>{member.role.replace(" and Co-Founder", "")}</h3><p>{member.name}</p></div>)}</div><div className="org-team-branches">{team.slice(2).map((member) => <div className="org-role" key={member.slug}><h3>{member.role.replace(" and Co-Founder", "")}</h3><p>{member.name}</p></div>)}</div></section>;
 }

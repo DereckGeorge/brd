@@ -6,8 +6,9 @@ import { navigation, knowledgeCategories, knowledgeCategoryRedirects, contact, s
 import { institutionPages, whoPageRedirects, values, partners, boardMembers, sampleEvents, sampleRoles } from "../app/data/institution.ts";
 import media from "../app/data/brd-media.json" with { type: "json" };
 import { videos } from "../app/data/videos.ts";
+import team from "../app/data/team.json" with { type: "json" };
 
-test("every preview record has a unique safe route and a local image", () => {
+test("every published record has a unique safe route and a local image", () => {
   for (const [section, items] of Object.entries(collections)) {
     assert.equal(new Set(items.map((item) => item.slug)).size, items.length, `${section}: duplicate slug`);
     for (const item of items) {
@@ -39,9 +40,10 @@ test("all requested main menus and submenu destinations have a page", () => {
   }
 });
 
-test("three Knowledge Hub groups cover every resource and preserve old category links", () => {
+test("Knowledge Hub retains three inactive groups without dummy resources", () => {
   assert.equal(knowledgeCategories.length, 3);
-  for (const category of knowledgeCategories) assert.ok(collections["knowledge-hub"].some((resource) => category.types.includes(resource.category)), category.title);
+  assert.equal(collections["knowledge-hub"].length, 0);
+  assert.match(readFileSync("app/components/section-navigation.tsx", "utf8"), /disabled/);
   for (const resource of collections["knowledge-hub"]) assert.equal(knowledgeCategories.filter((category) => category.types.includes(resource.category)).length, 1);
   assert.equal(Object.keys(knowledgeCategoryRedirects).length, 7);
   for (const target of Object.values(knowledgeCategoryRedirects)) assert.ok(knowledgeCategories.some((category) => category.slug === target));
@@ -50,10 +52,10 @@ test("three Knowledge Hub groups cover every resource and preserve old category 
 test("Who We Are keeps shared navigation and every item stays in its route group", () => {
   const who = navigation.find((group) => group.href === "/who-we-are");
   assert.equal(who.links.length, 5);
-  assert.ok(who.links.some(([label]) => label === "Organisational Structure"));
+  assert.ok(who.links.some(([label]) => label === "Governance"));
   assert.ok(who.links.some(([label]) => label === "Our Team"));
-  assert.ok(!who.links.some(([label]) => /Board Members|Management|Governance/.test(label)));
-  assert.deepEqual(whoPageRedirects, { governance: "organisational-structure", board: "organisational-structure", management: "team" });
+  assert.ok(!who.links.some(([label]) => /Board Members|Management/.test(label)));
+  assert.deepEqual(whoPageRedirects, { board: "governance", management: "team" });
   for (const [, href] of who.links) assert.ok(href.startsWith("/who-we-are/"));
   assert.ok(institutionPages["who-we-are"].some((page) => page.slug === "about"));
   assert.match(readFileSync("app/who-we-are/layout.tsx", "utf8"), /<SectionNavigation section="who-we-are"/);
@@ -74,7 +76,7 @@ test("the concise homepage and contact-only donation page are present", () => {
   assert.equal((home.match(/<section\b/g) || []).length, 3);
   assert.match(home, /\/brd\/photos\/dar-es-salaam\.webp/);
   assert.ok(existsSync("public/brd/photos/dar-es-salaam.webp"));
-  assert.match(home, /Photograph supplied by BRD Tanzania/);
+  assert.doesNotMatch(home, /hero-caption|supplied by BRD Tanzania/i);
   assert.doesNotMatch(home, /flood-response\.jpg|Coast Guard|AI-generated illustration/);
   assert.match(readFileSync("app/components/site-header.tsx", "utf8"), /href="\/donate"/);
   const donate = readFileSync("app/donate/page.tsx", "utf8");
@@ -90,14 +92,8 @@ test("contact address and confirmed social profile match the latest feedback", (
   for (const profile of socialProfiles) if (profile.name !== "Instagram") assert.equal(profile.url, null);
 });
 
-test("sample videos have local clips, captions, posters, and transcripts", () => {
-  assert.equal(videos.length, 3);
-  for (const video of videos) {
-    assert.ok(existsSync(`public/preview/videos/${video.slug}.mp4`));
-    assert.ok(existsSync(`public/preview/videos/${video.slug}.vtt`));
-    assert.ok(existsSync(`public${video.poster}`));
-    assert.ok(video.transcript.includes("stock") || video.transcript.includes("Stock"));
-  }
+test("unapproved sample videos are not published", () => {
+  assert.equal(videos.length, 0);
 });
 
 test("global search includes every collection record exactly once", () => {
@@ -109,22 +105,34 @@ test("global search includes every collection record exactly once", () => {
   }
 });
 
-test("unapproved research, people, opportunities and events are not presented as records", () => {
+test("only supplied team profiles are published and unapproved resources stay empty", () => {
   assert.equal(collections.research.length, 0);
-  assert.equal(collections.people.length, 0);
+  assert.equal(collections.people.length, 7);
   assert.equal(sampleEvents.length, 0);
   assert.equal(sampleRoles.length, 0);
-  for (const type of ["Research report", "Policy brief", "Technical document", "Case study", "Guideline"]) assert.ok(collections["knowledge-hub"].some((item) => item.category === type));
+  assert.equal(collections["knowledge-hub"].length, 0);
+  for (const member of team) {
+    assert.ok(existsSync(`public${member.image}`));
+    assert.match(member.sourceSha256, /^[a-f0-9]{64}$/);
+    assert.ok(member.biography.join(" ").length > 100);
+    assert.equal(collections.people.find((person) => person.slug === member.slug).title, member.name);
+  }
+  const directory = readFileSync("app/components/team-directory.tsx", "utf8");
+  assert.match(directory, /View bio/);
+  assert.match(directory, /team-portrait/);
 });
 
-test("What We Do is a single header link without a repeated service submenu", () => {
+test("section navigation persists without duplicate body menus", () => {
   const group = navigation.find((item) => item.href === "/what-we-do");
-  assert.equal(group.links.length, 0);
+  assert.equal(group.links.length, 6);
   assert.equal(institutionPages["what-we-do"].length, 6);
-  assert.doesNotMatch(readFileSync("app/what-we-do/layout.tsx", "utf8"), /SectionNavigation/);
+  assert.match(readFileSync("app/what-we-do/layout.tsx", "utf8"), /SectionNavigation/);
   assert.match(readFileSync("app/components/site-header.tsx", "utf8"), /item.links.length > 0 && <button/);
   assert.match(readFileSync("app/components/section-overview.tsx", "utf8"), /shared \? institutionPages\[section\].map/);
-  assert.match(readFileSync("app/components/institution-page.tsx", "utf8"), /href="\/what-we-do"/);
+  for (const section of ["what-we-do", "how-we-work", "knowledge-hub", "get-involved"]) {
+    assert.match(readFileSync(`app/${section}/layout.tsx`, "utf8"), /SectionNavigation/);
+    assert.doesNotMatch(readFileSync(`app/${section}/page.tsx`, "utf8"), /gateway-list|SectionOverview/);
+  }
   assert.match(readFileSync("app/research/page.tsx", "utf8"), /redirect\("\/what-we-do\/research"\)/);
   assert.match(readFileSync("app/people/page.tsx", "utf8"), /redirect\("\/who-we-are\/team"\)/);
 });
@@ -158,6 +166,29 @@ test("all supplied photographs and logos are imported with provenance and withou
   }
   for (const page of institutionPages["who-we-are"]) if (page.gallery) for (const id of page.gallery) assert.ok(media.photos.some((photo) => photo.id === id));
   assert.equal(institutionPages["who-we-are"].find((page) => page.slug === "team").title, "Our Team");
-  assert.match(readFileSync("app/components/organogram.tsx", "utf8"), /Board of Directors/);
-  assert.match(readFileSync("app/components/organogram.tsx", "utf8"), /Executive Management Team/);
+  const organogram = readFileSync("app/components/organogram.tsx", "utf8");
+  assert.match(organogram, /team\.json/);
+  assert.doesNotMatch(organogram, /Executive Management Team|Board of Directors/);
+  assert.equal(institutionPages["who-we-are"].find((page) => page.slug === "governance").mode, "governance");
+  assert.equal(institutionPages["who-we-are"].find((page) => page.slug === "organisational-structure").mode, "structure");
+});
+
+test("production pages omit preview labels, topic suggestions and mock submission", () => {
+  for (const path of ["app/components/site-header.tsx", "app/components/site-footer.tsx", "app/components/detail-page.tsx", "app/components/photo-gallery.tsx", "app/components/site-search.tsx"]) {
+    assert.doesNotMatch(readFileSync(path, "utf8"), /design preview|design sample|Image used illustratively|Explore by topic|preview-notice/i);
+  }
+  assert.equal(existsSync("app/components/enquiry-form.tsx"), false);
+  assert.ok(existsSync("public/brd/news/learning-preparedness.png"));
+  for (const story of collections.news) {
+    assert.equal(story.date, undefined);
+    assert.doesNotMatch(JSON.stringify(story), /fictional|sample|wocintechchat/i);
+  }
+});
+
+test("institutional titles and section headings have no trailing full stops", () => {
+  for (const page of Object.values(institutionPages).flat()) {
+    assert.doesNotMatch(page.title, /\.$/);
+    for (const section of page.sections) assert.doesNotMatch(section.heading, /\.$/);
+  }
+  for (const item of Object.values(collections).flat()) assert.doesNotMatch(item.title, /\.$/);
 });

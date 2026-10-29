@@ -13,7 +13,7 @@ const projectInfo = [
 const summaries = copy.projects.split(/\n(?=\d\. )/).map((part) => part.split("Project summary\n")[1]?.trim());
 if (summaries.length !== 4 || summaries.some((part) => !part)) throw new Error("Expected four supplied project summaries");
 const projects = projectInfo.map(([slug, title, category, image], index) => ({
-  slug, title, category, image, imageAlt: "Photograph supplied by BRD Tanzania, used for context rather than documentation of this specific project",
+  slug, title, category, image, imageAlt: "BRD Tanzania project context",
   summary: summaries[index].split(/(?<=\.)\s/)[0],
   facts: [["Focus", category]], sections: [{ heading: "Project summary", body: summaries[index] }], isIllustrative: false,
 }));
@@ -25,8 +25,8 @@ const serviceInfo = [
   ["outreach-community-engagement", "Outreach & Community Engagement", "Outreach", copy.outreach],
   ["training-and-capacity", "Training & capacity development", "Training", copy.training],
 ];
-const services = serviceInfo.map(([slug, title, category, summary]) => ({slug, title, category, summary, image: category === "Geospatial science" ? "/brd/photos/dar-es-salaam.webp" : "/brd/photos/brd-workshop.webp", imageAlt: "Contextual photograph supplied by BRD Tanzania", facts: [["Service area", category]], sections: [{heading: title, body: summary}], isIllustrative: false}));
-const replacements = { projects, research: [], people: [], services };
+const services = serviceInfo.map(([slug, title, category, summary]) => ({slug, title, category, summary, image: category === "Geospatial science" ? "/brd/photos/dar-es-salaam.webp" : "/brd/photos/brd-workshop.webp", imageAlt: "BRD Tanzania activities", facts: [["Service area", category]], sections: [{heading: title, body: summary}], isIllustrative: false}));
+const replacements = { projects, research: [], services };
 const edits = [];
 function visit(node) {
   if (ts.isVariableDeclaration(node) && ts.isIdentifier(node.name) && node.name.text in replacements) {
@@ -38,4 +38,4 @@ visit(ast);
 let result = source;
 for (const edit of edits.sort((a,b) => b.start-a.start)) result = result.slice(0,edit.start)+edit.text+result.slice(edit.end);
 writeFileSync("app/data/content.ts", result);
-console.log("Imported four projects; cleared fictional research and profiles; updated service records.");
+console.log("Imported four projects; cleared fictional research; updated service records; preserved team profiles.");
