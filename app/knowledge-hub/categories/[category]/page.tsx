@@ -6,5 +6,5 @@ export default async function Page({ params }: { params: Promise<{ category: str
   const { category } = await params;
   if (knowledgeCategoryRedirects[category]) redirect(`/knowledge-hub/categories/${knowledgeCategoryRedirects[category]}`);
   if (!knowledgeCategories.some((item) => item.slug === category)) notFound();
-  return <div className="container knowledge-empty"><p>Resources will be published here as they become available</p></div>;
+  return null;
 }

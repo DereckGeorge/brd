@@ -931,7 +931,10 @@ body { font-size: 19px; }
 .section-overview-photo img { display: block; width: 100%; max-width: 800px; height: auto; margin-inline: auto; }
 .knowledge-empty { padding-block: 45px 80px; font-size: 19px; color: var(--muted); }
 .team-directory { padding-block: 10px 75px; }
-.team-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 48px 28px; }
+.team-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 48px 28px; }
+.board-roster .team-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.detail-photo.project-photo { height: auto; aspect-ratio: 3 / 2; max-width: 1000px; }
+.project-photo img { object-fit: contain; }
 .team-person { text-align: center; min-width: 0; }
 .team-portrait { width: 200px; max-width: 100%; aspect-ratio: 1; border-radius: 50%; position: relative; overflow: hidden; margin-inline: auto; background: #f3f5f5; }
 .team-portrait img { object-fit: cover; object-position: center 28%; }
@@ -950,20 +953,20 @@ body { font-size: 19px; }
 .org-role { border: 1px solid var(--line); border-top: 3px solid var(--blue); padding: 22px 18px; text-align: center; min-width: 0; }
 .org-role h3 { color: var(--blue); font-size: 18px; line-height: 1.5; }
 .org-role p { font-size: 17px; line-height: 1.6; margin-top: 14px; }
-.org-team-branches { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; border-top: 2px solid var(--green); padding-top: 35px; }
+.org-team-branches { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 18px; border-top: 2px solid var(--green); padding-top: 35px; }
 .org-team-branches .org-role { position: relative; }
 .org-team-branches .org-role::before { content: ""; position: absolute; width: 2px; height: 35px; background: var(--green); top: -38px; left: 50%; }
 .contact-layout a { display: flex; align-items: center; gap: 12px; }
 .search-page { min-height: 240px; }
 @media (max-width: 1200px) {
-  .team-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .team-grid, .board-roster .team-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .org-team-branches { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .org-team-branches .org-role::before { display: none; }
 }
 @media (max-width: 600px) {
   .page-intro-stacked .intro-grid p { margin-top: 20px; font-size: 18px; }
   .who-navigation-band .section-navigation { padding-block: 5px; gap: 24px; }
-  .team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 35px 20px; }
+  .team-grid, .board-roster .team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 35px 20px; }
   .team-portrait { width: 160px; }
   .team-person h3 { font-size: 18px; }
   .team-person > p { font-size: 15px; }

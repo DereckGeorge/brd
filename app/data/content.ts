@@ -1,4 +1,5 @@
 import boardMembers from "./board.json" with { type: "json" };
+import originalTeam from "./team.json" with { type: "json" };
 // Institutional records use supplied BRD copy; insight articles are general editorial content.
 export type ContentItem = {
   slug: string;
@@ -21,8 +22,8 @@ export const projects: ContentItem[] = [
     "slug": "flood-resilience-tanzania",
     "title": "Enhancing Flood Resilience in Tanzania",
     "category": "Flood resilience",
-    "image": "/brd/photos/dar-es-salaam.webp",
-    "imageAlt": "BRD Tanzania project context",
+    "image": "/brd/projects/floods-in-tanzania.jpg",
+    "imageAlt": "Aerial view of homes and roads inundated by floodwater in Tanzania",
     "summary": "This project aimed to strengthen flood resilience in Tanzania by improving basin-level flood forecasting, flood hazard assessment and early warning systems to support timely decision-making and early action.",
     "facts": [
       [
@@ -43,7 +44,7 @@ export const projects: ContentItem[] = [
     "title": "Building the Capacity of Media Practitioners in Disaster Risk Management",
     "category": "Training",
     "image": "/brd/photos/training-discussion.webp",
-    "imageAlt": "BRD Tanzania project context",
+    "imageAlt": "Participants taking part in a group training discussion",
     "summary": "This assignment aimed to strengthen media practitioners' knowledge and practical capacity in disaster risk management (DRM).",
     "facts": [
       [
@@ -64,7 +65,7 @@ export const projects: ContentItem[] = [
     "title": "Comprehensive Review and Implementation Evaluation of the National Disaster Management Policy (2004)",
     "category": "Policy & governance",
     "image": "/brd/photos/community-meeting.webp",
-    "imageAlt": "BRD Tanzania project context",
+    "imageAlt": "Participants gathered around a table for a meeting",
     "summary": "This assignment involved reviewing Tanzania's National Disaster Management Policy (2004) and evaluating its implementation, effectiveness and relevance in addressing evolving disaster risks.",
     "facts": [
       [
@@ -84,8 +85,8 @@ export const projects: ContentItem[] = [
     "slug": "sadc-gender-risk-informed-development",
     "title": "Mainstreaming Gender and Risk-Informed Development into the SADC Disaster Risk Coordination Mechanism",
     "category": "Gender & risk-informed development",
-    "image": "/brd/photos/brd-workshop.webp",
-    "imageAlt": "BRD Tanzania project context",
+    "image": "/brd/generated/gender-risk-informed-development.png",
+    "imageAlt": "AI-generated scene of women and men collaborating on gender-inclusive flood-risk planning",
     "summary": "This project assessed the integration of gender equality and risk-informed development (RID) within the Southern African Development Community (SADC) Disaster Risk Coordination Mechanism (DRCM).",
     "facts": [
       [
@@ -216,8 +217,8 @@ export const services: ContentItem[] = [
     "title": "Training & capacity development",
     "category": "Training",
     "summary": "BRD Training Center designs and delivers learning opportunities to strengthen the knowledge, skills and practical capacities of professionals, institutions and communities in disaster risk management, disaster risk reduction, climate resilience and geospatial technologies. Training can be adapted to participants' needs and may combine technical instruction, case studies, practical exercises, simulations and peer learning.",
-    "image": "/brd/photos/brd-workshop.webp",
-    "imageAlt": "BRD Tanzania activities",
+    "image": "/brd/generated/disaster-preparedness-training.png",
+    "imageAlt": "AI-generated scene of a facilitator leading a disaster-preparedness mapping exercise",
     "facts": [
       [
         "Service area",
@@ -234,7 +235,7 @@ export const services: ContentItem[] = [
   }
 ];
 
-export const teamMembers = boardMembers;
+export const teamMembers = originalTeam;
 
 function profileRecord(member: { slug: string; name: string; role: string; image: string; biography: string[] }, category: string): ContentItem {
   return { slug: member.slug, title: member.name, category, role: member.role, summary: member.role, image: member.image, imageAlt: member.name, isIllustrative: false, facts: [["Role", member.role], ["Organisation", "BRD Tanzania"]], sections: member.biography.map((body, index) => ({heading: ["Biography", "Professional experience", "Expertise and contributions", "Further experience"][index] || "Experience", body})) };
@@ -336,6 +337,4 @@ export const collections = { projects, research, services, people, board: direct
 export type CollectionKey = keyof typeof collections;
 export const collectionLabels: Record<CollectionKey, string> = { projects: "Projects", research: "Research", services: "Services", people: "Our people", board: "Board of Directors", "knowledge-hub": "Knowledge Hub", news: "News & stories" };
 
-export const searchItems = Object.entries(collections).flatMap(([section, items]) => items
-  .filter((item) => section !== "people" || !directors.some((director) => director.slug === item.slug))
-  .map(item => ({ ...item, href: `/${section}/${item.slug}`, section: collectionLabels[section as CollectionKey] })));
+export const searchItems = Object.entries(collections).flatMap(([section, items]) => items.map(item => ({ ...item, href: `/${section}/${item.slug}`, section: collectionLabels[section as CollectionKey] })));

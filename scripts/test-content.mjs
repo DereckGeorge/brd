@@ -7,7 +7,7 @@ import { navigation, knowledgeCategories, knowledgeCategoryRedirects, contact, s
 import { institutionPages, whoPageRedirects, values, partners, boardMembers, sampleEvents, sampleRoles } from "../app/data/institution.ts";
 import media from "../app/data/brd-media.json" with { type: "json" };
 import { videos } from "../app/data/videos.ts";
-import team from "../app/data/board.json" with { type: "json" };
+import team from "../app/data/team.json" with { type: "json" };
 
 test("every published record has a unique safe route and a local image", () => {
   for (const [section, items] of Object.entries(collections)) {
@@ -97,22 +97,20 @@ test("unapproved sample videos are not published", () => {
   assert.equal(videos.length, 0);
 });
 
-test("global search includes every collection record without duplicate people", () => {
-  const sharedPeople = collections.people.filter((person) => collections.board.some((director) => director.slug === person.slug));
-  const total = Object.values(collections).reduce((sum, items) => sum + items.length, 0) - sharedPeople.length;
+test("global search includes the distinct team and board roles", () => {
+  const total = Object.values(collections).reduce((sum, items) => sum + items.length, 0);
   assert.equal(searchItems.length, total);
   assert.equal(new Set(searchItems.map((item) => item.href)).size, total);
   for (const [section, items] of Object.entries(collections)) {
     for (const item of items) {
-      const route = section === "people" && sharedPeople.some((person) => person.slug === item.slug) ? "board" : section;
-      assert.ok(searchItems.some((result) => result.href === `/${route}/${item.slug}`));
+      assert.ok(searchItems.some((result) => result.href === `/${section}/${item.slug}`));
     }
   }
 });
 
 test("only supplied team profiles are published and unapproved resources stay empty", () => {
   assert.equal(collections.research.length, 0);
-  assert.equal(collections.people.length, 5);
+  assert.equal(collections.people.length, 7);
   assert.equal(sampleEvents.length, 0);
   assert.equal(sampleRoles.length, 0);
   assert.equal(collections["knowledge-hub"].length, 0);
@@ -199,28 +197,51 @@ test("institutional titles and section headings have no trailing full stops", ()
   for (const item of Object.values(collections).flat()) assert.doesNotMatch(item.title, /\.$/);
 });
 
-test("team and board use only the five replacement profiles and their exact roles", () => {
+test("the original seven-person team is separate from the current five-person board", () => {
   const names = ["Ms Nyambiri Kimacha", "Mr Charles Msangi", "Mr Rockefeller Madamba", "Ms Vivaoliva U. Shoo", "Dr Joseph S. Mayunga"];
   const roles = ["Chairperson of the Board", "Vice Chairperson of the Board", "Director", "Director", "Director"];
-  assert.deepEqual(collections.people.map((member) => member.title), names);
+  assert.deepEqual(collections.people.map((member) => member.title), team.map((member) => member.name));
   assert.deepEqual(collections.board.map((member) => member.title), names);
-  assert.deepEqual(collections.people.map((member) => member.role), roles);
+  assert.deepEqual(collections.people.map((member) => member.role), team.map((member) => member.role));
   assert.deepEqual(collections.board.map((member) => member.role), roles);
   for (const member of team) {
     const person = collections.people.find((record) => record.slug === member.slug);
-    const director = collections.board.find((record) => record.slug === member.slug);
     assert.deepEqual(person.sections.map((section) => section.body), member.biography);
-    assert.deepEqual(director.sections.map((section) => section.body), member.biography);
     assert.equal(person.image, member.image);
+  }
+  for (const member of boardMembers) {
+    const director = collections.board.find((record) => record.slug === member.slug);
+    assert.deepEqual(director.sections.map((section) => section.body), member.biography);
     assert.equal(director.image, member.image);
     assert.match(member.sourceDocumentSha256, /^[a-f0-9]{64}$/);
     assert.ok(member.width > 0 && member.height > 0);
     assert.match(member.image, new RegExp(`${member.sourceSha256.slice(0, 10)}\\.webp$`));
   }
   for (const slug of ["guido-a-uhinga", "hamza-a-farahan", "johnston-weston", "daudi-fufuji", "simon-m-machera"]) {
-    assert.ok(!searchItems.some((entry) => entry.href === `/people/${slug}`));
+    assert.ok(searchItems.some((entry) => entry.href === `/people/${slug}`));
   }
+  assert.equal(collections.people.find((person) => person.slug === "joseph-s-mayunga").role, "Executive Director and Co-Founder");
+  assert.equal(collections.board.find((person) => person.slug === "joseph-s-mayunga").role, "Director");
   assert.match(readFileSync("app/components/detail-page.tsx", "utf8"), /section === "board" \? "\/who-we-are\/governance"/);
+});
+
+test("training and project imagery use the requested replacements", () => {
+  const training = institutionPages["what-we-do"].find((page) => page.slug === "training");
+  assert.equal(training.gallery, undefined);
+  assert.equal(training.image, "/brd/generated/disaster-preparedness-training.png");
+  assert.ok(existsSync(`public${training.image}`));
+  const sadc = collections.projects.find((project) => project.slug === "sadc-gender-risk-informed-development");
+  assert.equal(sadc.image, "/brd/generated/gender-risk-informed-development.png");
+  assert.notEqual(sadc.image, training.image);
+  const flood = collections.projects.find((project) => project.slug === "flood-resilience-tanzania");
+  assert.equal(flood.image, "/brd/projects/floods-in-tanzania.jpg");
+  assert.equal(createHash("sha256").update(readFileSync(`public${flood.image}`)).digest("hex"), "74c5f141d8e1865dfa24fb9c8fa91331f0be13868b727115064ebab68a24d9fa");
+});
+
+test("knowledge and video pages omit publication placeholder messages", () => {
+  for (const path of ["app/knowledge-hub/page.tsx", "app/knowledge-hub/categories/[category]/page.tsx", "app/components/video-library.tsx"]) {
+    assert.doesNotMatch(readFileSync(path, "utf8"), /(?:Videos|Resources) will be published here as they become available/i);
+  }
 });
 
 test("GNDR is listed once with its complete name and unchanged supplied PNG", () => {

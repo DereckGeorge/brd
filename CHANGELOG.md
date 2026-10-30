@@ -1,5 +1,11 @@
 # Change Log
 
+## 2026-10-30
+
+- Restored the original seven-person team, including its biographies, portraits and operational roles. Retained the five-member Board of Directors as a separate roster and restored the team-based organisational chart.
+- Replaced the repetitive Training gallery with one new AI-generated training image and used a separate generated gender-inclusive planning image for the SADC project. Replaced the flood-resilience project image with the supplied Floods in Tanzania photograph. Recorded prompts and provenance, and preserved full project-image framing.
+- Removed the video and knowledge-resource publication placeholder messages, including category pages. Search retains separate team and board roles.
+
 ## 2026-10-29
 
 - Added Global Network of Civil Society Organisations for Disaster Reduction (GNDR) to the partners page and footer, retaining the supplied logo unchanged and recording its source checksum. Adjusted responsive partner layouts for five logos.

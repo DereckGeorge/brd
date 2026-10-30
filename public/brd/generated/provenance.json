@@ -1,0 +1,18 @@
+{
+  "created": "2026-10-30",
+  "visualReference": "User-provided sample images illustration for Training, Humanitarian Support and Geospatial & Earth Observation",
+  "assets": [
+    {
+      "asset": "disaster-preparedness-training.png",
+      "method": "OpenAI built-in image generation",
+      "purpose": "Conceptual training scene, not documentation of an actual BRD event",
+      "prompt": "Use case: photorealistic-natural. Asset: a single wide landscape photograph-style conceptual image for BRD Tanzania's disaster risk management Training page. Match the natural daylight, practical field-learning feel and African community setting of the supplied reference, but create an original scene, not a collage or a poster. A Black Tanzanian woman facilitator in a navy vest leads an outdoor disaster-preparedness workshop under a simple open-sided shelter; six Black African adult participants, women and men, engage around a table with a large printed flood-risk map, notebooks and small model houses. Show collaboration, learning and attentive natural expressions, believable hands, realistic textures. One small vest chest patch reads exactly BRD, letters B red, R dark blue, D green, plain lettering with no invented multicolour symbol. Bright green trees in the background, soft daylight, restrained natural colours, documentary photographic style, wide 3:2 composition with people fully framed, not overly posed. No captions, UI, coloured panels, icons, slogans, watermarks or other institution logos. This is a fictional conceptual training scene, not evidence of an actual BRD event."
+    },
+    {
+      "asset": "gender-risk-informed-development.png",
+      "method": "OpenAI built-in image generation",
+      "purpose": "Conceptual gender-inclusive risk-planning scene, not documentation of the SADC project",
+      "prompt": "Use case: photorealistic-natural. Asset: a single wide landscape conceptual image for BRD Tanzania's project about mainstreaming gender and risk-informed development in the Southern African region. Original photograph-style scene with the bright natural, practical NGO field-work aesthetic of the user's sample, not a collage and not a poster. A Black southern African woman planning specialist leads a participatory flood-risk planning exercise with a diverse group of six Black African women and men of varied adult ages, gathered around a table in a sunlit community hall with open windows and green countryside beyond. One older woman and one younger woman actively place coloured markers on a regional flood and infrastructure planning map while others listen and discuss; a laptop displays simple abstract GIS layers without readable labels. A small standing banner at the rear reads exactly BRD, letters B red, R dark blue, D green; no other text or logos. Professional but approachable attire, natural expressions, credible anatomy and hands, warm daylight, realistic material detail. Composition distinctly different from an outdoor training lesson: eye-level diagonal view of round-table collaborative planning, inclusive female leadership central, wide landscape 3:2. No agency insignia, no SADC logo, no flags, no claims of an actual event, no captions, no UI panels, no watermark. This is an imagined conceptual scene, not documentary evidence of the project."
+    }
+  ]
+}

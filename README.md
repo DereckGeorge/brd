@@ -19,14 +19,17 @@ Local URL: http://localhost:3002
 - `app/data/approved-copy.json`: imported institutional copy and board roster
 - `app/data/institution.ts`: institutional page definitions
 - `app/data/content.ts`: projects, services, team profiles and general editorial insights
-- `app/data/board.json`: the five current team and board profiles from `BOARD OF DIRECTORS.zip`, with matching portraits and source checksums; this supersedes the earlier seven-person team roster
+- `app/data/team.json`: the original seven-person team from `OUR TEAM 3.docx`, restored with its operational roles, portraits and biographies
+- `app/data/board.json`: the separate five-member board from `BOARD OF DIRECTORS.zip`, with matching portraits and source checksums
 - `app/data/brd-media.json`: provenance for 11 BRD photographs and five partner logos, including the separately provided GNDR PNG
 - `app/data/site-config.ts`: navigation, contact details and confirmed social profiles
 - `public/brd/news/provenance.json`: generated editorial artwork provenance
+- `public/brd/generated/provenance.json`: the full prompts for the generated Training and SADC project images
+- `public/brd/projects/provenance.json`: source and checksum for the supplied flood photograph
 
 The address follows the latest supplied website copy: 2nd Floor, Capital Place, Ohio Street, P.O. Box 6548, Dar es Salaam, Tanzania. Instagram is the only confirmed social URL. No guessed links are published.
 
-Our Team and Governance show the same five current people, as confirmed by BRD, with the roles and biographies from the new archive. Both use circular portraits and biography links available on hover, keyboard focus and touch. The organisational chart groups the chairperson, vice chairperson and three directors; the document does not supply detailed reporting lines. Team and board profile pages retain separate return links to their respective sections.
+Our Team shows the original seven-person operational team. Governance shows the separate five-member board. Both use circular portraits and biography links available on hover, keyboard focus and touch. The organisational chart uses the team roles, not board positions. Team and board profile pages retain separate return links, biographies, portraits and role-specific search entries.
 
 ## Navigation and Publication
 
