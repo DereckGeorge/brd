@@ -111,7 +111,7 @@ test("global search includes the distinct team and board roles", () => {
 
 test("only supplied team profiles are published and unapproved resources stay empty", () => {
   assert.equal(collections.research.length, 0);
-  assert.equal(collections.people.length, 7);
+  assert.equal(collections.people.length, 8);
   assert.equal(sampleEvents.length, 0);
   assert.equal(sampleRoles.length, 0);
   assert.equal(collections["knowledge-hub"].length, 0);
@@ -198,7 +198,7 @@ test("institutional titles and section headings have no trailing full stops", ()
   for (const item of Object.values(collections).flat()) assert.doesNotMatch(item.title, /\.$/);
 });
 
-test("the original seven-person team is separate from the current five-person board", () => {
+test("the eight-person team is separate from the current five-person board", () => {
   const names = ["Ms Nyambiri Kimacha", "Mr Charles Msangi", "Mr Rockefeller Madamba", "Ms Vivaoliva U. Shoo", "Dr Joseph S. Mayunga"];
   const roles = ["Chairperson of the Board", "Vice Chairperson of the Board", "Director", "Director", "Director"];
   assert.deepEqual(collections.people.map((member) => member.title), team.map((member) => member.name));
@@ -224,6 +224,18 @@ test("the original seven-person team is separate from the current five-person bo
   assert.equal(collections.people.find((person) => person.slug === "joseph-s-mayunga").role, "Executive Director and Co-Founder");
   assert.equal(collections.board.find((person) => person.slug === "joseph-s-mayunga").role, "Director");
   assert.match(readFileSync("app/components/detail-page.tsx", "utf8"), /section === "board" \? "\/who-we-are\/governance"/);
+});
+
+test("Dr Gervas Kolola has the approved role, complete biography and unchanged portrait", () => {
+  const member = team.find((person) => person.slug === "gervas-michael-kolola");
+  assert.equal(member.name, "Dr. Gervas Michael Kolola");
+  assert.equal(member.role, "Public Administration and Health Systems Specialist");
+  assert.equal(member.biography.length, 3);
+  assert.match(member.biography[0], /Erasmus University Rotterdam/);
+  assert.match(member.biography[2], /programme monitoring and evaluation/);
+  assert.equal(createHash("sha256").update(readFileSync(`public${member.image}`)).digest("hex"), member.sourceSha256);
+  assert.ok(searchItems.some((entry) => entry.href === `/people/${member.slug}`));
+  assert.ok(!collections.board.some((person) => person.slug === member.slug));
 });
 
 test("training and project imagery use the requested replacements", () => {

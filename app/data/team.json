@@ -89,5 +89,20 @@
     ],
     "sourceImage": "media/image7.jpeg",
     "sourceSha256": "be48c631e5815a38bb334719356387b78c4f9afb3db4726c9ec484898b80efb5"
+  },
+  {
+    "slug": "gervas-michael-kolola",
+    "name": "Dr. Gervas Michael Kolola",
+    "role": "Public Administration and Health Systems Specialist",
+    "image": "/brd/team/gervas-michael-kolola.jpg",
+    "biography": [
+      "Dr. Gervas Michael Kolola holds a PhD in Development Studies from the International Institute of Social Studies (ISS), Erasmus University Rotterdam, The Netherlands. He also holds a Master of Public Service from the University of Arkansas, USA, and a Master of Philosophy (MPhil) in Public Administration and Organisation Theory from the University of Bergen, Norway.",
+      "Dr. Kolola is an accomplished development and public administration specialist with over 20 years of professional experience in university teaching, applied research, consultancy, institutional assessments, monitoring and evaluation, leadership, governance and organisational development. His multidisciplinary expertise spans public-sector management, health systems strengthening, local government administration, human resource management, strategic planning and institutional performance improvement.",
+      "Throughout his career, Dr. Kolola has contributed to various development initiatives, research assignments and consultancy programmes aimed at strengthening institutional capacity, improving public-service delivery and enhancing organisational effectiveness. His experience includes supporting government institutions and local authorities through technical advisory services, institutional assessments, capacity development and programme monitoring and evaluation."
+    ],
+    "sourceImage": "PHOTO-2026-10-30-12-47-16.jpg",
+    "sourceSha256": "173498d44a65c48e47dcbe612411dbb84e0c48c6418e79e8ffa2256d15b18b04",
+    "sourceDocument": "Bio for Dr Gervas Kolola.docx",
+    "sourceDocumentSha256": "f2c88d64a5dcd9b86fb95fa31e3e231e5db43890c5dc5daae98273e6ccef7c4a"
   }
 ]

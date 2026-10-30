@@ -51,8 +51,10 @@ def main():
             heading = None
     if len(members) != 7:
         raise ValueError("Expected seven team members")
-    (ROOT / "app/data/team.json").write_text(json.dumps(members, ensure_ascii=True, indent=2) + "\n")
-    print("Imported seven biographies and their associated portraits")
+    target = ROOT / "app/data/team.json"
+    additions = [member for member in json.loads(target.read_text()) if member["slug"] not in SLUGS] if target.exists() else []
+    target.write_text(json.dumps(members + additions, ensure_ascii=True, indent=2) + "\n")
+    print(f"Imported seven biographies and portraits; preserved {len(additions)} additional team members")
 
 if __name__ == "__main__":
     main()
