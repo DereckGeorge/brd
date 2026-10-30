@@ -37,7 +37,7 @@ Our Team shows eight operational team members. Governance shows the separate fiv
 
 Who We Are, What We Do, How We Work and Get Involved keep their section menus while content changes. Governance has Governance and Organisational Structure child tabs. Long submenu labels remain on one line, with horizontal scrolling on narrow screens.
 
-Knowledge Hub categories are deliberately inactive until approved resources exist. No sample publications, downloads, videos, events or vacancies are published. Search indexes actual page and collection records without topic suggestions. News insights discuss general topics, not invented events. The preparedness artwork is conceptual, not documentary evidence of a BRD activity; see `/credits`.
+Knowledge Hub categories are deliberately inactive until approved resources exist. No sample publications, downloads, videos, events or vacancies are published. Search indexes actual page and collection records without topic suggestions. News insights discuss general topics, not invented events. The preparedness artwork is conceptual, not documentary evidence of a BRD activity. Image provenance is retained in the repository rather than a public credits page.
 
 Preview notices and noindex metadata are removed. Donations and enquiries are contact-based only: no payment processing, mock receipt, analytics, newsletter or form storage is implemented. Publishing to hosting remains a separate step.
 

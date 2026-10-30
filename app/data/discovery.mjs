@@ -13,7 +13,6 @@ export const publicPages = [
   { path: "/news", title: "News & Stories" },
   { path: "/contact", title: "Contact Us" },
   { path: "/donate", title: "Donate to BRD Tanzania" },
-  { path: "/credits", title: "Images & credits" },
   ...Object.entries(institutionPages).flatMap(([section, pages]) => pages.map((page) => ({ path: `/${section}/${page.slug}`, title: page.title }))),
   ...Object.entries(collections).flatMap(([section, items]) => items.map((item) => ({ path: `/${section}/${item.slug}`, title: item.title }))),
 ];

@@ -17,6 +17,12 @@ test("the Google ownership verification file stays available unchanged at the we
   if (!process.env.NEXT_PUBLIC_SITE_URL) assert.equal(siteUrl, "https://brd.or.tz");
 });
 
+test("the removed credits page is absent from the footer and crawler directories", () => {
+  assert.equal(existsSync("app/credits/page.tsx"), false);
+  assert.ok(!publicPages.some((page) => page.path === "/credits"));
+  assert.doesNotMatch(readFileSync("app/components/site-footer.tsx", "utf8"), /\/credits|Images &amp; credits|Images & credits/);
+});
+
 test("crawler discovery covers published content without redirects or empty category pages", () => {
   const paths = publicPages.map((page) => page.path);
   assert.equal(new Set(paths).size, paths.length);
