@@ -2,6 +2,7 @@
 
 ## 2026-10-30
 
+- Corrected the footer copyright year from 2027 to 2026 and updated its regression test.
 - Added the supplied Google Search Console verification HTML file unchanged at the public website root, with a regression test to retain its exact verification text. Updated the default canonical/discovery origin to the confirmed production domain, https://brd.or.tz.
 - Added search and AI crawler discovery with permissive robots.txt, a content-driven XML sitemap, a supplemental llms.txt directory, canonical and social metadata, and structured NGO/website data. Added optional Google verification configuration and deployment instructions. Set the footer copyright to 2027 BRD Tanzania.
 - Added Dr. Gervas Michael Kolola as Public Administration and Health Systems Specialist using the supplied biography and unchanged portrait. The team directory, biography, search and organisational chart now include him; the board remains unchanged. Reimporting the original team document preserves additional members.

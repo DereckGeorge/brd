@@ -68,7 +68,7 @@ Set `NEXT_PUBLIC_SITE_URL` to the official public origin before building (defaul
 
 Google's HTML-file ownership verification is permanently retained at `public/google2013983fff9c954d.html`, served as `https://brd.or.tz/google2013983fff9c954d.html`. Do not remove or change this file after verification; Google may check it again. It must remain publicly accessible without authentication or a redirect to the homepage.
 
-After deployment, verify ownership in Google Search Console and submit `/sitemap.xml`. If using Google's HTML-tag verification method, set `GOOGLE_SITE_VERIFICATION` to the issued token and redeploy; never invent a verification token. Check that the hosting provider has no password protection, bot challenge or `X-Robots-Tag: noindex` on the production site. Search results and empty knowledge-category placeholders are not included in the sitemap. The footer displays the requested fixed copyright year, 2027.
+After deployment, verify ownership in Google Search Console and submit `/sitemap.xml`. If using Google's HTML-tag verification method, set `GOOGLE_SITE_VERIFICATION` to the issued token and redeploy; never invent a verification token. Check that the hosting provider has no password protection, bot challenge or `X-Robots-Tag: noindex` on the production site. Search results and empty knowledge-category placeholders are not included in the sitemap. The footer displays the requested fixed copyright year, 2026.
 
 ## Backend
 

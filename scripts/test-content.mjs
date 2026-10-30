@@ -46,7 +46,7 @@ test("organisation markup, indexing metadata and requested copyright are present
   assert.match(layout, /application\/ld\+json/);
   assert.match(layout, /"@type": "NGO"/);
   assert.match(layout, /GOOGLE_SITE_VERIFICATION/);
-  assert.match(readFileSync("app/components/site-footer.tsx", "utf8"), /&copy; 2027 BRD Tanzania\. All rights reserved\./);
+  assert.match(readFileSync("app/components/site-footer.tsx", "utf8"), /&copy; 2026 BRD Tanzania\. All rights reserved\./);
 });
 
 test("every published record has a unique safe route and a local image", () => {
