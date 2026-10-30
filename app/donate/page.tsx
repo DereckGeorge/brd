@@ -4,7 +4,7 @@ import PageIntro from "../components/page-intro";
 import { contact } from "../data/site-config";
 import copy from "../data/approved-copy.json";
 
-export const metadata = { title: "Donate to BRD Tanzania" };
+export const metadata = pageMetadata("Donate to BRD Tanzania", "/donate");
 const guidance = copy.donationInstructions.split(/(?<=\.)\s+/);
 const instructions = [
   { Icon: MessageCircle, title: "Contact our team", body: guidance[0] },
@@ -14,3 +14,4 @@ const instructions = [
 export default function Donate() {
   return <><PageIntro title="Support BRD Tanzania" eyebrow="Donate" description={copy.donate} /><section className="donation-layout container"><div className="donation-instructions"><h2>How to donate</h2><ul>{instructions.map(({ Icon, title, body }) => <li key={title}><Icon size={27} strokeWidth={1.5} /><div><h3>{title}</h3><p>{body}</p></div></li>)}</ul><p className="donation-note">Donations are arranged directly with BRD. This website does not collect payments or display bank or mobile-money account details.</p></div><aside className="donation-contact"><span className="eyebrow">Arrange your donation</span><h2>Talk to BRD Tanzania</h2><a href={`mailto:${contact.email}?subject=Donation%20enquiry`}><Mail size={21} />{contact.email}</a>{contact.phones.map((phone) => <a href={`tel:${phone.replaceAll(" ", "")}`} key={phone}><Phone size={21} />{phone}</a>)}<address>{contact.address.map((line) => <span key={line}>{line}<br /></span>)}</address><Link href="/contact" className="text-link">Contact page<ArrowUpRight size={20} /></Link></aside></section></>;
 }
+import { pageMetadata } from "../data/seo";

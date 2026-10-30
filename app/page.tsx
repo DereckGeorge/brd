@@ -3,6 +3,9 @@ import Link from "next/link";
 import { ArrowUpRight, Heart } from "lucide-react";
 import copy from "./data/approved-copy.json";
 import researchCopy from "./data/research-copy.json";
+import { pageMetadata } from "./data/seo";
+
+export const metadata = { ...pageMetadata("BRD Tanzania | Building Resilience to Disasters", "/"), title: { absolute: "BRD Tanzania | Building Resilience to Disasters" } };
 
 const work = [
   [researchCopy.title, "Evidence to inform policy, planning, practice and future research.", "/what-we-do/research"],

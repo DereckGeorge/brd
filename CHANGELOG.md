@@ -2,6 +2,7 @@
 
 ## 2026-10-30
 
+- Added search and AI crawler discovery with permissive robots.txt, a content-driven XML sitemap, a supplemental llms.txt directory, canonical and social metadata, and structured NGO/website data. Added optional Google verification configuration and deployment instructions. Set the footer copyright to 2027 BRD Tanzania.
 - Added Dr. Gervas Michael Kolola as Public Administration and Health Systems Specialist using the supplied biography and unchanged portrait. The team directory, biography, search and organisational chart now include him; the board remains unchanged. Reimporting the original team document preserves additional members.
 - Renamed the Research section to Research, Innovation & Knowledge across the page, navigation, homepage and service listing. Imported the revised research copy, eight thematic areas and collaboration invitation from Reserch section.docx, preserving existing URLs.
 - Added the supplied humanitarian and geospatial image panels to their pages and service listings. Native CSS framing displays just each photographic panel, without the coloured caption blocks, while retaining the original PNG unchanged.

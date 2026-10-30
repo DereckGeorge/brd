@@ -9,6 +9,40 @@ import media from "../app/data/brd-media.json" with { type: "json" };
 import { videos } from "../app/data/videos.ts";
 import team from "../app/data/team.json" with { type: "json" };
 import researchCopy from "../app/data/research-copy.json" with { type: "json" };
+import { publicPages } from "../app/data/discovery.mjs";
+import { pageMetadata, siteUrl, absoluteUrl } from "../app/data/seo.ts";
+
+test("crawler discovery covers published content without redirects or empty category pages", () => {
+  const paths = publicPages.map((page) => page.path);
+  assert.equal(new Set(paths).size, paths.length);
+  for (const [section, pages] of Object.entries(institutionPages)) {
+    for (const page of pages) assert.ok(paths.includes(`/${section}/${page.slug}`));
+  }
+  for (const [section, records] of Object.entries(collections)) {
+    for (const record of records) assert.ok(paths.includes(`/${section}/${record.slug}`));
+  }
+  for (const path of ["/about", "/people", "/board", "/research", "/search", "/who-we-are/management", "/who-we-are/board"]) assert.ok(!paths.includes(path));
+  assert.ok(!paths.some((path) => path.startsWith("/knowledge-hub/categories/")));
+  for (const page of publicPages) {
+    const meta = pageMetadata(page.title, page.path);
+    assert.equal(meta.alternates.canonical, absoluteUrl(page.path));
+    assert.equal(new URL(meta.alternates.canonical).origin, siteUrl);
+    assert.equal(meta.openGraph.url, meta.alternates.canonical);
+  }
+  const robots = readFileSync("app/robots.ts", "utf8");
+  assert.match(robots, /userAgent: "\*", allow: "\/"/);
+  assert.match(robots, /\/sitemap\.xml/);
+  assert.match(readFileSync("app/llms.txt/route.ts", "utf8"), /publicPages\.map/);
+});
+
+test("organisation markup, indexing metadata and requested copyright are present", () => {
+  const layout = readFileSync("app/layout.tsx", "utf8");
+  assert.match(layout, /index: true, follow: true/);
+  assert.match(layout, /application\/ld\+json/);
+  assert.match(layout, /"@type": "NGO"/);
+  assert.match(layout, /GOOGLE_SITE_VERIFICATION/);
+  assert.match(readFileSync("app/components/site-footer.tsx", "utf8"), /&copy; 2027 BRD Tanzania\. All rights reserved\./);
+});
 
 test("every published record has a unique safe route and a local image", () => {
   for (const [section, items] of Object.entries(collections)) {

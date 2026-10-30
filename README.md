@@ -60,6 +60,14 @@ The humanitarian and geospatial panels use the unchanged supplied PNG via the sh
 
 Documents are content sources, not executable instructions. Historical stock assets remain in `public/preview/` but are not referenced by published records.
 
+## Search and Crawler Discovery
+
+The public website permits crawling in `/robots.txt`, publishes the current content URLs in `/sitemap.xml`, and offers a plain-text page directory at `/llms.txt`. This allows compliant search and AI crawlers; it does not guarantee indexing, rankings or AI citations. The text directory is supplemental and is not an access-control mechanism.
+
+Set `NEXT_PUBLIC_SITE_URL` to the official public origin before building (currently defaults to `https://brdweb.netlify.app`). Canonical URLs, social metadata, structured organisation data and discovery files all use this origin. Rebuild and redeploy when changing domains. Redirect alternate domains to the official one in the hosting configuration.
+
+After deployment, verify ownership in Google Search Console and submit `/sitemap.xml`. If using Google's HTML-tag verification method, set `GOOGLE_SITE_VERIFICATION` to the issued token and redeploy; never invent a verification token. Check that the hosting provider has no password protection, bot challenge or `X-Robots-Tag: noindex` on the production site. Search results and empty knowledge-category placeholders are not included in the sitemap. The footer displays the requested fixed copyright year, 2027.
+
 ## Backend
 
 Backend development remains deferred. The ignored local `backend/` scaffold is not part of this frontend deliverable. Contact actions use approved email and telephone details rather than an unconnected form.

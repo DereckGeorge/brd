@@ -8,7 +8,8 @@ export function generateStaticParams() { return pages.map((page) => ({ slug: pag
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const page = pages.find((item) => item.slug === slug);
-  return { title: page?.title, description: page?.summary };
+  if (!page) notFound();
+  return pageMetadata(page.title, `/get-involved/${slug}`, page.summary);
 }
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -16,3 +17,4 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   if (!page) notFound();
   return <InstitutionPage page={page} section="get-involved" />;
 }
+import { pageMetadata } from "../../data/seo";

@@ -1,5 +1,5 @@
 import PageIntro from "../components/page-intro";
-export const metadata = { title: "Images & credits" };
+export const metadata = pageMetadata("Images & credits", "/credits");
 export default function Credits() {
   return <><PageIntro title="Images & credits" eyebrow="Credits" description="Photo sources and acknowledgements for the BRD Tanzania website." /><div className="container credits-copy">
     <h2>BRD-supplied photographs and logos</h2><p>The Dar es Salaam photograph, workshop and meeting photographs, and four partner logos were provided in BRD_PHOTOS.zip and BRD_Partners.zip. The GNDR logo was provided separately. Images are optimised for web delivery without upscaling, and location metadata is removed. Logo proportions and colours are preserved. The RAPID source file is already cropped on its right edge; it is displayed without additional cropping.</p>
@@ -11,3 +11,4 @@ export default function Credits() {
     <h2>Content and partner names</h2><p>Institutional copy, service descriptions, the four project summaries and board roster follow BRD&apos;s supplied website content. Partner logos are reproduced from the supplied files. Insight articles discuss general resilience topics; they are not reports of BRD activities.</p>
   </div></>;
 }
+import { pageMetadata } from "../data/seo";

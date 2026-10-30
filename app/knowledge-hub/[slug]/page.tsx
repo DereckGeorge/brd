@@ -8,7 +8,8 @@ export function generateStaticParams() { return items.map((item) => ({ slug: ite
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const item = items.find((record) => record.slug === slug);
-  return { title: item?.title, description: item?.summary };
+  if (!item) notFound();
+  return pageMetadata(item.title, `/knowledge-hub/${slug}`, item.summary);
 }
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -16,3 +17,4 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   if (!item) notFound();
   return <DetailPage item={item} section="knowledge-hub" />;
 }
+import { pageMetadata } from "../../data/seo";

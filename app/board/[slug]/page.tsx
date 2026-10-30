@@ -7,7 +7,8 @@ export function generateStaticParams() { return directors.map((member) => ({ slu
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const member = directors.find((record) => record.slug === slug);
-  return { title: member?.title, description: member?.summary };
+  if (!member) notFound();
+  return pageMetadata(member.title, `/board/${slug}`, member.summary);
 }
 export default async function BoardProfile({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -15,3 +16,4 @@ export default async function BoardProfile({ params }: { params: Promise<{ slug:
   if (!member) notFound();
   return <DetailPage item={member} section="board" />;
 }
+import { pageMetadata } from "../../data/seo";
