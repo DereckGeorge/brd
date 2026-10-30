@@ -1,6 +1,7 @@
 import copy from "./approved-copy.json" with { type: "json" };
 import media from "./brd-media.json" with { type: "json" };
 import directors from "./board.json" with { type: "json" };
+import researchCopy from "./research-copy.json" with { type: "json" };
 
 export type InstitutionPage = {
   slug: string;
@@ -8,11 +9,13 @@ export type InstitutionPage = {
   summary: string;
   image?: string;
   imageAlt?: string;
+  imagePanel?: "humanitarian" | "geospatial";
   gallery?: string[];
   mode?: "mission" | "governance" | "structure" | "team" | "partners" | "approach" | "events" | "careers";
   sections: { heading: string; body: string }[];
   list?: { heading: string; items: string[] };
   action?: string;
+  collaboration?: { heading: string; title: string; body: string };
 };
 
 function lines(text: string) { return text.split("\n").map((line) => line.trim()).filter(Boolean); }
@@ -26,8 +29,6 @@ const consultancy = lines(copy.consultancyAreas);
 const training = lines(copy.trainingAreas);
 const approach = lines(copy.approach);
 const strategy = lines(copy.strategy);
-const research = lines(copy.research);
-research[0] = research[0].replace(/\.+$/, "");
 const valueLines = lines(copy.values);
 
 export const valuesIntro = valueLines.slice(2, 4);
@@ -48,11 +49,11 @@ export const institutionPages: Record<string, InstitutionPage[]> = {
     { slug: "partners", title: "Our partners", summary: "Working together to strengthen disaster resilience.", mode: "partners", sections: [], action: "Explore a partnership" },
   ],
   "what-we-do": [
-    { slug: "research", title: research[0], summary: research[1], sections: [{heading: "Research purpose", body: research[2]}], action: "Discuss research collaboration" },
+    { slug: "research", title: researchCopy.title, summary: researchCopy.tagline, sections: [{heading: "Applied research", body: researchCopy.introduction}, {heading: "Understanding risk and enabling innovation", body: researchCopy.overview}], list: {heading: researchCopy.areasHeading, items: researchCopy.areas}, collaboration: researchCopy.collaboration, action: researchCopy.action },
     { slug: "consultancy", title: "Consultancy Services", summary: copy.consultancy, sections: [{heading: consultancy[1], body: consultancy[2]}, {heading: "Our approach", body: consultancy[13]}, {heading: "Our goal", body: consultancy[14]}], list: {heading: "Areas of consultancy", items: consultancy.slice(3, 12)}, action: "Discuss a consultancy" },
     { slug: "training", title: training[0], summary: copy.training, image: "/brd/generated/disaster-preparedness-training.png", imageAlt: "AI-generated scene of a facilitator leading a disaster-preparedness mapping exercise", sections: [{heading: "Professional learning", body: training[1]}, ...training.slice(2, 7).map(titled), {heading: "Tailored to your needs", body: training.slice(7).join(" ")}], action: "Explore training options" },
-    { slug: "humanitarian-support", title: "Humanitarian Support", summary: copy.humanitarian, sections: [], action: "Discuss humanitarian collaboration" },
-    { slug: "geospatial-earth-observation", title: "Geospatial & Earth Observation Services", summary: copy.geospatial, sections: [], action: "Discuss geospatial services" },
+    { slug: "humanitarian-support", title: "Humanitarian Support", summary: copy.humanitarian, image: "/brd/generated/service-illustrations.png", imagePanel: "humanitarian", imageAlt: "Conceptual scene of a humanitarian worker handing relief supplies to a community member", sections: [], action: "Discuss humanitarian collaboration" },
+    { slug: "geospatial-earth-observation", title: "Geospatial & Earth Observation Services", summary: copy.geospatial, image: "/brd/generated/service-illustrations.png", imagePanel: "geospatial", imageAlt: "Conceptual scene of a geospatial analyst working with satellite maps and a drone", sections: [], action: "Discuss geospatial services" },
     { slug: "outreach-community-engagement", title: "Outreach & Community Engagement", summary: copy.outreach, image: "/brd/photos/community-meeting.webp", imageAlt: "Participants at a BRD meeting", gallery: ["training-discussion"], sections: [], action: "Discuss community engagement" },
   ],
   "how-we-work": [

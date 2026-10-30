@@ -1,0 +1,25 @@
+{
+  "title": "Research, Innovation & Knowledge",
+  "tagline": "Advancing Evidence-Based Solutions for Disaster Risk Reduction and Resilient Development",
+  "introduction": "The BRD Tanzania Research Center undertakes, promotes and supports applied research to generate scientific evidence, innovative approaches and practical knowledge that contribute to disaster risk reduction, climate change adaptation and resilient, sustainable development.",
+  "overview": "Our research focuses on understanding disaster risks, assessing vulnerabilities, strengthening community resilience and identifying innovative solutions to address emerging and evolving environmental and development challenges.",
+  "areasHeading": "Our Research Areas",
+  "areas": [
+    "Disaster Risk Assessment and Disaster Risk Reduction",
+    "Climate Change, Adaptation and Resilience",
+    "Urban Resilience and Risk-Informed Development",
+    "Geospatial Science, GIS and Earth Observation",
+    "Early Warning Systems and Disaster Preparedness",
+    "Social Vulnerability, Gender and Inclusive Resilience",
+    "Ecosystem-Based Adaptation and Nature-Based Solutions",
+    "Disaster Governance, Policy and Institutional Resilience"
+  ],
+  "collaboration": {
+    "heading": "Call for research collaboration",
+    "title": "Partner with BRD Tanzania",
+    "body": "Are you a development partner, research institution, donor or organisation interested in advancing disaster risk reduction and climate resilience?"
+  },
+  "action": "Contact the BRD Research Center",
+  "sourceDocument": "Reserch section.docx",
+  "sourceSha256": "10f7f3d8a66a9e53d70dd0f0d35eb2ba19f888bb4b4e23e1800326199d3d33b4"
+}

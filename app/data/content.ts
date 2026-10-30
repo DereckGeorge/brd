@@ -8,6 +8,7 @@ export type ContentItem = {
   category: string;
   image: string;
   imageAlt: string;
+  imagePanel?: "humanitarian" | "geospatial";
   status?: string;
   location?: string;
   year?: string;
@@ -109,9 +110,9 @@ export const research: ContentItem[] = [];
 export const services: ContentItem[] = [
   {
     "slug": "research-and-assessment",
-    "title": "Research, Evidence and Learning",
+    "title": "Research, Innovation & Knowledge",
     "category": "Research",
-    "summary": "BRD Research Center undertakes and supports research on disaster risk management, disaster risk reduction, climate change and community resilience. Our research interests include hazard prevention and mitigation, preparedness, response and recovery, disaster risk assessment, physical and social vulnerability, disaster governance, gender and disaster risk reduction, early warning systems, and climate change adaptation and mitigation.  We aim to generate evidence that can inform policy, planning, practice and future research.",
+    "summary": "The BRD Tanzania Research Center undertakes, promotes and supports applied research to generate scientific evidence, innovative approaches and practical knowledge that contribute to disaster risk reduction, climate change adaptation and resilient, sustainable development. Our research focuses on understanding disaster risks, assessing vulnerabilities, strengthening community resilience and identifying innovative solutions to address emerging and evolving environmental and development challenges.",
     "image": "/brd/photos/brd-workshop.webp",
     "imageAlt": "BRD Tanzania activities",
     "facts": [
@@ -122,8 +123,16 @@ export const services: ContentItem[] = [
     ],
     "sections": [
       {
-        "heading": "Research, Evidence and Learning",
-        "body": "BRD Research Center undertakes and supports research on disaster risk management, disaster risk reduction, climate change and community resilience. Our research interests include hazard prevention and mitigation, preparedness, response and recovery, disaster risk assessment, physical and social vulnerability, disaster governance, gender and disaster risk reduction, early warning systems, and climate change adaptation and mitigation.  We aim to generate evidence that can inform policy, planning, practice and future research."
+        "heading": "Applied research",
+        "body": "The BRD Tanzania Research Center undertakes, promotes and supports applied research to generate scientific evidence, innovative approaches and practical knowledge that contribute to disaster risk reduction, climate change adaptation and resilient, sustainable development."
+      },
+      {
+        "heading": "Research focus",
+        "body": "Our research focuses on understanding disaster risks, assessing vulnerabilities, strengthening community resilience and identifying innovative solutions to address emerging and evolving environmental and development challenges."
+      },
+      {
+        "heading": "Our Research Areas",
+        "body": "Disaster Risk Assessment and Disaster Risk Reduction; Climate Change, Adaptation and Resilience; Urban Resilience and Risk-Informed Development; Geospatial Science, GIS and Earth Observation; Early Warning Systems and Disaster Preparedness; Social Vulnerability, Gender and Inclusive Resilience; Ecosystem-Based Adaptation and Nature-Based Solutions; Disaster Governance, Policy and Institutional Resilience"
       }
     ],
     "isIllustrative": false
@@ -154,8 +163,8 @@ export const services: ContentItem[] = [
     "title": "Geospatial & Earth Observation Services",
     "category": "Geospatial science",
     "summary": "BRD applies Geographic Information Systems (GIS), remote sensing, Earth observation and geospatial analysis to support disaster risk assessment, vulnerability analysis, climate resilience, environmental management and evidence-based planning. Depending on assignment requirements, outputs may include spatial databases, maps, analytical reports, risk information products and decision-support tools.",
-    "image": "/brd/photos/dar-es-salaam.webp",
-    "imageAlt": "BRD Tanzania activities",
+    "image": "/brd/generated/service-illustrations.png",
+    "imageAlt": "Conceptual scene of a geospatial analyst working with satellite maps and a drone",
     "facts": [
       [
         "Service area",
@@ -168,15 +177,16 @@ export const services: ContentItem[] = [
         "body": "BRD applies Geographic Information Systems (GIS), remote sensing, Earth observation and geospatial analysis to support disaster risk assessment, vulnerability analysis, climate resilience, environmental management and evidence-based planning. Depending on assignment requirements, outputs may include spatial databases, maps, analytical reports, risk information products and decision-support tools."
       }
     ],
-    "isIllustrative": false
+    "isIllustrative": false,
+    "imagePanel": "geospatial"
   },
   {
     "slug": "humanitarian-support",
     "title": "Humanitarian support",
     "category": "Humanitarian support",
     "summary": "BRD Tanzania contributes to humanitarian preparedness and supports disaster-affected communities during response, relief, and recovery through collaboration with relevant stakeholders, community engagement, and volunteer mobilisation. Its efforts aim to promote timely, coordinated, and people-centred assistance, while encouraging volunteerism and local participation in meeting urgent needs, restoring livelihoods, and strengthening community resilience.",
-    "image": "/brd/photos/brd-workshop.webp",
-    "imageAlt": "BRD Tanzania activities",
+    "image": "/brd/generated/service-illustrations.png",
+    "imageAlt": "Conceptual scene of a humanitarian worker handing relief supplies to a community member",
     "facts": [
       [
         "Service area",
@@ -189,7 +199,8 @@ export const services: ContentItem[] = [
         "body": "BRD Tanzania contributes to humanitarian preparedness and supports disaster-affected communities during response, relief, and recovery through collaboration with relevant stakeholders, community engagement, and volunteer mobilisation. Its efforts aim to promote timely, coordinated, and people-centred assistance, while encouraging volunteerism and local participation in meeting urgent needs, restoring livelihoods, and strengthening community resilience."
       }
     ],
-    "isIllustrative": false
+    "isIllustrative": false,
+    "imagePanel": "humanitarian"
   },
   {
     "slug": "outreach-community-engagement",

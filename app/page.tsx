@@ -2,9 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Heart } from "lucide-react";
 import copy from "./data/approved-copy.json";
+import researchCopy from "./data/research-copy.json";
 
 const work = [
-  ["Research", "Evidence to inform policy, planning, practice and future research.", "/what-we-do/research"],
+  [researchCopy.title, "Evidence to inform policy, planning, practice and future research.", "/what-we-do/research"],
   ["Consultancy", "Technical and advisory services for risk-informed decisions.", "/what-we-do/consultancy"],
   ["Training", "Professional learning and practical capacity development.", "/what-we-do/training"],
   ["Humanitarian support", "Preparedness, response, relief and recovery.", "/what-we-do/humanitarian-support"],

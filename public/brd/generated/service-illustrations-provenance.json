@@ -1,0 +1,14 @@
+{
+  "asset": "service-illustrations.png",
+  "added": "2026-10-30",
+  "source": "User-provided service illustration",
+  "sourceFile": "sample images illustration for  Training,Humantarian support and geospatial and earthobservation 2.png",
+  "sourceSha256": "dff5cdb9a31dad502aca1222b7a348a3f8ef9c2c395b8a2d05367e88cfef392b",
+  "width": 1536,
+  "height": 1024,
+  "method": "Original PNG unchanged; native CSS viewing windows exclude captions and neighbouring panels",
+  "windows": {
+    "humanitarian": { "x": 520, "y": 28, "width": 496, "height": 645 },
+    "geospatial": { "x": 1032, "y": 28, "width": 496, "height": 645 }
+  }
+}

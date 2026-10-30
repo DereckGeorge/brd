@@ -8,6 +8,7 @@ import { institutionPages, whoPageRedirects, values, partners, boardMembers, sam
 import media from "../app/data/brd-media.json" with { type: "json" };
 import { videos } from "../app/data/videos.ts";
 import team from "../app/data/team.json" with { type: "json" };
+import researchCopy from "../app/data/research-copy.json" with { type: "json" };
 
 test("every published record has a unique safe route and a local image", () => {
   for (const [section, items] of Object.entries(collections)) {
@@ -252,4 +253,31 @@ test("GNDR is listed once with its complete name and unchanged supplied PNG", ()
   assert.equal(gndr.width, 299);
   assert.equal(gndr.height, 111);
   assert.equal(createHash("sha256").update(readFileSync(`public${gndr.src}`)).digest("hex"), gndr.sourceSha256);
+});
+
+test("research uses the revised name, eight areas and collaboration copy", () => {
+  const page = institutionPages["what-we-do"].find((item) => item.slug === "research");
+  assert.equal(page.title, "Research, Innovation & Knowledge");
+  assert.equal(page.summary, researchCopy.tagline);
+  assert.equal(page.list.items.length, 8);
+  assert.deepEqual(page.list.items, researchCopy.areas);
+  assert.ok(page.list.items.every((area) => !/^\d/.test(area)));
+  assert.deepEqual(page.collaboration, researchCopy.collaboration);
+  assert.equal(page.action, "Contact the BRD Research Center");
+  assert.equal(navigation.find((group) => group.href === "/what-we-do").links[0][0], page.title);
+  assert.equal(collections.services.find((service) => service.slug === "research-and-assessment").title, page.title);
+  assert.match(readFileSync("app/page.tsx", "utf8"), /researchCopy.title/);
+});
+
+test("humanitarian and geospatial use separate panels from the unchanged supplied image", () => {
+  const source = "/brd/generated/service-illustrations.png";
+  assert.equal(createHash("sha256").update(readFileSync(`public${source}`)).digest("hex"), "dff5cdb9a31dad502aca1222b7a348a3f8ef9c2c395b8a2d05367e88cfef392b");
+  for (const [slug, serviceSlug, panel] of [["humanitarian-support", "humanitarian-support", "humanitarian"], ["geospatial-earth-observation", "gis-and-earth-observation", "geospatial"]]) {
+    const page = institutionPages["what-we-do"].find((item) => item.slug === slug);
+    const service = collections.services.find((item) => item.slug === serviceSlug);
+    assert.equal(page.image, source);
+    assert.equal(page.imagePanel, panel);
+    assert.equal(service.image, source);
+    assert.equal(service.imagePanel, panel);
+  }
 });

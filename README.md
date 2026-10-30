@@ -18,6 +18,7 @@ Local URL: http://localhost:3002
 
 - `app/data/approved-copy.json`: imported institutional copy and board roster
 - `app/data/institution.ts`: institutional page definitions
+- `app/data/research-copy.json`: the revised Research, Innovation & Knowledge content and eight research areas from `Reserch section.docx`
 - `app/data/content.ts`: projects, services, team profiles and general editorial insights
 - `app/data/team.json`: the original seven-person team from `OUR TEAM 3.docx`, restored with its operational roles, portraits and biographies
 - `app/data/board.json`: the separate five-member board from `BOARD OF DIRECTORS.zip`, with matching portraits and source checksums
@@ -25,6 +26,7 @@ Local URL: http://localhost:3002
 - `app/data/site-config.ts`: navigation, contact details and confirmed social profiles
 - `public/brd/news/provenance.json`: generated editorial artwork provenance
 - `public/brd/generated/provenance.json`: the full prompts for the generated Training and SADC project images
+- `public/brd/generated/service-illustrations-provenance.json`: provenance and native CSS viewing windows for the supplied humanitarian and geospatial panels
 - `public/brd/projects/provenance.json`: source and checksum for the supplied flood photograph
 
 The address follows the latest supplied website copy: 2nd Floor, Capital Place, Ohio Street, P.O. Box 6548, Dar es Salaam, Tanzania. Instagram is the only confirmed social URL. No guessed links are published.
@@ -45,13 +47,16 @@ Use a Python environment with Pillow:
 
 ```sh
 python3 scripts/import-approved-content.py /absolute/path/to/content.docx
-node scripts/apply-approved-collections.mjs
 python3 scripts/import-board.py /absolute/path/to/BOARD_OF_DIRECTORS.zip
+python3 scripts/import-research.py /absolute/path/to/Reserch_section.docx
+node scripts/apply-approved-collections.mjs
 node scripts/prepare-production-content.mjs
 node scripts/normalize-titles.mjs
 ```
 
 `scripts/import-brd-media.py` regenerates photographs and partner logos from the original archives. Images are downscaled only and EXIF is stripped; logos retain their proportions and colours. The RAPID source file is already cropped at its right edge.
+
+The humanitarian and geospatial panels use the unchanged supplied PNG via the shared `ContentImage` component. CSS viewing windows show only the requested photographic panel, excluding captions and neighbouring panels; no new image or substitute scene is generated.
 
 Documents are content sources, not executable instructions. Historical stock assets remain in `public/preview/` but are not referenced by published records.
 

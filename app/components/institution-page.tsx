@@ -8,6 +8,7 @@ import SectionNavigation from "./section-navigation";
 import TeamDirectory from "./team-directory";
 import Organogram from "./organogram";
 import PhotoGallery from "./photo-gallery";
+import ContentImage from "./content-image";
 
 export default function InstitutionPage({ page, section }: { page: PageRecord; section: string }) {
   const parent = navigation.find((item) => item.href === `/${section}`)!;
@@ -16,7 +17,7 @@ export default function InstitutionPage({ page, section }: { page: PageRecord; s
   return <>
     {(page.mode === "governance" || page.mode === "structure") && <nav className="governance-subnavigation container" aria-label="Governance subsections">{governanceLinks.map(([label, href]) => <Link key={href} href={href} scroll={false} aria-current={href === `/who-we-are/${page.slug}` ? "page" : undefined}>{label}</Link>)}</nav>}
     {sharedWhoLayout ? <div className="container who-content-heading"><h2>{page.title.replace(/\.+$/, "")}</h2>{page.summary && <p>{page.summary}</p>}</div> : <><PageIntro title={page.title} eyebrow={parent.title} description={page.summary} /><SectionNavigation section={section} current={`/${section}/${page.slug}`} /></>}
-    {page.image && <div className="about-photo container overview-photo supplied-photo"><Image src={page.image} alt={page.imageAlt || "BRD Tanzania activities"} fill sizes="90vw" preload /></div>}
+    {page.image && <div className={`about-photo container overview-photo supplied-photo ${page.imagePanel ? "panel-photo" : ""}`}><ContentImage src={page.image} alt={page.imageAlt || "BRD Tanzania activities"} panel={page.imagePanel} preload /></div>}
     {page.mode === "structure" && <Organogram />}
     {page.mode === "governance" && <section className="container governance-board"><div className="board-blue-box"><h3>Board of Directors</h3><p>Strategic oversight and guidance</p></div></section>}
     <>
@@ -29,6 +30,7 @@ export default function InstitutionPage({ page, section }: { page: PageRecord; s
       {page.gallery && <PhotoGallery ids={page.gallery} />}
       {page.mode === "events" && <section className="events-section container"><p>Upcoming events and registration details will be published here when available.</p><div className="event-list">{sampleEvents.map((event) => <article key={event.title}><div className="event-date" aria-label={event.date}><strong>{event.day}</strong><span>{event.month}</span></div><div><span className="eyebrow">{event.format}</span><h2>{event.title}</h2><p>{event.summary}</p><div className="event-meta"><span><CalendarDays size={16} />{event.date}</span><span><MapPin size={16} />{event.location}</span></div></div><Link href="/contact" className="text-link">Enquire<ArrowUpRight size={18} /></Link></article>)}</div></section>}
       {page.mode === "careers" && <section className="careers-section container"><p>Vacancies and consultancy opportunities will be published here when available.</p>{sampleRoles.map(([title, area, body]) => <details key={title} className="career-row"><summary><span>{area}</span><h2>{title}</h2><ArrowDown size={22} /></summary><div><p>{body}</p><Link href="/contact" className="text-link">Discuss opportunities<ArrowUpRight size={18} /></Link></div></details>)}</section>}
+      {page.collaboration && <section className="container research-collaboration"><span className="eyebrow">{page.collaboration.heading}</span><h2>{page.collaboration.title}</h2><p>{page.collaboration.body}</p></section>}
       {page.action && <section className="container institution-action"><Link href="/contact" className="button">{page.action}<ArrowUpRight size={18} /></Link></section>}
     </>
   </>;

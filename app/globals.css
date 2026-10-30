@@ -935,6 +935,15 @@ body { font-size: 19px; }
 .board-roster .team-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 .detail-photo.project-photo { height: auto; aspect-ratio: 3 / 2; max-width: 1000px; }
 .project-photo img { object-fit: contain; }
+.panel-photo { height: auto; aspect-ratio: 496 / 645; max-width: 496px; }
+.image-panel { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.image-panel-humanitarian { --panel-left: -104.8387097%; }
+.image-panel-geospatial { --panel-left: -208.0645161%; }
+.image-panel-crop { position: relative; width: 100%; aspect-ratio: 496 / 645; flex-shrink: 0; overflow: hidden; }
+.image-panel-crop > img { position: absolute; width: 309.6774194%; max-width: none; height: auto; left: var(--panel-left); top: -4.3410853%; object-fit: fill; }
+.research-collaboration { padding-top: 25px; }
+.research-collaboration h2 { font-size: 32px; margin-bottom: 20px; }
+.research-collaboration p { max-width: 900px; font-size: 19px; line-height: 1.8; margin-bottom: 25px; }
 .team-person { text-align: center; min-width: 0; }
 .team-portrait { width: 200px; max-width: 100%; aspect-ratio: 1; border-radius: 50%; position: relative; overflow: hidden; margin-inline: auto; background: #f3f5f5; }
 .team-portrait img { object-fit: cover; object-position: center 28%; }

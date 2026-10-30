@@ -2,6 +2,9 @@
 
 ## 2026-10-30
 
+- Renamed the Research section to Research, Innovation & Knowledge across the page, navigation, homepage and service listing. Imported the revised research copy, eight thematic areas and collaboration invitation from Reserch section.docx, preserving existing URLs.
+- Added the supplied humanitarian and geospatial image panels to their pages and service listings. Native CSS framing displays just each photographic panel, without the coloured caption blocks, while retaining the original PNG unchanged.
+
 - Restored the original seven-person team, including its biographies, portraits and operational roles. Retained the five-member Board of Directors as a separate roster and restored the team-based organisational chart.
 - Replaced the repetitive Training gallery with one new AI-generated training image and used a separate generated gender-inclusive planning image for the SADC project. Replaced the flood-resilience project image with the supplied Floods in Tanzania photograph. Recorded prompts and provenance, and preserved full project-image framing.
 - Removed the video and knowledge-resource publication placeholder messages, including category pages. Search retains separate team and board roles.

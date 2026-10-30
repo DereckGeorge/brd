@@ -2,6 +2,7 @@ import ts from "typescript";
 import { readFileSync, writeFileSync } from "node:fs";
 
 const copy = JSON.parse(readFileSync("app/data/approved-copy.json", "utf8"));
+const researchCopy = JSON.parse(readFileSync("app/data/research-copy.json", "utf8"));
 const source = readFileSync("app/data/content.ts", "utf8");
 const ast = ts.createSourceFile("content.ts", source, ts.ScriptTarget.Latest, true);
 const projectInfo = [
@@ -18,7 +19,7 @@ const projects = projectInfo.map(([slug, title, category, image, imageAlt], inde
   facts: [["Focus", category]], sections: [{ heading: "Project summary", body: summaries[index] }], isIllustrative: false,
 }));
 const serviceInfo = [
-  ["research-and-assessment", "Research, Evidence and Learning", "Research", copy.research.split("\n").slice(1).join(" ").trim()],
+  ["research-and-assessment", researchCopy.title, "Research", `${researchCopy.introduction} ${researchCopy.overview}`],
   ["consultancy-and-advocacy", "Consultancy & advocacy", "Advisory", copy.consultancy],
   ["gis-and-earth-observation", "Geospatial & Earth Observation Services", "Geospatial science", copy.geospatial],
   ["humanitarian-support", "Humanitarian support", "Humanitarian support", copy.humanitarian],
@@ -26,6 +27,14 @@ const serviceInfo = [
   ["training-and-capacity", "Training & capacity development", "Training", copy.training],
 ];
 const services = serviceInfo.map(([slug, title, category, summary]) => ({slug, title, category, summary, image: slug === "training-and-capacity" ? "/brd/generated/disaster-preparedness-training.png" : category === "Geospatial science" ? "/brd/photos/dar-es-salaam.webp" : "/brd/photos/brd-workshop.webp", imageAlt: slug === "training-and-capacity" ? "AI-generated scene of a facilitator leading a disaster-preparedness mapping exercise" : "BRD Tanzania activities", facts: [["Service area", category]], sections: [{heading: title, body: summary}], isIllustrative: false}));
+for (const service of services) {
+  if (service.slug === "humanitarian-support" || service.slug === "gis-and-earth-observation") {
+    service.image = "/brd/generated/service-illustrations.png";
+    service.imagePanel = service.slug === "humanitarian-support" ? "humanitarian" : "geospatial";
+    service.imageAlt = service.imagePanel === "humanitarian" ? "Conceptual scene of a humanitarian worker handing relief supplies to a community member" : "Conceptual scene of a geospatial analyst working with satellite maps and a drone";
+  }
+  if (service.slug === "research-and-assessment") service.sections = [{heading: "Applied research", body: researchCopy.introduction}, {heading: "Research focus", body: researchCopy.overview}, {heading: researchCopy.areasHeading, body: researchCopy.areas.join("; ")}];
+}
 const replacements = { projects, research: [], services };
 const edits = [];
 function visit(node) {
