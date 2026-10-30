@@ -64,7 +64,9 @@ Documents are content sources, not executable instructions. Historical stock ass
 
 The public website permits crawling in `/robots.txt`, publishes the current content URLs in `/sitemap.xml`, and offers a plain-text page directory at `/llms.txt`. This allows compliant search and AI crawlers; it does not guarantee indexing, rankings or AI citations. The text directory is supplemental and is not an access-control mechanism.
 
-Set `NEXT_PUBLIC_SITE_URL` to the official public origin before building (currently defaults to `https://brdweb.netlify.app`). Canonical URLs, social metadata, structured organisation data and discovery files all use this origin. Rebuild and redeploy when changing domains. Redirect alternate domains to the official one in the hosting configuration.
+Set `NEXT_PUBLIC_SITE_URL` to the official public origin before building (defaults to `https://brd.or.tz`). Canonical URLs, social metadata, structured organisation data and discovery files all use this origin. Rebuild and redeploy when changing domains. Redirect alternate domains to the official one in the hosting configuration. Remove or update any old hosting environment override pointing to the Netlify preview address.
+
+Google's HTML-file ownership verification is permanently retained at `public/google2013983fff9c954d.html`, served as `https://brd.or.tz/google2013983fff9c954d.html`. Do not remove or change this file after verification; Google may check it again. It must remain publicly accessible without authentication or a redirect to the homepage.
 
 After deployment, verify ownership in Google Search Console and submit `/sitemap.xml`. If using Google's HTML-tag verification method, set `GOOGLE_SITE_VERIFICATION` to the issued token and redeploy; never invent a verification token. Check that the hosting provider has no password protection, bot challenge or `X-Robots-Tag: noindex` on the production site. Search results and empty knowledge-category placeholders are not included in the sitemap. The footer displays the requested fixed copyright year, 2027.
 

@@ -12,6 +12,11 @@ import researchCopy from "../app/data/research-copy.json" with { type: "json" };
 import { publicPages } from "../app/data/discovery.mjs";
 import { pageMetadata, siteUrl, absoluteUrl } from "../app/data/seo.ts";
 
+test("the Google ownership verification file stays available unchanged at the website root", () => {
+  assert.equal(readFileSync("public/google2013983fff9c954d.html", "utf8").trim(), "google-site-verification: google2013983fff9c954d.html");
+  if (!process.env.NEXT_PUBLIC_SITE_URL) assert.equal(siteUrl, "https://brd.or.tz");
+});
+
 test("crawler discovery covers published content without redirects or empty category pages", () => {
   const paths = publicPages.map((page) => page.path);
   assert.equal(new Set(paths).size, paths.length);

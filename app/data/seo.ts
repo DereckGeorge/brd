@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-const configuredUrl = new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://brdweb.netlify.app");
+const configuredUrl = new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://brd.or.tz");
 if (!["http:", "https:"].includes(configuredUrl.protocol)) throw new Error("NEXT_PUBLIC_SITE_URL must be an HTTP(S) URL");
 export const siteUrl = configuredUrl.origin;
 export const siteDescription = "BRD Tanzania is a non-governmental organization advancing disaster risk reduction, climate resilience, research, training, and humanitarian action.";
