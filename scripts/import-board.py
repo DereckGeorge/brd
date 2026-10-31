@@ -55,7 +55,14 @@ def main():
             members.append({"slug": slug, "name": text, "role": paragraphs[index + 1], "image": image_path, "biography": biography, "sourceArchive": SOURCE.name, "sourceDocument": document_path, "sourceDocumentSha256": digest(document_bytes), "sourceImage": source_image, "sourceSha256": digest(image_bytes), "width": portrait.width, "height": portrait.height})
     if len(members) != len(PORTRAITS):
         raise ValueError("Expected five board members with matching portraits")
-    (ROOT / "app/data/board.json").write_text(json.dumps(members, ensure_ascii=True, indent=2) + "\n")
+    target = ROOT / "app/data/board.json"
+    previous = {member["slug"]: member for member in json.loads(target.read_text())} if target.exists() else {}
+    for member in members:
+        approved = previous.get(member["slug"], {})
+        if approved.get("biographySourceDocument"):
+            for key in ("biography", "biographySourceDocument", "biographySourceDocumentSha256"):
+                member[key] = approved[key]
+    target.write_text(json.dumps(members, ensure_ascii=True, indent=2) + "\n")
     print("Imported five board members and matched portraits")
 
 

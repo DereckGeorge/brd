@@ -217,10 +217,20 @@ test("all supplied photographs and logos are imported with provenance and withou
   for (const page of institutionPages["who-we-are"]) if (page.gallery) for (const id of page.gallery) assert.ok(media.photos.some((photo) => photo.id === id));
   assert.equal(institutionPages["who-we-are"].find((page) => page.slug === "team").title, "Our Team");
   const organogram = readFileSync("app/components/organogram.tsx", "utf8");
-  assert.match(organogram, /teamMembers as team/);
-  assert.doesNotMatch(organogram, /Executive Management Team|Board of Directors/);
+  assert.match(organogram, /\/brd\/BRD_Tanzania_Organogram\.png/);
+  assert.doesNotMatch(organogram, /teamMembers|team\.slice/);
   assert.equal(institutionPages["who-we-are"].find((page) => page.slug === "governance").mode, "governance");
   assert.equal(institutionPages["who-we-are"].find((page) => page.slug === "organisational-structure").mode, "structure");
+});
+
+test("the revised chairperson biography and supplied organogram are published", () => {
+  const chairperson = boardMembers.find((member) => member.slug === "nyambiri-kimacha");
+  assert.equal(chairperson.biography.length, 4);
+  assert.match(chairperson.biography[0], /Senior Disaster Risk Management Consultant/);
+  assert.match(chairperson.biography[2], /Zuia Mafuriko Project/);
+  assert.match(chairperson.biography[3], /Community Development Officer/);
+  assert.equal(chairperson.biographySourceDocumentSha256, "d082783d027e1f6e8367b0d194588b7f8df70810cb01d7deb4d17242a521e2fd");
+  assert.equal(createHash("sha256").update(readFileSync("public/brd/BRD_Tanzania_Organogram.png")).digest("hex"), "fd38f6f422084bddb9c4863d8d443050e62f23f724e4171e86180c4cb1db9316");
 });
 
 test("production pages omit preview labels, topic suggestions and mock submission", () => {

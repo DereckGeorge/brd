@@ -1,5 +1,10 @@
 # Change Log
 
+## 2026-10-31
+
+- Replaced the chairperson's biography with the four paragraphs in the revised supplied document, preserving her role and portrait. Board reimports retain separately approved biography updates.
+- Replaced the generated team-role chart with the unchanged supplied BRD Tanzania organogram and added a full-size viewing link.
+
 ## 2026-10-30
 
 - Removed the public Images & credits page, footer link, unused styles and discovery-directory entry. Retained internal image provenance records.
