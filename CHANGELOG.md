@@ -1,5 +1,9 @@
 # Change Log
 
+## 2026-11-14
+
+- Added a multi-resolution favicon.ico, 96px search favicon and 180px Apple touch icon derived from the existing BRD logo, with square white framing and no logo changes. Added global icon metadata, a repeatable asset-preparation script and format regression tests.
+
 ## 2026-10-31
 
 - Replaced the chairperson's biography with the four paragraphs in the revised supplied document, preserving her role and portrait. Board reimports retain separately approved biography updates.

@@ -12,6 +12,35 @@ import researchCopy from "../app/data/research-copy.json" with { type: "json" };
 import { publicPages } from "../app/data/discovery.mjs";
 import { pageMetadata, siteUrl, absoluteUrl } from "../app/data/seo.ts";
 
+test("BRD favicons have valid square PNG frames and discoverable icon metadata", () => {
+  const pngSignature = Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]);
+  for (const [path, size] of [["public/favicon-96x96.png", 96], ["public/apple-touch-icon.png", 180]]) {
+    const png = readFileSync(path);
+    assert.ok(png.subarray(0, 8).equals(pngSignature));
+    assert.equal(png.readUInt32BE(16), size);
+    assert.equal(png.readUInt32BE(20), size);
+  }
+  const ico = readFileSync("app/favicon.ico");
+  assert.equal(ico.readUInt16LE(0), 0);
+  assert.equal(ico.readUInt16LE(2), 1);
+  assert.equal(ico.readUInt16LE(4), 6);
+  for (let index = 0; index < 6; index++) {
+    const entry = 6 + index * 16;
+    const size = ico[entry] || 256;
+    const length = ico.readUInt32LE(entry + 8);
+    const offset = ico.readUInt32LE(entry + 12);
+    assert.ok(offset + length <= ico.length);
+    assert.ok(ico.subarray(offset, offset + 8).equals(pngSignature));
+    assert.equal(ico.readUInt32BE(offset + 16), size);
+    assert.equal(ico.readUInt32BE(offset + 20), size);
+    assert.equal(ico[offset + 25], 6, "ICO PNG frames must use RGBA for the Next.js decoder");
+  }
+  const layout = readFileSync("app/layout.tsx", "utf8");
+  assert.match(layout, /icons:/);
+  assert.match(layout, /\/favicon-96x96\.png/);
+  assert.match(layout, /\/apple-touch-icon\.png/);
+});
+
 test("the Google ownership verification file stays available unchanged at the website root", () => {
   assert.equal(readFileSync("public/google2013983fff9c954d.html", "utf8").trim(), "google-site-verification: google2013983fff9c954d.html");
   if (!process.env.NEXT_PUBLIC_SITE_URL) assert.equal(siteUrl, "https://brd.or.tz");

@@ -62,6 +62,8 @@ Documents are content sources, not executable instructions. Historical stock ass
 
 ## Search and Crawler Discovery
 
+The BRD logo is published as `/favicon.ico`, `/favicon-96x96.png` and `/apple-touch-icon.png`, with icon links on every page. Regenerate these square assets from the existing logo with `node scripts/prepare-favicons.mjs`. The source logo is kept unchanged. Google controls whether and when the favicon is shown after recrawling the homepage and icon.
+
 The public website permits crawling in `/robots.txt`, publishes the current content URLs in `/sitemap.xml`, and offers a plain-text page directory at `/llms.txt`. This allows compliant search and AI crawlers; it does not guarantee indexing, rankings or AI citations. The text directory is supplemental and is not an access-control mechanism.
 
 Set `NEXT_PUBLIC_SITE_URL` to the official public origin before building (defaults to `https://brd.or.tz`). Canonical URLs, social metadata, structured organisation data and discovery files all use this origin. Rebuild and redeploy when changing domains. Redirect alternate domains to the official one in the hosting configuration. Remove or update any old hosting environment override pointing to the Netlify preview address.

@@ -10,6 +10,10 @@ export const metadata: Metadata = {
   title: { default: "BRD Tanzania | Building Resilience to Disasters", template: "%s | BRD Tanzania" },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
   description: siteDescription,
+  icons: {
+    icon: [{ url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" }],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+  },
   verification: { google: process.env.GOOGLE_SITE_VERIFICATION || undefined },
 };
 
